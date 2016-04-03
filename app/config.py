@@ -34,14 +34,3 @@ FREEZER_BASE_URL = "http://localhost:5000"
 # Prevent Frozen-Flask from removing non-frozen files when it is run. More
 # information at http://pythonhosted.org/Frozen-Flask/#getting-started
 FREEZER_REMOVE_EXTRA_FILES = False
-
-#  _____ _           _         _____ _       _   ____
-# |  ___| | __ _ ___| | __    |  ___| | __ _| |_|  _ \ __ _  __ _  ___  ___
-# | |_  | |/ _` / __| |/ /____| |_  | |/ _` | __| |_) / _` |/ _` |/ _ \/ __|
-# |  _| | | (_| \__ \   <_____|  _| | | (_| | |_|  __/ (_| | (_| |  __/\__ \
-# |_|   |_|\__,_|___/_|\_\    |_|   |_|\__,_|\__|_|   \__,_|\__, |\___||___/
-#                                                           |___/
-
-# Tell FlatPages to search for *.md files within the app/pages/ directory
-FLATPAGES_ROOT = os.path.join(APP_DIR, "pages")
-FLATPAGES_EXTENSION = ".md"
