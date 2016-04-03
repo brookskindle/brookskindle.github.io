@@ -1,0 +1,11 @@
+<html>
+    <title>{% block title %}Brooks Kindle{% endblock %}</title>
+
+    <!-- Place content in this block -->
+    {% block content %}
+        <!-- Content body for child templates -->
+        <div class="container">
+        {% block page_content %}{% endblock %}
+        </div>
+    {% endblock %}
+</html>
