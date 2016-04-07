@@ -1,5 +1,12 @@
 <!-- Inherit from our base layout -->
 {% extends "base.html" %}
 {% block page_content %}
-<p>Under construction</p>
+<h1>Brooks Kindle</h1>
+<img src={{ url_for("static", filename="profile.jpg") }} height="375" width="250"/>
+<h2>About</h2>
+<p>I graduated Cum Laude with a Bachelor of Science in Computer Science from
+Washington State University in May 2015. I am now a professional software
+developer and python journeyman working in the Seattle area.</p>
+<h2>Connect with me</h2>
+<a href="https://github.com/brookskindle"><img src={{ url_for("static", filename="GitHub-Mark-32px.png") }}/></a>
 {% endblock %}
