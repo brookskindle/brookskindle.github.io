@@ -1,7 +1,4 @@
 from flask import Flask
-from flask_bootstrap import Bootstrap
-
-bootstrap = Bootstrap()
 
 def create_app(config_file):
     """Create a flask application from a configuration file.
@@ -18,7 +15,6 @@ def create_app(config_file):
     app.config.from_pyfile(config_file)
 
     # Other initialization
-    bootstrap.init_app(app)
 
     # Route registration
     from app.views import bp
