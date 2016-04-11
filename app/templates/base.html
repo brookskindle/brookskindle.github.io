@@ -1,8 +1,21 @@
 <!DOCTYPE html>
 <html>
-    <head>
+    <head>{% block head %}
         <title>{% block title %}Brooks Kindle{% endblock %}</title>
-    </head>
+        <style type="text/css">
+            /* using internal style until I figure out how to add static/css */
+            body {
+                font-family: arial;
+                background-color: #2E3436;
+                color: #b4b4b4;
+                position: relative;
+                left: 25%;
+            }
+            h1, h2, h3, h4, h5, h6 {
+                color: #d90063
+            }
+        </style>
+    </head>{% endblock %}
     <body>
         {% block page_content %}{% endblock %}
     </body>
