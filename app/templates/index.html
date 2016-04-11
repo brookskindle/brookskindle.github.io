@@ -1,12 +1,30 @@
 <!-- Inherit from our base layout -->
 {% extends "base.html" %}
+{% block head %}
+{{ super() }}
+<style type="text/css">
+    /* Additional styles for this page */
+    img#profile {
+        height: 15%;
+        width:  15%;
+    }
+    p {
+        font-size: 24px;
+    }
+    p#about {
+        width: 50%;
+    }
+</style>
+{% endblock %}
+
 {% block page_content %}
 <h1>Brooks Kindle</h1>
-<img src={{ url_for("static", filename="profile.jpg") }} height="375" width="250"></img>
+<img class="img-circle" id="profile" src={{ url_for("static", filename="profile_cropped.jpg") }} />
 <h2>About</h2>
-<p>I graduated Cum Laude with a Bachelor of Science in Computer Science from
-Washington State University in May 2015. I am now a professional software
-developer and python journeyman working in the Seattle area.</p>
+<p id="about">I graduated Cum Laude with a Bachelor of Science in
+Computer Science from Washington State University in May 2015. I am now
+a professional software developer and python journeyman working in the
+Seattle area.</p>
 <h2>Connect with me</h2>
-<a href="https://github.com/brookskindle"><img src={{ url_for("static", filename="GitHub-Mark-32px.png") }}></img></a>
+<a href="https://github.com/brookskindle"><img id="github" src={{ url_for("static", filename="GitHub-Mark-Light-64px.png") }}></img></a>
 {% endblock %}

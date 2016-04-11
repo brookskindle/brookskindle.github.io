@@ -1,11 +1,25 @@
+<!DOCTYPE html>
 <html>
-    <title>{% block title %}Brooks Kindle{% endblock %}</title>
-
-    <!-- Place content in this block -->
-    {% block content %}
-        <!-- Content body for child templates -->
-        <div class="container">
+    <head>{% block head %}
+        <title>{% block title %}Brooks Kindle{% endblock %}</title>
+        <style type="text/css">
+            /* using internal style until I figure out how to add static/css */
+            body {
+                font-family: arial;
+                background-color: #101929;
+                color: #b4b4b4;
+            }
+            h1, h2, h3, h4, h5, h6 {
+                color: #75C2DB
+            }
+            .img-circle {
+                border-radius: 50%;
+            }
+        </style>
+    </head>{% endblock %}
+    <body>
+        <div class="content" align="center">
         {% block page_content %}{% endblock %}
         </div>
-    {% endblock %}
+    </body>
 </html>
