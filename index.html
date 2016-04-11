@@ -1,21 +1,51 @@
 <!-- Inherit from our base layout -->
+<!DOCTYPE html>
 <html>
-    <title>Brooks Kindle</title>
+    <head>
 
-    <!-- Place content in this block -->
-    
-        <!-- Content body for child templates -->
-        <div class="container">
+        <title>Brooks Kindle</title>
+        <style type="text/css">
+            /* using internal style until I figure out how to add static/css */
+            body {
+                font-family: arial;
+                background-color: #101929;
+                color: #b4b4b4;
+            }
+            h1, h2, h3, h4, h5, h6 {
+                color: #75C2DB
+            }
+            .img-circle {
+                border-radius: 50%;
+            }
+        </style>
+    </head>
+<style type="text/css">
+    /* Additional styles for this page */
+    img#profile {
+        height: 15%;
+        width:  15%;
+    }
+    p {
+        font-size: 24px;
+    }
+    p#about {
+        width: 50%;
+    }
+</style>
+
+    <body>
+        <div class="content" align="center">
         
 <h1>Brooks Kindle</h1>
-<img src=/static/profile.jpg height="375" width="250"></img>
+<img class="img-circle" id="profile" src=/static/profile_cropped.jpg />
 <h2>About</h2>
-<p>I graduated Cum Laude with a Bachelor of Science in Computer Science from
-Washington State University in May 2015. I am now a professional software
-developer and python journeyman working in the Seattle area.</p>
+<p id="about">I graduated Cum Laude with a Bachelor of Science in
+Computer Science from Washington State University in May 2015. I am now
+a professional software developer and python journeyman working in the
+Seattle area.</p>
 <h2>Connect with me</h2>
-<a href="https://github.com/brookskindle"><img src=/static/GitHub-Mark-32px.png></img></a>
+<a href="https://github.com/brookskindle"><img id="github" src=/static/GitHub-Mark-Light-64px.png></img></a>
 
         </div>
-    
+    </body>
 </html>
