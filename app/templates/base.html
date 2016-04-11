@@ -6,17 +6,20 @@
             /* using internal style until I figure out how to add static/css */
             body {
                 font-family: arial;
-                background-color: #2E3436;
+                background-color: #101929;
                 color: #b4b4b4;
-                position: relative;
-                left: 25%;
             }
             h1, h2, h3, h4, h5, h6 {
-                color: #d90063
+                color: #75C2DB
+            }
+            .img-circle {
+                border-radius: 50%;
             }
         </style>
     </head>{% endblock %}
     <body>
+        <div class="content" align="center">
         {% block page_content %}{% endblock %}
+        </div>
     </body>
 </html>
