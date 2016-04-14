@@ -17,7 +17,7 @@ def create_app(config_file):
     # Other initialization
 
     # Route registration
-    from app.views import bp
-    app.register_blueprint(bp)
+    from app.main.views import bp as main_bp
+    app.register_blueprint(main_bp)
 
     return app
