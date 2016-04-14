@@ -34,3 +34,10 @@ FREEZER_BASE_URL = "http://localhost:5000"
 # Prevent Frozen-Flask from removing non-frozen files when it is run. More
 # information at http://pythonhosted.org/Frozen-Flask/#getting-started
 FREEZER_REMOVE_EXTRA_FILES = False
+
+#
+# Flask FlatPages
+#
+FLATPAGES_MARKDOWN_EXTENSIONS = ["codehilite"]
+FLATPAGES_ROOT = os.path.join(APP_DIR, "posts")
+FLATPAGES_EXTENSION = ".md"

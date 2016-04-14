@@ -1,4 +1,7 @@
 from flask import Flask
+from flask_flatpages import FlatPages
+
+pages = FlatPages()
 
 def create_app(config_file):
     """Create a flask application from a configuration file.
@@ -15,9 +18,12 @@ def create_app(config_file):
     app.config.from_pyfile(config_file)
 
     # Other initialization
+    pages.init_app(app)
 
     # Route registration
     from app.main.views import bp as main_bp
     app.register_blueprint(main_bp)
+    from app.blog.views import bp as blog_bp
+    app.register_blueprint(blog_bp, url_prefix="/blog")
 
     return app
