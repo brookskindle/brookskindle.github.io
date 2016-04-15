@@ -18,6 +18,11 @@
         </style>
     </head>{% endblock %}
     <body>
+        <div class="navbar" align="center">
+            <a href="{{ url_for("main.index") }}">Home</a>
+            |
+            <a href="{{ url_for("blog.index") }}">Blog</a>
+        </div>
         <div class="content" align="center">
         {% block page_content %}{% endblock %}
         </div>
