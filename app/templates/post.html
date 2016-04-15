@@ -3,13 +3,13 @@
     Args:
         post: A Flask-FlatPages Page object that is the post we are rendering.
 -->
-{% extends "blog.html" %}
+{% extends "base.html" %}
 
-{% block title %}{{ super() }} - {{ post.meta.title }}{% endblock %}
+{% block title %}{{ post.meta.title }} - {{ super() }}{% endblock %}
 
 {% block page_content %}
 <h1>{{ post.meta.title }}</h1>
-<i>Written by {{ post.meta.author }} on {{ post.meta.date }}</i>
+<i>{{ post.meta.date }}</i>
 <hr width=50% />
 {{ post }}
 {% endblock %}

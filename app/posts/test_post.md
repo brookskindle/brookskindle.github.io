@@ -1,6 +1,6 @@
-title: My first post
+title: Test post
 author: Brooks Kindle
-date: April 2016
+date: 2009-04-12
 
 # This is my first post
 There is some text below it. Notably a table
@@ -15,4 +15,4 @@ for x in zip(range(len(1))):
 ```
 
 ## This is a second header, woohoo!
-*Why should* **anyone** care?
+*These are words in italics.* **And these are in bold!**

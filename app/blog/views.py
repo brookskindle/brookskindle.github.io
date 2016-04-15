@@ -6,7 +6,13 @@ bp = Blueprint("blog", __name__)
 
 @bp.route("/")
 def index():
-    return render_template("blog.html")
+    posts = [p for p in pages if p.meta.get("date")]
+    sorted_posts = sorted(  # Sort posts by most recent first
+        posts,
+        key=lambda post: post.meta["date"],
+        reverse=True
+    )
+    return render_template("blog.html", posts=sorted_posts)
 
 @bp.route("/<path:path>/")
 def post(path):
