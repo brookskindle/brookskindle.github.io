@@ -35,9 +35,20 @@ FREEZER_BASE_URL = "http://localhost:5000"
 # information at http://pythonhosted.org/Frozen-Flask/#getting-started
 FREEZER_REMOVE_EXTRA_FILES = False
 
-#
-# Flask FlatPages
-#
-FLATPAGES_MARKDOWN_EXTENSIONS = ["codehilite"]
+
+#  _____ _           _         _____ _       _   ____
+# |  ___| | __ _ ___| | __    |  ___| | __ _| |_|  _ \ __ _  __ _  ___  ___
+# | |_  | |/ _` / __| |/ /____| |_  | |/ _` | __| |_) / _` |/ _` |/ _ \/ __|
+# |  _| | | (_| \__ \   <_____|  _| | | (_| | |_|  __/ (_| | (_| |  __/\__ \
+# |_|   |_|\__,_|___/_|\_\    |_|   |_|\__,_|\__|_|   \__,_|\__, |\___||___/
+#                                                           |___/
+
+# https://pythonhosted.org/Markdown/extensions/index.html#officially-supported-extensions
+FLATPAGES_MARKDOWN_EXTENSIONS = [
+    # TODO: I'm missing a step to enable code highlighting from the
+    # 'codehilite' extention
+    "codehilite",  # Allow for highlighting of code snippets
+    "extra",  # Allow use of tables, among other things.
+]
 FLATPAGES_ROOT = os.path.join(APP_DIR, "posts")
 FLATPAGES_EXTENSION = ".md"
