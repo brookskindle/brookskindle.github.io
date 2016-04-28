@@ -1,20 +1,22 @@
 title: Contributing to open source
 date: 2016-04-27
 
+## successful = OpenSource.contribute()
 Contributing to open source projects has always been a dream of mine but
 something that I was never able to fully commit to.
 
-## if fail:
+## if not successful:
 
 My first attempt at contributing to open source software was with tmux, a
 terminal multiplexer written in C. I contacted the project maintainer and asked
 if my feature idea was useful and if he had any getting started tips for me. He
-gave me his blessing and gave me some really solid advice on how to implement
-my idea. I was an avid user of tmux and knew my way around the program pretty
-well so at this point I was set and ready to make a difference in the world!
+gave me his blessing as well as some really solid advice on how to implement my
+idea. I was an avid user of tmux and knew my way around the program pretty well
+ -- what could possibly go wrong?
 
-To make a long story short, I failed miserably. Looking back, there were
-several reasons for my utterly catastrophic failure.
+To make a long story short, I failed miserably after trying a variety of
+different approaches. None ended up going very far. Looking back, there were
+several reasons for this.
 
 * I was trying to implement a *huge* feature in a project that I had never
   worked with before.
@@ -28,16 +30,16 @@ self-inflicted assignment. This brings me to my next point.
 * I asked for permission
 
 Asking for permission is a great thing to do and in most cases will improve the
-likelyhood of a change being accepted. The tradeoff, however, is that you
-become obligated to work on and finish the change. In my case, this made
+likelyhood of a change being accepted. The tradeoff, however, is that you feel
+obligated to work on and finish what has been started. In my case, this made
 matters worse.
 
-## else:
+## else:  # success case
 
 This past week I made a relatively small contribution to the open source python
 library, setuptools. For those who are unfamiliar, setuptools is a python
 library designed to make packaging and distributing python projects easy. It is
-built on top of its predecessor library, `distutils`.
+built on top of its predecessor library, distutils.
 
 It was the "Hello, world!" of open source contributions and while its
 functional significance might barely be realized or acknowledged, the purpose
@@ -53,12 +55,13 @@ I've had time to think about and reflect why this is.
   with the code base despite not having touched it before.
 * I had a vested interest in the feature I was implementing
 
-and lastly
-
-* I did not ask for permission.
+Lastly, I did not ask for permission, which was a huge relief stress-wise
+because it left me free to work on it on my own time without feeling like I'm
+letting anybody down.
 
 ## Advice
 My advice for someone who is looking to contribute to open source is to start
 small. Pick a project that you use, enjoy, and are relatively familiar with and
-focus on making a small change that would benefit you. Don't ask for permission
+focus on making a small change that would benefit you. Don't feel like you need
+to get it done immediately -- go your own pace. Don't ask for permission
 to implement it, but do ask for advice/help if you need it.
