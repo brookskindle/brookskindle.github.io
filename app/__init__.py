@@ -1,7 +1,9 @@
 from flask import Flask
 from flask_flatpages import FlatPages
+from flask_bootstrap import Bootstrap
 
 pages = FlatPages()
+bootstrap = Bootstrap()
 
 def create_app(config_file):
     """Create a flask application from a configuration file.
@@ -19,6 +21,7 @@ def create_app(config_file):
 
     # Other initialization
     pages.init_app(app)
+    bootstrap.init_app(app)
 
     # Route registration
     from app.main.views import bp as main_bp
