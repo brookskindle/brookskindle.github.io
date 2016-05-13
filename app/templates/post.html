@@ -8,8 +8,8 @@
 {% block title %}{{ post.meta.title }} - {{ super() }}{% endblock %}
 
 {% block page_content %}
-<h1 align="center">{{ post.meta.title }}</h1>
-<p align="center"><i>{{ post.meta.date }}</i></p>
+<h1>{{ post.meta.title }}</h1>
+<p><i>{{ post.meta.date }}</i></p>
 <hr width=50% />
 {{ post }}
 {% endblock %}
