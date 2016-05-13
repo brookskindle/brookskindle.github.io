@@ -19,13 +19,16 @@
 {% endblock %}
 
 {% block page_content %}
-<h1>Brooks Kindle</h1>
-<img class="img-circle" id="profile" src={{ url_for("static", filename="profile_cropped.jpg") }} />
-<h2>About</h2>
-<p id="about">I graduated Cum Laude with a Bachelor of Science in
-Computer Science from Washington State University in May 2015. I am now
-a professional software developer and python journeyman working in the
-Seattle area.</p>
-<h2>Connect with me</h2>
-<a href="https://github.com/brookskindle"><img id="github" src={{ url_for("static", filename="GitHub-Mark-Light-64px.png") }}></img></a>
+<!-- center our items on the page -->
+<div class="content" align="center">
+    <h1>Brooks Kindle</h1>
+    <img class="img-circle" id="profile" src={{ url_for("static", filename="profile_cropped.jpg") }} />
+    <h2>About</h2>
+    <p id="about">I graduated Cum Laude with a Bachelor of Science in
+    Computer Science from Washington State University in May 2015. I am now
+    a professional software developer and python journeyman working in the
+    Seattle area.</p>
+    <h2>Connect with me</h2>
+    <a href="https://github.com/brookskindle"><img id="github" src={{ url_for("static", filename="GitHub-Mark-Light-64px.png") }}></img></a>
+</div>
 {% endblock %}
