@@ -1,0 +1,74 @@
+<!-- Inherit from our base layout -->
+<!DOCTYPE html>
+<!-- Parent template to apply color and layout to all other pages.  -->
+<html>
+    <!-- Inherit from Bootstrap's base -->
+    <!DOCTYPE html>
+<html>
+  <head>
+    <title>Brooks Kindle</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <!-- Bootstrap -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href=/static/bootstrap.min.css rel="stylesheet" media="screen">
+    
+<style type="text/css">
+    /* Additional styles for this page */
+    img#profile {
+        height: 200px;
+        width:  200px;
+    }
+    p {
+        font-size: 24px;
+    }
+</style>
+
+  </head>
+  <body>
+    
+        <div class="navbar navbar-inverse" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle"
+                        data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href=/>brookskindle.github.io</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href=/>Home</a>
+                        <li><a href=/blog/>Blog</a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+    
+    <div class="container">
+        
+<!-- center our items on the page -->
+<div class="content" align="center">
+    <h1>Brooks Kindle</h1>
+    <img class="img-circle" id="profile" src=/static/profile_cropped.jpg />
+    <h2>About</h2>
+    <p id="about">Brooks Kindle holds a B.S in Computer Science from
+    Washington State University. He currently works as a software developer
+    in the Seattle area.</p>
+    <h2>Connect with me</h2>
+    <a href="https://github.com/brookskindle"><img id="github" src=/static/GitHub-Mark-Light-64px.png></img></a>
+</div>
+
+    </div>
+    
+
+    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>

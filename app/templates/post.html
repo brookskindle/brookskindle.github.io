@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<!--
+    Args:
+        post: A Flask-FlatPages Page object that is the post we are rendering.
+-->
+{% extends "base.html" %}
+
+{% block title %}{{ post.meta.title }} - {{ super() }}{% endblock %}
+
+{% block page_content %}
+<h1>{{ post.meta.title }}</h1>
+<p><i>{{ post.meta.date }}</i></p>
+<hr width=50% />
+{{ post }}
+{% endblock %}

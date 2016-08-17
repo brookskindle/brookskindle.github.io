@@ -1,0 +1,30 @@
+<!-- Inherit from our base layout -->
+{% extends "base.html" %}
+
+{% block styles %}
+{{ super() }}
+<style type="text/css">
+    /* Additional styles for this page */
+    img#profile {
+        height: 200px;
+        width:  200px;
+    }
+    p {
+        font-size: 24px;
+    }
+</style>
+{% endblock %}
+
+{% block page_content %}
+<!-- center our items on the page -->
+<div class="content" align="center">
+    <h1>Brooks Kindle</h1>
+    <img class="img-circle" id="profile" src={{ url_for("static", filename="profile_cropped.jpg") }} />
+    <h2>About</h2>
+    <p id="about">Brooks Kindle holds a B.S in Computer Science from
+    Washington State University. He currently works as a software developer
+    in the Seattle area.</p>
+    <h2>Connect with me</h2>
+    <a href="https://github.com/brookskindle"><img id="github" src={{ url_for("static", filename="GitHub-Mark-Light-64px.png") }}></img></a>
+</div>
+{% endblock %}
