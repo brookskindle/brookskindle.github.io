@@ -3,5 +3,5 @@ python:
   - "3.4"
 install: 
   - pip install -r requirements.txt
-command:
+script:
   - echo Hello TravisCI
