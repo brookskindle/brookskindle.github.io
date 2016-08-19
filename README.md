@@ -1,6 +1,4 @@
-# brookskindle.github.io
-http://brookskindle.github.io
+# [brookskindle.github.io](http://brookskindle.github.io)
+My personal website, built with python3 and flask.
 
-Thanks to [sloria's
-flask-ghpages-example](https://github.com/sloria/flask-ghpages-example) for an
-easy tutorial.
+[![Build Status](https://travis-ci.org/brookskindle/brookskindle.github.io.svg?branch=dev)](https://travis-ci.org/brookskindle/brookskindle.github.io)
