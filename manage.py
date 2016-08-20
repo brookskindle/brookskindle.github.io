@@ -5,18 +5,17 @@ from flask.ext.script import Manager, Command
 
 from app import create_app
 
-
-class Freeze(Command):
-    """Freezes the website into a static version."""
-
-    def run(self):
-        from flask_frozen import Freezer
-        freezer = Freezer(app)
-        freezer.freeze()
-
 app = create_app("config.py")
 manager = Manager(app)
-manager.add_command("freeze", Freeze())
+
+
+@manager.command
+def freeze():
+    """Freeze the website into a static version."""
+    from flask_frozen import Freezer
+    freezer = Freezer(app)
+    freezer.freeze()
+
 
 if __name__ == "__main__":
     manager.run()
