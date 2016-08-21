@@ -1,4 +1,4 @@
-title: Contributing to open source
+title: Contributing to open source part 2
 date: 2016-04-27
 
 ## successful = OpenSource.contribute()
