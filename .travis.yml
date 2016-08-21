@@ -5,7 +5,12 @@ install:
   - pip install -r requirements.txt
 script:
   - bash ./deploy.sh
+# Specify global variables for TravisCI to set before anything happens
 env:
   global:
     - ENCRYPTION_LABEL: "9668dd7fe7b4"
-    - COMMIT_AUTHOR_EMAIL: "brooks.kindle@wsu.edu"
+    - COMMIT_AUTHOR_EMAIL: "dev@nu.ll"
+# Only kick off a TravisCI deploy on the given branches
+branches:
+  only:
+    - dev
