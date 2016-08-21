@@ -24,16 +24,17 @@ DEBUG = True
 # |  _|| | | (_) / /  __/ | | |_____|  _| | | (_| \__ \   <
 # |_|  |_|  \___/___\___|_| |_|     |_|   |_|\__,_|___/_|\_\
 
-# Freeze to the project root dir (where this file is located)
-FREEZER_DESTINATION = PROJECT_ROOT
+# Freeze static site files in this directory.
+FREEZER_DESTINATION = os.path.join(PROJECT_ROOT, "build")
 
 # TODO: Change this when ready to host on github. Should probably be
 # http://brookskindle.github.io
 FREEZER_BASE_URL = "http://localhost:5000"
 
-# Prevent Frozen-Flask from removing non-frozen files when it is run. More
-# information at http://pythonhosted.org/Frozen-Flask/#getting-started
-FREEZER_REMOVE_EXTRA_FILES = False
+# Let Frozen-Flask remove files in the destination directory that were not
+# built during the current freeze (the default action).
+# http://pythonhosted.org/Frozen-Flask/#configuration
+FREEZER_REMOVE_EXTRA_FILES = True
 
 
 #  _____ _           _         _____ _       _   ____
