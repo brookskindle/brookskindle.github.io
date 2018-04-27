@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
 
+import pathlib
+
 AUTHOR = 'Brooks Kindle'
 SITENAME = 'Brooks Kindle'
 SITEURL = ''
@@ -30,6 +32,8 @@ SOCIAL = (('You can add links in your config file', '#'),
           ('Another social link', '#'),)
 
 DEFAULT_PAGINATION = 10
+
+THEME = str(pathlib.Path.cwd() / "theme")
 
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
