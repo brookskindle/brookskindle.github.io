@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>For loop and list comprehension performance</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/pure-min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Brooks Kindle Full Atom Feed" />
+        <link href="/feeds/programming.atom.xml" type="application/atom+xml" rel="alternate" title="Brooks Kindle Categories Atom Feed" />
+</head>
+<body>
+
+    <div class="navigation pure-menu pure-menu-horizontal">
+        <a href="/" class="pure-menu-heading  pure-menu-link">Brooks Kindle</a>
+        <ul class="pure-menu-list">
+            <li class="pure-menu-item"></li>
+
+            <li class="pure-menu-item"><a href="/category/misc.html" class="pure-menu-link">misc</a></li>
+            <li class="pure-menu-item pure-menu-selected"><a href="/category/programming.html" class="pure-menu-link">programming</a></li>
+        </ul>
+    </div>
+
+
+<div class="page-container">
+    <div class="entry-content">
+        <div class="post-meta pure-g">
+<div class="pure-u-3-4 meta-data">
+    <a href="/category/programming.html" class="category">programming</a><br />
+
+    <a class="author" href="/author/brooks-kindle.html">Brooks Kindle</a>
+    &mdash; <abbr title="2018-04-27T21:00:00-07:00">Fri 27 April 2018</abbr>
+</div>        </div>
+    </div>
+
+    <div class="article-header-container">
+        <div class="background-image-container">
+
+            <div class="background-image-small">
+                <div class="title-container">
+                    <h1>For loop and list comprehension performance</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="entry-content">
+        <p>For loops are the de facto default looping mechanism for python and is a
+concept that almost all programmers are familiar with. However, if you've been
+around the python block a few times you've probably seen (and maybe dabbled in)
+list comprehensions from time to time. While there are scenarios where it makes
+sense to use a for loop over a list comprehension and vice versa, I'll be
+instead covering the difference in speed between the two.</p>
+<h1>Setting the stage</h1>
+<p>I'm going to use the following trivial snippets of code when running the
+comparisons:</p>
+<p>for loop</p>
+<div class="highlight"><pre><span></span><span class="n">mylist</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">mylist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+
+
+<p>list comprehension</p>
+<div class="highlight"><pre><span></span><span class="n">mylist</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+</pre></div>
+
+
+<p>For varying values of <code>n</code>.</p>
+<h1>timeit</h1>
+<p>The easiest way to measure the runtime of code snippets is by using the
+<a href="https://docs.python.org/3/library/timeit.html">timeit</a> module. I'll be using
+ipython's built-in magic command for this.</p>
+<p>To create a list of one-hundred thousand elements, it takes ~15 milliseconds
+in a for loop</p>
+<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="o">%%</span><span class="n">timeit</span>
+   <span class="o">...</span><span class="p">:</span> <span class="n">mylist</span> <span class="o">=</span> <span class="p">[]</span>
+   <span class="o">...</span><span class="p">:</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100000</span><span class="p">):</span>
+   <span class="o">...</span><span class="p">:</span>     <span class="n">mylist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+   <span class="o">...</span><span class="p">:</span>
+<span class="mf">14.9</span> <span class="n">ms</span> <span class="err">±</span> <span class="mi">206</span> <span class="err">µ</span><span class="n">s</span> <span class="n">per</span> <span class="n">loop</span> <span class="p">(</span><span class="n">mean</span> <span class="err">±</span> <span class="n">std</span><span class="o">.</span> <span class="n">dev</span><span class="o">.</span> <span class="n">of</span> <span class="mi">7</span> <span class="n">runs</span><span class="p">,</span> <span class="mi">100</span> <span class="n">loops</span> <span class="n">each</span><span class="p">)</span>
+</pre></div>
+
+
+<p>but only ~6 milliseconds to do the same thing with a list comprehension.</p>
+<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="o">%%</span><span class="n">timeit</span>
+   <span class="o">...</span><span class="p">:</span> <span class="n">mylist</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100000</span><span class="p">)]</span>
+   <span class="o">...</span><span class="p">:</span>
+<span class="mf">6.09</span> <span class="n">ms</span> <span class="err">±</span> <span class="mf">53.8</span> <span class="err">µ</span><span class="n">s</span> <span class="n">per</span> <span class="n">loop</span> <span class="p">(</span><span class="n">mean</span> <span class="err">±</span> <span class="n">std</span><span class="o">.</span> <span class="n">dev</span><span class="o">.</span> <span class="n">of</span> <span class="mi">7</span> <span class="n">runs</span><span class="p">,</span> <span class="mi">100</span> <span class="n">loops</span> <span class="n">each</span><span class="p">)</span>
+</pre></div>
+
+
+<p>In this example, the list comprehension is over <strong>2.4x</strong> faster than the for
+loop equivalent.</p>
+<hr>
+<p>If I instead iterate over one-thousand elements, the results are similar.</p>
+<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">10</span><span class="p">]:</span> <span class="o">%%</span><span class="n">timeit</span>
+    <span class="o">...</span><span class="p">:</span> <span class="n">mylist</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="o">...</span><span class="p">:</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="o">...</span><span class="p">:</span>     <span class="n">mylist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="o">...</span><span class="p">:</span>
+<span class="mi">123</span> <span class="err">µ</span><span class="n">s</span> <span class="err">±</span> <span class="mi">568</span> <span class="n">ns</span> <span class="n">per</span> <span class="n">loop</span> <span class="p">(</span><span class="n">mean</span> <span class="err">±</span> <span class="n">std</span><span class="o">.</span> <span class="n">dev</span><span class="o">.</span> <span class="n">of</span> <span class="mi">7</span> <span class="n">runs</span><span class="p">,</span> <span class="mi">10000</span> <span class="n">loops</span> <span class="n">each</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">12</span><span class="p">]:</span> <span class="o">%%</span><span class="n">timeit</span>
+    <span class="o">...</span><span class="p">:</span> <span class="n">mylist</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">)]</span>
+    <span class="o">...</span><span class="p">:</span>
+<span class="mf">53.5</span> <span class="err">µ</span><span class="n">s</span> <span class="err">±</span> <span class="mi">709</span> <span class="n">ns</span> <span class="n">per</span> <span class="n">loop</span> <span class="p">(</span><span class="n">mean</span> <span class="err">±</span> <span class="n">std</span><span class="o">.</span> <span class="n">dev</span><span class="o">.</span> <span class="n">of</span> <span class="mi">7</span> <span class="n">runs</span><span class="p">,</span> <span class="mi">10000</span> <span class="n">loops</span> <span class="n">each</span><span class="p">)</span>
+</pre></div>
+
+
+<p>A <strong>2.3x</strong> speed improvement when using a list comprehension.</p>
+<p>For two pieces of code that produce the same result, it seems surprising that
+there is such a performance difference. There must be something going on under
+the hood that makes list comprehensions so much more performant.</p>
+<h1>dis</h1>
+<p>Python has a really cool built-in module named
+<a href="https://docs.python.org/3/library/dis.html">dis</a> (short for disassemble). We
+can use it to disassemble pieces of code into their opcode equivalent to see
+what each line of code does.</p>
+<p>Running this code</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dis</span>
+
+<span class="n">dis</span><span class="o">.</span><span class="n">dis</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">mylist = []</span>
+<span class="s2">for i in range(1000):</span>
+<span class="s2">    mylist.append(i)&quot;&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>gives as output:</p>
+<div class="highlight"><pre><span></span>  1           0 BUILD_LIST               0
+              3 STORE_NAME               0 (mylist)
+
+  2           6 SETUP_LOOP              33 (to 42)
+              9 LOAD_NAME                1 (range)
+             12 LOAD_CONST               0 (1000)
+             15 CALL_FUNCTION            1 (1 positional, 0 keyword pair)
+             18 GET_ITER
+        &gt;&gt;   19 FOR_ITER                19 (to 41)
+             22 STORE_NAME               2 (i)
+
+  3          25 LOAD_NAME                0 (mylist)
+             28 LOAD_ATTR                3 (append)
+             31 LOAD_NAME                2 (i)
+             34 CALL_FUNCTION            1 (1 positional, 0 keyword pair)
+             37 POP_TOP
+             38 JUMP_ABSOLUTE           19
+        &gt;&gt;   41 POP_BLOCK
+        &gt;&gt;   42 LOAD_CONST               1 (None)
+             45 RETURN_VALUE
+</pre></div>
+
+
+<p>The left-most set of numbers (1, 2, and 3) represent the particular line being
+disassembled, while the second set of numbers (0, 3, 6, 9, 12, 15, etc...)
+represent the offset that the given opcode is from the start of the bytecode
+sequence.</p>
+<p>Compare that to disassembling a list comprehension</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dis</span>
+
+<span class="n">dis</span><span class="o">.</span><span class="n">dis</span><span class="p">(</span><span class="s2">&quot;mylist = [i for i in range(1000)]&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>  1           0 LOAD_CONST               0 (&lt;code object &lt;listcomp&gt; at 0x7f4d22d959c0, file &quot;&lt;dis&gt;&quot;, line 1&gt;)
+              3 LOAD_CONST               1 (&#39;&lt;listcomp&gt;&#39;)
+              6 MAKE_FUNCTION            0
+              9 LOAD_NAME                0 (range)
+             12 LOAD_CONST               2 (1000)
+             15 CALL_FUNCTION            1 (1 positional, 0 keyword pair)
+             18 GET_ITER
+             19 CALL_FUNCTION            1 (1 positional, 0 keyword pair)
+             22 STORE_NAME               1 (mylist)
+             25 LOAD_CONST               3 (None)
+             28 RETURN_VALUE
+</pre></div>
+
+
+<p>The final opcode for a list comprehension is only at a bytecode offset of <code>28</code>,
+whereas the for loop final offset was <code>45</code>. Although we haven't disassembled
+the bytecode into machine instructions, we can still see that list
+comprehensions take less operations than a for loop would for equivalent code.</p>
+    </div>
+
+    <footer>
+        <div class="tags">
+            <a href="/tag/python.html">python</a>
+        </div>
+        <div class="pure-g post-footer">
+            <div class="pure-u-1 pure-u-md-1-2">
+                <div class="pure-g poster-info">
+                    <div class="pure-u-3-4">
+                        <h3 class="author-name"><a href="/author/brooks-kindle.html">Brooks Kindle</a></h3>
+                        <p class="author-description">
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+    </footer>
+
+
+</div>
+
+
+
+    <footer class="index-footer">
+
+        <a href="/" title="Brooks Kindle">Brooks Kindle</a>
+        <a href="/category/misc.html">misc</a>
+        <a href="/category/programming.html">programming</a>
+        <a href="http://getpelican.com/">Pelican</a>
+        <a href="http://python.org/">Python.org</a>
+        <a href="http://jinja.pocoo.org/">Jinja2</a>
+        <a href="#">You can modify those links in your config file</a>
+
+    </footer>
+
+</body>
+</html>
