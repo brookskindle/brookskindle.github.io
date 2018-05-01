@@ -6,9 +6,13 @@ Tags: python
 For loops are the de facto default looping mechanism for python and is a
 concept that almost all programmers are familiar with. However, if you've been
 around the python block a few times you've probably seen (and maybe dabbled in)
-list comprehensions from time to time. While there are scenarios where it makes
-sense to use a for loop over a list comprehension and vice versa, I'll be
-instead covering the difference in speed between the two.
+list comprehensions from time to time.
+
+The decision to use one or the other should be a case-by-case basis. In my own
+programming, I tend to use a list comprehension when building a result (list)
+from another result, and a for loop for anything else. Because of my curious
+nature, however, I began to wonder what the difference was, in terms of speed,
+between the two approaches.
 
 # Setting the stage
 I'm going to use the following trivial snippets of code when running the
@@ -146,7 +150,7 @@ dis.dis("mylist = [i for i in range(1000)]")
              28 RETURN_VALUE
 ```
 
-The final opcode for a list comprehension is only at a bytecode offset of `28`,
-whereas the for loop final offset was `45`. Although we haven't disassembled
-the bytecode into machine instructions, we can still see that list
-comprehensions take less operations than a for loop would for equivalent code.
+To me, the significant difference is that the list comprehension doesn't make
+calls to `append`, like the for loop does - that means using a list
+comprehension uses less instructions and doesn't have the overhead of an extra
+function call on every iteration. Neat!
