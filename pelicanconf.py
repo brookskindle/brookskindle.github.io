@@ -36,7 +36,17 @@ DEFAULT_PAGINATION = 10
 
 THEME = str(pathlib.Path.cwd() / "theme")
 
-PYGMENTS_STYLE = "default"
+PYGMENTS_STYLE = "dracula"
+# Dracula theme color: https://github.com/dracula/dracula-theme/
+BROWSER_COLOR = "#282a36"
+
+CUSTOM_CSS = "static/custom.css"
+EXTRA_PATH_METADATA = {
+    "styles/dracula.css": {"path": "static/custom.css"},
+}
+STATIC_PATHS = [
+    "styles",
+]
 
 SITELOGO = f"{SITEURL}/images/profile.jpg"
 
