@@ -19,6 +19,7 @@ RELATIVE_URLS = True  # Use document-relative URLs when developing
 PATH = "content"
 STATIC_PATHS = [
     "styles",
+    "images",
 ]
 EXTRA_PATH_METADATA = {
     "styles/dracula.css": {"path": "static/custom.css"},
