@@ -47,7 +47,7 @@ AUTHOR_FEED_RSS = None
 
 SITETITLE = AUTHOR
 SITESUBTITLE = "software engineer | pythonista"
-SITELOGO = "images/profile.jpg"
+SITELOGO = "/images/profile.jpg"
 
 LINKS = (
     ("blog home", "/"),
