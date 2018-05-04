@@ -12,6 +12,7 @@ SITEDESCRIPTION = None
 SITENAME = AUTHOR
 
 THEME = str(pathlib.Path.cwd() / "theme")
+THEME_STATIC_DIR = "theme"
 
 SITEURL = "https://brookskindle.github.io"
 RELATIVE_URLS = True  # Use document-relative URLs when developing
@@ -22,7 +23,11 @@ STATIC_PATHS = [
     "images",
 ]
 EXTRA_PATH_METADATA = {
-    "styles/dracula.css": {"path": "static/custom.css"},
+    # The Flex theme doesn't let us customize where to load pygments styles
+    # from, so make sure our theme is placed where Flex can find it.
+    "styles/pygments/dracula.css": {
+        "path": f"{THEME_STATIC_DIR}/pygments/dracula.min.css"
+    },
 }
 
 DEFAULT_PAGINATION = 10
@@ -61,4 +66,3 @@ SOCIAL = (
 # Use dracula colors: https://github.com/dracula/dracula-theme/
 PYGMENTS_STYLE = "dracula"
 BROWSER_COLOR = "#282a36"
-CUSTOM_CSS = "static/custom.css"
