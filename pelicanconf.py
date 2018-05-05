@@ -28,6 +28,7 @@ EXTRA_PATH_METADATA = {
     "styles/pygments/dracula.css": {
         "path": f"{THEME_STATIC_DIR}/pygments/dracula.min.css"
     },
+    "images/favicon.ico": {"path": "favicon.ico"},
 }
 
 DEFAULT_PAGINATION = 10
