@@ -31,6 +31,11 @@ EXTRA_PATH_METADATA = {
     "images/favicon.ico": {"path": "favicon.ico"},
 }
 
+MARKUP = ["md", "ipynb"]
+PLUGIN_PATHS = ["./plugins"]
+PLUGINS = ["ipynb.markup"]
+IPYNB_IGNORE_CSS = True  # Let ipynb posts use site CSS settings
+
 DEFAULT_PAGINATION = 10
 
 TIMEZONE = "America/Los_Angeles"
