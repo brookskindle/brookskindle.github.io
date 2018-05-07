@@ -1,5 +1,5 @@
 # This repository
-is the source for my blog, built with python 3.5 and
+is the source for my blog, built with python 3.6 and
 [Pelican](https://blog.getpelican.com/).
 
 ## Installation
