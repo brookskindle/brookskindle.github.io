@@ -69,6 +69,7 @@ LINKS = (
 
 SOCIAL = (
     ("github", "https://github.com/brookskindle"),
+    ("linkedin", "https://www.linkedin.com/in/brookskindle/"),
 )
 
 # Use dracula colors: https://github.com/dracula/dracula-theme/
