@@ -14,7 +14,7 @@ SITENAME = AUTHOR
 THEME = str(pathlib.Path.cwd() / "theme")
 THEME_STATIC_DIR = "theme"
 
-SITEURL = "https://brookskindle.github.io"
+SITEURL = "http://localhost:8000"
 RELATIVE_URLS = True  # Use document-relative URLs when developing
 
 PATH = "content"
