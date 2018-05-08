@@ -59,7 +59,7 @@ AUTHOR_FEED_RSS = None
 # https://github.com/alexandrevicenzi/Flex/wiki/Custom-Settings
 
 SITETITLE = AUTHOR
-SITESUBTITLE = "software engineer | pythonista"
+SITESUBTITLE = "software engineer"
 SITELOGO = "/images/profile.jpg"
 
 LINKS = (
