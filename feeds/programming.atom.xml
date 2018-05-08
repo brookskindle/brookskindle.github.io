@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Brooks Kindle - programming</title><link href="/" rel="alternate"></link><link href="/feeds/programming.atom.xml" rel="self"></link><id>/</id><updated>2018-05-06T00:00:00-07:00</updated><entry><title>Making method chains readable</title><link href="/making-method-chains-readable.html" rel="alternate"></link><published>2018-05-06T00:00:00-07:00</published><updated>2018-05-06T00:00:00-07:00</updated><author><name>Brooks Kindle</name></author><id>tag:None,2018-05-06:/making-method-chains-readable.html</id><summary type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Brooks Kindle - programming</title><link href="https://brookskindle.github.io/" rel="alternate"></link><link href="https://brookskindle.github.io/feeds/programming.atom.xml" rel="self"></link><id>https://brookskindle.github.io/</id><updated>2018-05-06T00:00:00-07:00</updated><entry><title>Making method chains readable</title><link href="https://brookskindle.github.io/making-method-chains-readable.html" rel="alternate"></link><published>2018-05-06T00:00:00-07:00</published><updated>2018-05-06T00:00:00-07:00</updated><author><name>Brooks Kindle</name></author><id>tag:brookskindle.github.io,2018-05-06:/making-method-chains-readable.html</id><summary type="html">
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
@@ -537,7 +537,7 @@ dtype: int64&lt;/pre&gt;
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</content><category term="python"></category><category term="pandas"></category><category term="style"></category></entry><entry><title>For loop and list comprehension performance</title><link href="/for-loop-and-list-comprehension-performance.html" rel="alternate"></link><published>2018-04-27T21:00:00-07:00</published><updated>2018-04-27T21:00:00-07:00</updated><author><name>Brooks Kindle</name></author><id>tag:None,2018-04-27:/for-loop-and-list-comprehension-performance.html</id><summary type="html">&lt;p&gt;For loops are the de facto default looping mechanism for python and is a
+</content><category term="python"></category><category term="pandas"></category><category term="style"></category></entry><entry><title>For loop and list comprehension performance</title><link href="https://brookskindle.github.io/for-loop-and-list-comprehension-performance.html" rel="alternate"></link><published>2018-04-27T21:00:00-07:00</published><updated>2018-04-27T21:00:00-07:00</updated><author><name>Brooks Kindle</name></author><id>tag:brookskindle.github.io,2018-04-27:/for-loop-and-list-comprehension-performance.html</id><summary type="html">&lt;p&gt;For loops are the de facto default looping mechanism for python and is a
 concept that almost all programmers are familiar with. However, if you've been
 around the python block a few times you've probably seen (and maybe dabbled in)
 list comprehensions from time to time.&lt;/p&gt;
