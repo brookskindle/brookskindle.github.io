@@ -31,6 +31,8 @@ EXTRA_PATH_METADATA = {
     "images/favicon.ico": {"path": "favicon.ico"},
 }
 
+CUSTOM_CSS = "styles/styles.css"
+
 MARKUP = ["md", "ipynb"]
 PLUGIN_PATHS = ["./plugins"]
 PLUGINS = ["ipynb.markup"]

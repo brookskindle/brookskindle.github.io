@@ -1,0 +1,7 @@
+/* https://github.com/brookskindle/brookskindle.github.io/issues/6 */
+div.prompt {
+  display: none;
+}
+a.anchor-link {
+  display: none;
+}
