@@ -680,12 +680,4 @@ sequence.&lt;/p&gt;
 &lt;p&gt;To me, the significant difference is that the list comprehension doesn't make
 calls to &lt;code&gt;append&lt;/code&gt;, like the for loop does - that means using a list
 comprehension uses less instructions and doesn't have the overhead of an extra
-function call on every iteration. Neat!&lt;/p&gt;</content><category term="python"></category></entry><entry><title>Hello world</title><link href="https://brookskindle.github.io/hello-world.html" rel="alternate"></link><published>2018-04-26T18:30:00-07:00</published><updated>2018-04-26T18:30:00-07:00</updated><author><name>Brooks Kindle</name></author><id>tag:brookskindle.github.io,2018-04-26:/hello-world.html</id><summary type="html">&lt;h1&gt;Welcome to my site&lt;/h1&gt;
-&lt;p&gt;This is my first post using &lt;a href="https://blog.getpelican.com/"&gt;pelican&lt;/a&gt;.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;See you around&lt;/p&gt;
-&lt;/blockquote&gt;</summary><content type="html">&lt;h1&gt;Welcome to my site&lt;/h1&gt;
-&lt;p&gt;This is my first post using &lt;a href="https://blog.getpelican.com/"&gt;pelican&lt;/a&gt;.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;See you around&lt;/p&gt;
-&lt;/blockquote&gt;</content></entry></feed>
+function call on every iteration. Neat!&lt;/p&gt;</content><category term="python"></category></entry></feed>
