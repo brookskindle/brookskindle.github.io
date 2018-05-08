@@ -1,0 +1,32 @@
+/* https://github.com/brookskindle/brookskindle.github.io/issues/6 */
+div.prompt {
+  display: none;
+}
+a.anchor-link {
+  display: none;
+}
+
+/* Site theming: dracula colors!!! */
+aside {
+  background-color: #282a36;
+}
+a {
+  color: #6272a4;
+}
+a:hover {
+  color: #737fa4;
+}
+a.btn {
+  color: #f8f8f2;
+  background-color: #6272a4;
+}
+a.btn:hover {
+  background-color: #737fa4;
+}
+.tag-cloud a {
+  color: #f8f8f2;
+  background-color: #6272a4;
+}
+.tag-cloud a:hover {
+  background-color: #737fa4;
+}
