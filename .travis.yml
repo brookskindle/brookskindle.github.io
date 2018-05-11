@@ -3,6 +3,7 @@ python:
   - '3.6'
 install:
   - pip install -r requirements.txt
+script: make publish
 deploy:
   local-dir: output  # Defined in the Makefile
   target-branch: master
