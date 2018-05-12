@@ -61,10 +61,11 @@ AUTHOR_FEED_RSS = None
 SITETITLE = AUTHOR
 SITESUBTITLE = "software engineer"
 SITELOGO = "/images/profile.jpg"
+MAIN_MENU = True
 
-LINKS = (
-    ("blog home", "/"),
-    ("tags", "/tags"),
+MENUITEMS = (
+    ("Categories", "/categories.html"),
+    ("Tags", "/tags.html"),
 )
 
 SOCIAL = (
