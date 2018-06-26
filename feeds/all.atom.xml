@@ -1,5 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Brooks Kindle</title><link href="https://brookskindle.github.io/" rel="alternate"></link><link href="https://brookskindle.github.io/feeds/all.atom.xml" rel="self"></link><id>https://brookskindle.github.io/</id><updated>2018-06-08T00:00:00-07:00</updated><entry><title>Supercharge your jupyter startup with bash and tmux</title><link href="https://brookskindle.github.io/supercharge-your-jupyter-startup-with-bash-and-tmux.html" rel="alternate"></link><published>2018-06-08T00:00:00-07:00</published><updated>2018-06-08T00:00:00-07:00</updated><author><name>Brooks Kindle</name></author><id>tag:brookskindle.github.io,2018-06-08:/supercharge-your-jupyter-startup-with-bash-and-tmux.html</id><summary type="html">&lt;p&gt;If you're like me, you dislike doing repetitive tasks when a script could have
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Brooks Kindle</title><link href="https://brookskindle.github.io/" rel="alternate"></link><link href="https://brookskindle.github.io/feeds/all.atom.xml" rel="self"></link><id>https://brookskindle.github.io/</id><updated>2018-06-25T00:00:00-07:00</updated><entry><title>Pin your versions. Or don't.</title><link href="https://brookskindle.github.io/pin-your-versions-or-dont.html" rel="alternate"></link><published>2018-06-25T00:00:00-07:00</published><updated>2018-06-25T00:00:00-07:00</updated><author><name>Brooks Kindle</name></author><id>tag:brookskindle.github.io,2018-06-25:/pin-your-versions-or-dont.html</id><summary type="html">&lt;p&gt;Here's a hypothetical situation. Suppose you're starting a new project and you
+want to use the &lt;code&gt;requests&lt;/code&gt; library. Installing &lt;code&gt;requests&lt;/code&gt; also installs the
+libraries that it depends on. Should you be explicit and pin the versions of
+all installed libraries (equivalent to the output of &lt;code&gt;pip freeze&lt;/code&gt;)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;certifi==2018.4 …&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;Here's a hypothetical situation. Suppose you're starting a new project and you
+want to use the &lt;code&gt;requests&lt;/code&gt; library. Installing &lt;code&gt;requests&lt;/code&gt; also installs the
+libraries that it depends on. Should you be explicit and pin the versions of
+all installed libraries (equivalent to the output of &lt;code&gt;pip freeze&lt;/code&gt;)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;certifi==2018.4.16
+chardet==3.0.4
+idna==2.7
+requests==2.19.1
+urllib3==1.23
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;or should you just list the top-most dependencies by name, omitting versions
+altogether?&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;requests
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The answer depends on if your project is an application or a library, because
+needs differ from one type to the next.&lt;/p&gt;
+&lt;h2&gt;Applications&lt;/h2&gt;
+&lt;p&gt;An application is a complete system. Its purpose is to provide functionality to
+the end-user. It is composed of multiple libraries and exists independent of
+other applications. If it has to interact with other applications, that
+communication happens via a well-defined API interface such as XML-RPC, SOAP,
+or REST. API endpoints should be versioned so that developers who interact with
+your application (or vice-versa) can be assurred that API behaviour is
+well-defined and won't change unless the version changes. A good example of
+this is &lt;a href="https://developer.github.com/v3/?"&gt;GitHub's API&lt;/a&gt; - they have good
+documentation as well as a consistent versioning scheme that users can rely on.&lt;/p&gt;
+&lt;p&gt;As an application builder, library versions you use are just an implementation
+detail because the end user will never need to know about it. From an
+application deployment perspective, &lt;strong&gt;it is more important to be explicit about
+which versions of libraries you need than it is to update libraries to the
+latest version every time the application is deployed.&lt;/strong&gt; This is as true in a
+continuous deployment environment as it is in any other deployment environment.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Caveat: just because a package version works doesn't mean it should never be
+updated. As a best practice, applications that pin library versions should
+have a plan for checking and updating outdated dependencies on a regular
+basis.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Libraries&lt;/h2&gt;
+&lt;p&gt;Libraries, on the other hand, are not a complete system. They are meant to be
+used in applications, and therefore must be as flexible as possible so as to
+not introduce conflicts with other libraries being used. A python library that
+requires &lt;code&gt;requests==2.19.1&lt;/code&gt;, for example, cannot be used with another python
+library that requires a different version (for eg: &lt;code&gt;requests==2.18.1&lt;/code&gt;).
+However, if two libraries only require that &lt;code&gt;requests&lt;/code&gt; be installed, regardless
+of the version, then they will have no problem being used together.&lt;/p&gt;
+&lt;p&gt;As the developer of a library, &lt;strong&gt;you should not pin the versions of libraries
+you depend on unless absolutely necessary.&lt;/strong&gt; If you depend on functionality of
+a library that doesn't exist in some earlier versions, specify the earliest
+version of that library as being the minimum required version (eg:
+&lt;code&gt;requests&amp;gt;="2.18"&lt;/code&gt;).&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Caveat: new versions of libraries you depend on may cause incompatibilities
+with your libraries. Since version pinning isn't recommended, responsiveness
+is important when users bring up the issue of version incompatibilities.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Exceptions&lt;/h2&gt;
+&lt;p&gt;Obviously there are exceptions to every rule.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The more platforms/environments your application has to run on (for example,
+  &lt;code&gt;vim&lt;/code&gt; has to be able to run on lots of platforms), the harder it will be to
+  pin exact versions.&lt;/li&gt;
+&lt;li&gt;If you have an application that can also be used as a library, then the
+  library part should be split out into its own project, and the application
+  should depend on a specific version of the library.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;tl;dr&lt;/h2&gt;
+&lt;p&gt;If you're building an application, pin specific versions for all the libraries
+you depend on. If you're building a library, be as permissive as possible.&lt;/p&gt;</content><category term="python"></category><category term="pip"></category></entry><entry><title>Supercharge your jupyter startup with bash and tmux</title><link href="https://brookskindle.github.io/supercharge-your-jupyter-startup-with-bash-and-tmux.html" rel="alternate"></link><published>2018-06-08T00:00:00-07:00</published><updated>2018-06-08T00:00:00-07:00</updated><author><name>Brooks Kindle</name></author><id>tag:brookskindle.github.io,2018-06-08:/supercharge-your-jupyter-startup-with-bash-and-tmux.html</id><summary type="html">&lt;p&gt;If you're like me, you dislike doing repetitive tasks when a script could have
 just as easily done the work for you. For example, starting a jupyter server on
 my local machine requires me to do the following:&lt;/p&gt;
 &lt;ol&gt;
