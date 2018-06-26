@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="" />
+
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="https://brookskindle.github.io/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="https://brookskindle.github.io/theme/pygments/dracula.min.css">
+  <link rel="stylesheet" type="text/css" href="https://brookskindle.github.io/theme/font-awesome/css/font-awesome.min.css">
+
+    <link href="https://brookskindle.github.io/styles/styles.css" rel="stylesheet">
+
+    <link href="https://brookskindle.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Brooks Kindle Atom">
+
+
+
+
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#282a36">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#282a36">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Microsoft EDGE -->
+    <meta name="msapplication-TileColor" content="#282a36">
+
+<meta name="author" content="Brooks Kindle" />
+<meta name="description" content="Suppose you&#39;re starting a new project at work that will use the requests library. Should you be explicit and pin the versions of all your installed libraries (equivalent to the output of pip freeze) certifi==2018.4.16 chardet==3.0.4 idna==2.7 pkg-resources==0.0.0 requests …" />
+<meta name="keywords" content="python, pip">
+
+<meta property="og:site_name" content="Brooks Kindle"/>
+<meta property="og:title" content="Pin your versions. Or don&#39;t."/>
+<meta property="og:description" content="Suppose you&#39;re starting a new project at work that will use the requests library. Should you be explicit and pin the versions of all your installed libraries (equivalent to the output of pip freeze) certifi==2018.4.16 chardet==3.0.4 idna==2.7 pkg-resources==0.0.0 requests …"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="https://brookskindle.github.io/drafts/pin-your-versions-or-dont.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2018-06-25 00:00:00-07:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="https://brookskindle.github.io/author/brooks-kindle.html">
+<meta property="article:section" content="programming"/>
+<meta property="article:tag" content="python"/>
+<meta property="article:tag" content="pip"/>
+<meta property="og:image" content="/images/profile.jpg">
+
+  <title>Brooks Kindle &ndash; Pin your versions. Or don&#39;t.</title>
+
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="https://brookskindle.github.io">
+        <img src="/images/profile.jpg" alt="Brooks Kindle" title="Brooks Kindle">
+      </a>
+      <h1><a href="https://brookskindle.github.io">Brooks Kindle</a></h1>
+
+<p>software engineer</p>
+      <nav>
+        <ul class="list">
+          <li><a href="https://brookskindle.github.io/pages/about.html#about">About</a></li>
+          <li><a href="https://brookskindle.github.io/pages/contact.html#contact">Contact</a></li>
+
+        </ul>
+      </nav>
+
+      <ul class="social">
+        <li><a class="sc-github" href="https://github.com/brookskindle" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-linkedin" href="https://www.linkedin.com/in/brookskindle/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+      </ul>
+    </div>
+
+
+  </aside>
+  <main>
+
+    <nav>
+      <a href="https://brookskindle.github.io">    Home
+</a>
+
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+
+      <a href="https://brookskindle.github.io/feeds/all.atom.xml">    Atom
+</a>
+
+    </nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="pin-your-versions-or-dont">Pin your versions. Or don't.</h1>
+    <p>
+          Posted on Mon 25 June 2018 in <a href="https://brookskindle.github.io/category/programming.html">programming</a>
+
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>Suppose you're starting a new project at work that will use the <code>requests</code>
+library. Should you be explicit and pin the versions of all your installed
+libraries (equivalent to the output of <code>pip freeze</code>)</p>
+<div class="highlight"><pre><span></span>certifi==2018.4.16
+chardet==3.0.4
+idna==2.7
+pkg-resources==0.0.0
+requests==2.19.1
+urllib3==1.23
+</pre></div>
+
+
+<p>or should you just list the top-most dependencies by name, omitting versions
+altogether?</p>
+<div class="highlight"><pre><span></span>requests
+</pre></div>
+
+
+<p>The answer to that depends on what kind of environment you expect your project
+to be ran in. In short, if the project is an application, you should pin your
+versions. If the project is a library or module, pin versions as little as
+possible. To understand why, you need to understand the differences between
+modules and applications.</p>
+<p>An application is a complete system. Its purpose is to provide functionality to
+the end-user. It is composed of multiple modules, and exists independent of
+other applications. Communication between applications happens via a defined
+interface. Communication to a different application likely happens along a
+well-desined communication standard such as REST or ftp.</p>
+<p>Applications are designed to be used as a complete system, as as such need to
+make sure that new installations will still work regardless of the change in
+environment</p>
+<p>A module, on the other hand, is only part of the complete system. Modules are
+meant to be used in applications, and therefore must be as flexible as possible
+so as to not introduce conflicts with other modules when they get used. A
+python module that requires <code>requests==2.19.1</code>, for example, cannot be used
+with another python module that requires a different version (for eg:
+<code>requests==2.18.1</code>). However, if two modules only require that <code>requests</code> be
+installed, regardless of the version, then they will have no problem being used
+together.</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://brookskindle.github.io/tag/python.html">python</a>
+      <a href="https://brookskindle.github.io/tag/pip.html">pip</a>
+    </p>
+  </div>
+
+
+
+
+
+</article>
+
+    <footer>
+<p>&copy;  </p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p>    </footer>
+  </main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Brooks Kindle ",
+  "url" : "https://brookskindle.github.io",
+  "image": "/images/profile.jpg",
+  "description": "None"
+}
+</script>
+
+</body>
+</html>
