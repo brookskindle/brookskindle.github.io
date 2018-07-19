@@ -90,7 +90,7 @@ settings don't allow for much text to fit on a single slide and thus seems more
 suited for big picture ideas without going too deeply into detail.
 
 The default settings for remark focus more on presenting the slide content in a
-no way, which for me is important.
+no frills way, which for me is important.
 
 ## Parting thoughts
 Since markdown is the common language used, I *should* be able to transition
