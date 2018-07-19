@@ -1,5 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Brooks Kindle</title><link href="https://brookskindle.github.io/" rel="alternate"></link><link href="https://brookskindle.github.io/feeds/all.atom.xml" rel="self"></link><id>https://brookskindle.github.io/</id><updated>2018-06-25T00:00:00-07:00</updated><entry><title>Pin your versions. Or don't.</title><link href="https://brookskindle.github.io/pin-your-versions-or-dont.html" rel="alternate"></link><published>2018-06-25T00:00:00-07:00</published><updated>2018-06-25T00:00:00-07:00</updated><author><name>Brooks Kindle</name></author><id>tag:brookskindle.github.io,2018-06-25:/pin-your-versions-or-dont.html</id><summary type="html">&lt;p&gt;Here's a hypothetical situation. Suppose you're starting a new project and you
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Brooks Kindle</title><link href="https://brookskindle.github.io/" rel="alternate"></link><link href="https://brookskindle.github.io/feeds/all.atom.xml" rel="self"></link><id>https://brookskindle.github.io/</id><updated>2018-07-18T18:00:00-07:00</updated><entry><title>Making modern presentations with markdown</title><link href="https://brookskindle.github.io/making-modern-presentations-with-markdown.html" rel="alternate"></link><published>2018-07-18T18:00:00-07:00</published><updated>2018-07-18T18:00:00-07:00</updated><author><name>Brooks Kindle</name></author><id>tag:brookskindle.github.io,2018-07-18:/making-modern-presentations-with-markdown.html</id><summary type="html">&lt;p&gt;This month I have the pleasure of co-teaching the Jump Start Live course for
+the Ada Developers Academy - a short course designed to reinforce basic
+programming concepts to students prior to the start of the full program. Part
+of the course material is available online in markdown format, but the …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This month I have the pleasure of co-teaching the Jump Start Live course for
+the Ada Developers Academy - a short course designed to reinforce basic
+programming concepts to students prior to the start of the full program. Part
+of the course material is available online in markdown format, but the lecture
+slides we use in class are Google Docs presentations. In my opinion, this is
+miles above the age-old powerpoint presentation ecosystem, but given my curious
+nature and the fact that the rest of the course material is in markdown, I
+wanted to know: &lt;strong&gt;could presentations also be written in markdown?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Yes, in fact.&lt;/p&gt;
+&lt;p&gt;After several hours of searching on the internet, I've landed on a couple of
+options for creating presentations in markdown. This isn't an exhaustive list
+by any stretch of the imagination - it is simply what I think will be useful
+for my own purposes.&lt;/p&gt;
+&lt;h2&gt;&lt;a href="https://github.com/gnab/remark"&gt;remark&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;remark (not to be confused with &lt;a href="https://remark.js.org/"&gt;remark.js&lt;/a&gt;, a markdown
+processor) is a web-based presentation framework that is markdown-driven. It's
+quick to get started, you just need one HTML boilerplate file and you can begin
+writing markdown within it.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;html&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;head&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;title&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Title&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;title&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;meta&lt;/span&gt; &lt;span class="na"&gt;charset&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;utf-8&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;style&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class="p"&gt;@&lt;/span&gt;&lt;span class="k"&gt;import&lt;/span&gt; &lt;span class="nt"&gt;url&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;https&lt;/span&gt;&lt;span class="o"&gt;://&lt;/span&gt;&lt;span class="nt"&gt;fonts&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;googleapis&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;css&lt;/span&gt;&lt;span class="o"&gt;?&lt;/span&gt;&lt;span class="nt"&gt;family&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nt"&gt;Yanone&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="nt"&gt;Kaffeesatz&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+      &lt;span class="p"&gt;@&lt;/span&gt;&lt;span class="k"&gt;import&lt;/span&gt; &lt;span class="nt"&gt;url&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;https&lt;/span&gt;&lt;span class="o"&gt;://&lt;/span&gt;&lt;span class="nt"&gt;fonts&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;googleapis&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;css&lt;/span&gt;&lt;span class="o"&gt;?&lt;/span&gt;&lt;span class="nt"&gt;family&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nt"&gt;Droid&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="nt"&gt;Serif&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nd"&gt;400&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;700&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;400italic&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+      &lt;span class="p"&gt;@&lt;/span&gt;&lt;span class="k"&gt;import&lt;/span&gt; &lt;span class="nt"&gt;url&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;https&lt;/span&gt;&lt;span class="o"&gt;://&lt;/span&gt;&lt;span class="nt"&gt;fonts&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;googleapis&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;css&lt;/span&gt;&lt;span class="o"&gt;?&lt;/span&gt;&lt;span class="nt"&gt;family&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nt"&gt;Ubuntu&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="nt"&gt;Mono&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nd"&gt;400&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;700&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;&lt;span class="nt"&gt;400italic&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+      &lt;span class="nt"&gt;body&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="k"&gt;font-family&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Droid Serif&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+      &lt;span class="nt"&gt;h1&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;h2&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;h3&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;font-family&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Yanone Kaffeesatz&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="k"&gt;font-weight&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;normal&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+      &lt;span class="p"&gt;}&lt;/span&gt;
+      &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;remark-code&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;remark-inline-code&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="k"&gt;font-family&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Ubuntu Mono&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;style&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;head&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;body&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;textarea&lt;/span&gt; &lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;source&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+# My markdown presentation
+&amp;gt; Created using remark
+
+---
+
+# Slide 2
+    &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;textarea&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt; &lt;span class="na"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;https://remarkjs.com/downloads/remark-latest.min.js&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;slideshow&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;remark&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;create&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;body&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;html&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;&lt;a href="https://github.com/hakimel/reveal.js"&gt;reveal.js&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;reveal.js is another web-based presentation framework. Normally you have to
+write the presentation in HTML, but it supports markdown as well. I've also had
+success just creating a markdown document&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gh"&gt;#&lt;/span&gt; My markdown presentation
+&lt;span class="k"&gt;&amp;gt; &lt;/span&gt;&lt;span class="ge"&gt;Created using reveal.js&lt;/span&gt;
+
+&lt;span class="gh"&gt;#&lt;/span&gt; Slide 2
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;and then using &lt;code&gt;pandoc&lt;/code&gt; to create the HTML presentation&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pandoc -s input.md -o output.html -t revealjs -V revealjs-url=https://lab.hakim.se/reveal-js
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;The verdict&lt;/h2&gt;
+&lt;p&gt;It mostly boils down to preference and which one you like better.&lt;/p&gt;
+&lt;p&gt;There are some feature differences between the two, but both offer support for
+speaker notes and a cloned presentation mode, which are important to me.&lt;/p&gt;
+&lt;p&gt;Initially I was drawn to reveal.js because of its looks, but the vanilla
+settings don't allow for much text to fit on a single slide and thus seems more
+suited for big picture ideas without going too deeply into detail.&lt;/p&gt;
+&lt;p&gt;The default settings for remark focus more on presenting the slide content in a
+no way, which for me is important.&lt;/p&gt;
+&lt;h2&gt;Parting thoughts&lt;/h2&gt;
+&lt;p&gt;Since markdown is the common language used, I &lt;em&gt;should&lt;/em&gt; be able to transition
+from one framework to the next, but I see two things that make doing so more
+difficult:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;You can fit less content on a reveal.js slide by default than you can in a
+  remark slide, so converting a remark presentation to a reveal.js presentation
+  will probably cut off a bit of the content on each slide.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;pandoc&lt;/code&gt; &lt;a href="http://pandoc.org/MANUAL.html#speaker-notes"&gt;has a different
+  syntax&lt;/a&gt; for speaker notes &lt;a href="https://remarkjs.com/#15"&gt;than
+  remark does&lt;/a&gt;, so converting presentations with
+  speaker notes would become notably more difficult. If pandoc supported remark
+  as an output format, this would be a non-issue.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</content><category term="markdown"></category><category term="presentations"></category></entry><entry><title>Pin your versions. Or don't.</title><link href="https://brookskindle.github.io/pin-your-versions-or-dont.html" rel="alternate"></link><published>2018-06-25T00:00:00-07:00</published><updated>2018-06-25T00:00:00-07:00</updated><author><name>Brooks Kindle</name></author><id>tag:brookskindle.github.io,2018-06-25:/pin-your-versions-or-dont.html</id><summary type="html">&lt;p&gt;Here's a hypothetical situation. Suppose you're starting a new project and you
 want to use the &lt;code&gt;requests&lt;/code&gt; library. Installing &lt;code&gt;requests&lt;/code&gt; also installs the
 libraries that it depends on. Should you be explicit and pin the versions of
 all installed libraries (equivalent to the output of &lt;code&gt;pip freeze&lt;/code&gt;)&lt;/p&gt;
