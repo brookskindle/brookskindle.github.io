@@ -21,7 +21,14 @@ PATH = "content"
 STATIC_PATHS = [
     "styles",
     "images",
+    "talks",
 ]
+
+# I want to have the ability to have html presentations without having them
+# inherit from my site's html layout, so keep content source files (.md, .html,
+# .ipynb, etc...) in the static folders they were found in.
+STATIC_EXCLUDE_SOURCES = False
+
 EXTRA_PATH_METADATA = {
     # The Flex theme doesn't let us customize where to load pygments styles
     # from, so make sure our theme is placed where Flex can find it.
