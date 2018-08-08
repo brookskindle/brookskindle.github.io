@@ -21,7 +21,6 @@ PATH = "content"
 STATIC_PATHS = [
     "styles",
     "images",
-    "talks",
 ]
 
 # I want to have the ability to have html presentations without having them
