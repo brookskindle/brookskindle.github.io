@@ -4,3 +4,6 @@
 [submodule "plugins/ipynb"]
 	path = plugins/ipynb
 	url = git://github.com/danielfrg/pelican-ipynb.git
+[submodule "plugins/revealmd"]
+	path = plugins/revealmd
+	url = git@github.com:brookskindle/pelican-revealmd.git
