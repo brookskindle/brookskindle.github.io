@@ -15,7 +15,7 @@ Brooks Kindle
 
 ---
 
-> Disclaimer
+# Disclaimer
 
 The slides in this
 presentation are based on my own experience and observations only, and as such,
@@ -54,8 +54,8 @@ sure you understand the risks behind your actions.
 * These questions are not unique to *early* retirement
 :::
 
-# step[0]
-## financial awareness
+# financial awareness
+## step[0]
 
 ---
 
@@ -101,13 +101,19 @@ Don't include non-appreciating assets when calculating net worth\*
 
 ---
 
-# So you've got money
-## Where should you put it?
+## Further reading
+* [The shockingly simple math behind early
+  retirement](https://www.mrmoneymustache.com/2012/01/13/the-shockingly-simple-math-behind-early-retirement/) (mmm)
+* [How much do I need for
+  retirement?](https://www.mrmoneymustache.com/2012/05/29/how-much-do-i-need-for-retirement/) (mmm)
+* [FI Hacks](https://brookskindle.github.io/fihacks) (my own site)
+* [Your Money or Your
+  Life](https://www.amazon.com/Your-Money-Life-Transforming-Relationship-ebook/dp/B0052MD8VO) (Vicki Robin)
 
 ---
 
-# step[1]
-## emergency fund
+# emergency fund
+## step[1]
 
 ::: incremental
 * 3-6 months of living expenses
@@ -117,13 +123,12 @@ Don't include non-appreciating assets when calculating net worth\*
 
 ---
 
-# step[2]
-## high interest debts
+# high interest debts
+## step[2]
 
 ::: incremental
 * Pay down debts ~5% over the 10-year treasury yield
 * 10-year treasury yield is ~3.00% (2018-08-01)
-* [Source](https://forum.mrmoneymustache.com/investor-alley/investment-order/msg1333153/#msg1333153)
 :::
 
 ::: notes
@@ -133,8 +138,8 @@ Don't include non-appreciating assets when calculating net worth\*
 
 ---
 
-# step[3]
-## retirement accounts
+# retirement accounts
+## step[3]
 
 ::: incremental
 * 401(k), 403(b), 457, IRA, HSA
@@ -164,19 +169,70 @@ HSA|$3,450 single $6,900 family|+$1k|\*|\*
 
 ---
 
-# step[4]
-## low interest debts
+# low interest debts
+## step[4]
 * Pay down debts ~3% over the 10-year treasury yield
 
 ---
 
-# step[5] taxable accounts
-## taxable accounts
+# taxable accounts
+## step[5]
 * Whatever you have left, invest in a taxable account
 
 ---
 
-# What do I invest in?
+## Further reading
+* [Investment order](https://forum.mrmoneymustache.com/investor-alley/investment-order/msg1333153/#msg1333153) (mmm forum)
+* [Retire even earlier](https://www.madfientist.com/retire-even-earlier/) (mad fientist)
+* [Traditional vs Roth IRA](https://www.madfientist.com/traditional-ira-vs-roth-ira/) (mad fientist)
+* [How to access retirement funds early](https://www.madfientist.com/how-to-access-retirement-funds-early/) (mad fientist)
+
+---
+
+## What to invest in?
+::: incremental
+* Target date retirement funds
+* Total stock market / S&P 500 index funds
+* Total bond market / S&P 500 bond index funds
+* Real estate investment trusts (REITs)
+* No individual stocks (too risky)
+:::
+
+> I'm biased in favor of low cost, diversified index funds
+
+::: notes
+* These are only a few examples of things you can invest in
+* Rebalance on a set schedule (eg: yearly)
+:::
+
+---
+
+## Investor psychology
+People are irrational when it comes to investing
+
+::: incremental
+* Your risk tolerance should inform your asset allocation
+* Create an [investment policy
+  statement](https://www.bogleheads.org/wiki/Investment_policy_statement)
+* Meet [Bob, the world's worst market
+  timer](http://awealthofcommonsense.com/2014/02/worlds-worst-market-timer/)
+:::
+
+::: notes
+People are
+
+* Greedy at the top of the market
+* Fearful at the bottom of the market
+* All sorts of things in between
+:::
+
+---
+
+## Further reading
+* [The Simple Path to Wealth](https://www.amazon.com/Simple-Path-Wealth-financial-independence/dp/1533667926) (J L Collins)
+* [Stock Series (blog posts)](https://jlcollinsnh.com/stock-series/) (J L Collins)
+* TODO: bogleheads "start here" link
+* [Portfolio charts](https://portfoliocharts.com/)
 
 ---
 
