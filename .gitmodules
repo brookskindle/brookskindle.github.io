@@ -3,7 +3,7 @@
 	url = https://github.com/alexandrevicenzi/Flex.git
 [submodule "plugins/ipynb"]
 	path = plugins/ipynb
-	url = git://github.com/danielfrg/pelican-ipynb.git
+	url = https://github.com/danielfrg/pelican-ipynb.git
 [submodule "plugins/revealmd"]
 	path = plugins/revealmd
-	url = git@github.com:brookskindle/pelican-revealmd.git
+	url = https://github.com/brookskindle/pelican-revealmd.git
