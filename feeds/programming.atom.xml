@@ -240,7 +240,7 @@ ever opening a terminal.&lt;/p&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;I do a fair amount of data manipulation work in pandas and as such, I find myself doing a lot of method chaining. In the past I've struggled to find a good way of keeping my code concise while still maintaining readability.&lt;/p&gt;
-&lt;p&gt;What do I mean by that? Suppose we have census data on a group of people.&lt;/p&gt;</summary><content type="html">
+&lt;p&gt;What do I mean by that? Suppose we have census data on a group of people.&lt;/p&gt;</summary><content type="html">&lt;body&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
@@ -743,7 +743,7 @@ dtype: int64&lt;/pre&gt;
 &lt;/div&gt;
  
 
-
+&lt;/body&gt;
 &lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
