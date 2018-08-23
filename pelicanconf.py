@@ -42,7 +42,7 @@ CUSTOM_CSS = "styles/styles.css"
 MARKUP = ["md", "ipynb"]
 PLUGIN_PATHS = ["./plugins"]
 PLUGINS = ["ipynb.markup", "revealmd"]
-IPYNB_IGNORE_CSS = True  # Let ipynb posts use site CSS settings
+IPYNB_SKIP_CSS = True  # Let ipynb posts use site CSS settings
 IGNORE_FILES = ['.ipynb_checkpoints']
 
 DEFAULT_PAGINATION = 10
