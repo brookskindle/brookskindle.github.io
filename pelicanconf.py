@@ -45,6 +45,11 @@ PLUGINS = ["ipynb.markup", "revealmd"]
 IPYNB_SKIP_CSS = True  # Let ipynb posts use site CSS settings
 IGNORE_FILES = ['.ipynb_checkpoints']
 
+EXTRA_TEMPLATES_PATHS = [
+    # Let revealmd use a blank html template for its reveal.js presentations
+    "plugins/revealmd/templates",
+]
+
 DEFAULT_PAGINATION = 10
 
 TIMEZONE = "America/Los_Angeles"
