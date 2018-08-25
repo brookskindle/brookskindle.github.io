@@ -3,9 +3,8 @@ python:
   - '3.6'
 install:
   - pip install -r requirements.txt
-addons:
-  apt_packages:
-    - pandoc
+  # Download the latest version of pandoc
+  - python -c "from pypandoc.pandoc_download import download_pandoc; download_pandoc()"
 script: make publish
 deploy:
   local-dir: output  # Defined in the Makefile
