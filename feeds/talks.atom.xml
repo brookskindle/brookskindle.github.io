@@ -6,14 +6,26 @@ I've started giving.&lt;/p&gt;</summary><content type="html">&lt;!DOCTYPE html&g
 &lt;head&gt;
   &lt;meta charset="utf-8"&gt;
   &lt;meta name="generator" content="pandoc"&gt;
-  &lt;title&gt;&lt;/title&gt;
-  &lt;meta name="apple-mobile-web-app-capable" content="yes" /&gt;
-  &lt;meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" /&gt;
-  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"&gt;
-  &lt;link rel="stylesheet" href="https://lab.hakim.se/reveal-js/css/reveal.min.css"/&gt;
-    &lt;style type="text/css"&gt;code{white-space: pre;}&lt;/style&gt;
-    &lt;link rel="stylesheet" href="https://lab.hakim.se/reveal-js/css/theme/simple.css" id="theme"&gt;
-  &lt;link rel="stylesheet" media="print" href="https://lab.hakim.se/reveal-js/css/print/pdf.css" /&gt;
+  &lt;title&gt;Untitled&lt;/title&gt;
+  &lt;meta name="apple-mobile-web-app-capable" content="yes"&gt;
+  &lt;meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui"&gt;
+  &lt;link rel="stylesheet" href="https://lab.hakim.se/reveal-js/css/reveal.css"&gt;
+  &lt;style type="text/css"&gt;
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  &lt;/style&gt;
+  &lt;link rel="stylesheet" href="https://lab.hakim.se/reveal-js/css/theme/black.css" id="theme"&gt;
+  &lt;!-- Printing and PDF exports --&gt;
+  &lt;script&gt;
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'https://lab.hakim.se/reveal-js/css/print/pdf.css' : 'https://lab.hakim.se/reveal-js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  &lt;/script&gt;
   &lt;!--[if lt IE 9]&gt;
   &lt;script src="https://lab.hakim.se/reveal-js/lib/js/html5shiv.js"&gt;&lt;/script&gt;
   &lt;![endif]--&gt;
@@ -26,8 +38,12 @@ I've started giving.&lt;/p&gt;</summary><content type="html">&lt;!DOCTYPE html&g
 &lt;section id="savings-and-money-management" class="slide level1"&gt;
 &lt;h1&gt;Savings and Money Management&lt;/h1&gt;
 &lt;p&gt;Brooks Kindle&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://brookskindle.github.io"&gt;https://brookskindle.github.io&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;::: notes * Shruti asked if I would be interested in giving a finance talk :::&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://brookskindle.github.io" class="uri"&gt;https://brookskindle.github.io&lt;/a&gt;&lt;/p&gt;
+&lt;aside class="notes"&gt;
+&lt;ul&gt;
+&lt;li&gt;Shruti asked if I would be interested in giving a finance talk&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
 &lt;/section&gt;
 &lt;section id="disclaimer" class="slide level1"&gt;
 &lt;h1&gt;Disclaimer&lt;/h1&gt;
@@ -36,7 +52,7 @@ I've started giving.&lt;/p&gt;</summary><content type="html">&lt;!DOCTYPE html&g
 &lt;section id="my-story" class="slide level1"&gt;
 &lt;h1&gt;My story&lt;/h1&gt;
 &lt;ul&gt;
-&lt;li&gt;High school --&amp;gt; college&lt;/li&gt;
+&lt;li&gt;High school –&amp;gt; college&lt;/li&gt;
 &lt;li&gt;Financial aid&lt;/li&gt;
 &lt;li&gt;Worked part time&lt;/li&gt;
 &lt;li&gt;B.S. in computer science&lt;/li&gt;
@@ -44,30 +60,56 @@ I've started giving.&lt;/p&gt;</summary><content type="html">&lt;!DOCTYPE html&g
 &lt;li&gt;Highly paid job&lt;/li&gt;
 &lt;li&gt;Now what?&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;::: notes * Poster child for the tech industry * I've been very privileged, financially * A lot of opportunities have been given to me * I want to share with you what I have learned along my journey :::&lt;/p&gt;
+&lt;aside class="notes"&gt;
+&lt;ul&gt;
+&lt;li&gt;Poster child for the tech industry&lt;/li&gt;
+&lt;li&gt;I’ve been very privileged, financially&lt;/li&gt;
+&lt;li&gt;A lot of opportunities have been given to me&lt;/li&gt;
+&lt;li&gt;I want to share with you what I have learned along my journey&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
 &lt;/section&gt;
 &lt;section id="fire" class="slide level1"&gt;
 &lt;h1&gt;FIRE&lt;/h1&gt;
 &lt;h2 id="financial-independence-early-retirement"&gt;Financial Independence, Early Retirement&lt;/h2&gt;
-&lt;p&gt;. . .&lt;/p&gt;
-&lt;p&gt;...FIER?&lt;/p&gt;
-&lt;p&gt;::: notes * Challenged the fundamentals of typical retirement * Asked the hard questions * Why do I want to retire? * What will I do with my time? * How much do I need to support that lifestyle? * How will I achieve it? * These questions are not unique to &lt;em&gt;early&lt;/em&gt; retirement :::&lt;/p&gt;
+&lt;div class="fragment"&gt;
+&lt;p&gt;…FIER?&lt;/p&gt;
+&lt;aside class="notes"&gt;
+&lt;ul&gt;
+&lt;li&gt;Challenged the fundamentals of typical retirement&lt;/li&gt;
+&lt;li&gt;Asked the hard questions
+&lt;ul&gt;
+&lt;li&gt;Why do I want to retire?&lt;/li&gt;
+&lt;li&gt;What will I do with my time?&lt;/li&gt;
+&lt;li&gt;How much do I need to support that lifestyle?&lt;/li&gt;
+&lt;li&gt;How will I achieve it?&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;These questions are not unique to &lt;em&gt;early&lt;/em&gt; retirement&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
+&lt;/div&gt;
 &lt;/section&gt;
 &lt;section id="on-the-interwebs" class="slide level1"&gt;
 &lt;h1&gt;On the interwebs&lt;/h1&gt;
 &lt;p&gt;How to retire? &lt;em&gt;824,000,000 results&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;How to retire early? &lt;em&gt;569,000,000 results&lt;/em&gt;&lt;/p&gt;
-&lt;figure&gt;
-&lt;img src="{filename}/images/retire.png" /&gt;
-&lt;/figure&gt;
+&lt;p&gt;&lt;img data-src="%7Bfilename%7D/images/retire.png" /&gt;&lt;/p&gt;
 &lt;/section&gt;
 &lt;section id="how-do-i-retire-early" class="slide level1"&gt;
 &lt;h1&gt;How do I retire (early)?&lt;/h1&gt;
 &lt;div class="fragment"&gt;
-&lt;h2 id="theres-no-magic"&gt;There's no magic&lt;/h2&gt;
-&lt;p&gt;::: incremental * (lots of) savings * smart investments * and that's it :::&lt;/p&gt;
-&lt;p&gt;::: notes It's pretty boring actually&lt;/p&gt;
-&lt;p&gt;I'm going to show you the tools &amp;amp; resources needed to plot your own course to retirement :::&lt;/p&gt;
+&lt;h2 id="theres-no-magic"&gt;There’s no magic&lt;/h2&gt;
+&lt;div&gt;
+&lt;ul&gt;
+&lt;li class="fragment"&gt;(lots of) savings&lt;/li&gt;
+&lt;li class="fragment"&gt;smart investments&lt;/li&gt;
+&lt;li class="fragment"&gt;and that’s it&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;aside class="notes"&gt;
+&lt;p&gt;It’s pretty boring actually&lt;/p&gt;
+&lt;p&gt;I’m going to show you the tools &amp;amp; resources needed to plot your own course to retirement&lt;/p&gt;
+&lt;/aside&gt;
 &lt;/div&gt;
 &lt;/section&gt;
 &lt;section id="financial-awareness" class="slide level1"&gt;
@@ -97,27 +139,31 @@ I've started giving.&lt;/p&gt;</summary><content type="html">&lt;!DOCTYPE html&g
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr class="header"&gt;
-&lt;th style="text-align: left;"&gt;Asset&lt;/th&gt;
-&lt;th style="text-align: left;"&gt;Liability&lt;/th&gt;
+&lt;th&gt;Asset&lt;/th&gt;
+&lt;th&gt;Liability&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr class="odd"&gt;
-&lt;td style="text-align: left;"&gt;Retirement account&lt;/td&gt;
-&lt;td style="text-align: left;"&gt;Student loans&lt;/td&gt;
+&lt;td&gt;Retirement account&lt;/td&gt;
+&lt;td&gt;Student loans&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class="even"&gt;
-&lt;td style="text-align: left;"&gt;House&lt;/td&gt;
-&lt;td style="text-align: left;"&gt;Mortgage&lt;/td&gt;
+&lt;td&gt;House&lt;/td&gt;
+&lt;td&gt;Mortgage&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class="odd"&gt;
-&lt;td style="text-align: left;"&gt;-&lt;/td&gt;
-&lt;td style="text-align: left;"&gt;Car loan&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;td&gt;Car loan&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;Don't include non-appreciating assets when calculating net worth*&lt;/p&gt;
-&lt;p&gt;::: notes * Non-appreciating assets aren't investments :::&lt;/p&gt;
+&lt;p&gt;Don’t include non-appreciating assets when calculating net worth*&lt;/p&gt;
+&lt;aside class="notes"&gt;
+&lt;ul&gt;
+&lt;li&gt;Non-appreciating assets aren’t investments&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
 &lt;/section&gt;
 &lt;section class="slide level1"&gt;
 
@@ -127,7 +173,11 @@ I've started giving.&lt;/p&gt;</summary><content type="html">&lt;!DOCTYPE html&g
 &lt;li&gt;As savings rate increases, time to financial independence decreases&lt;/li&gt;
 &lt;li&gt;What about social security?&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;::: notes * 25x &lt;em&gt;expected&lt;/em&gt; spending is more accurate, but that's harder to predict :::&lt;/p&gt;
+&lt;aside class="notes"&gt;
+&lt;ul&gt;
+&lt;li&gt;25x &lt;em&gt;expected&lt;/em&gt; spending is more accurate, but that’s harder to predict&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
 &lt;/section&gt;
 &lt;section class="slide level1"&gt;
 
@@ -142,66 +192,89 @@ I've started giving.&lt;/p&gt;</summary><content type="html">&lt;!DOCTYPE html&g
 &lt;section id="emergency-fund" class="slide level1"&gt;
 &lt;h1&gt;emergency fund&lt;/h1&gt;
 &lt;h2 id="step1"&gt;step[1]&lt;/h2&gt;
-&lt;p&gt;::: incremental * 3-6 months of living expenses * In your savings account * For emergencies &lt;strong&gt;only&lt;/strong&gt; :::&lt;/p&gt;
+&lt;div&gt;
+&lt;ul&gt;
+&lt;li class="fragment"&gt;3-6 months of living expenses&lt;/li&gt;
+&lt;li class="fragment"&gt;In your savings account&lt;/li&gt;
+&lt;li class="fragment"&gt;For emergencies &lt;strong&gt;only&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
 &lt;/section&gt;
 &lt;section id="high-interest-debts" class="slide level1"&gt;
 &lt;h1&gt;high interest debts&lt;/h1&gt;
 &lt;h2 id="step2"&gt;step[2]&lt;/h2&gt;
-&lt;p&gt;::: incremental * Pay down debts ~5% over the 10-year treasury yield * 10-year treasury yield is ~3.00% (2018-08-01) :::&lt;/p&gt;
-&lt;p&gt;::: notes * If the interest rate is high, pay it off (it's a guaranteed return after all) * With all debts, at least pay the minimum * I have the least amount of experience with this, but it makes sense to me :::&lt;/p&gt;
+&lt;div&gt;
+&lt;ul&gt;
+&lt;li class="fragment"&gt;Pay down debts ~5% over the 10-year treasury yield&lt;/li&gt;
+&lt;li class="fragment"&gt;10-year treasury yield is ~3.00% (2018-08-01)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;aside class="notes"&gt;
+&lt;ul&gt;
+&lt;li&gt;If the interest rate is high, pay it off (it’s a guaranteed return after all)&lt;/li&gt;
+&lt;li&gt;With all debts, at least pay the minimum&lt;/li&gt;
+&lt;li&gt;I have the least amount of experience with this, but it makes sense to me&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
 &lt;/section&gt;
 &lt;section id="retirement-accounts" class="slide level1"&gt;
 &lt;h1&gt;retirement accounts&lt;/h1&gt;
 &lt;h2 id="step3"&gt;step[3]&lt;/h2&gt;
-&lt;p&gt;::: incremental * 401(k), 403(b), 457, IRA, HSA * Accounts are yours, even when opened through an employer * Always take the employer match, if offered :::&lt;/p&gt;
+&lt;div&gt;
+&lt;ul&gt;
+&lt;li class="fragment"&gt;401(k), 403(b), 457, IRA, HSA&lt;/li&gt;
+&lt;li class="fragment"&gt;Accounts are yours, even when opened through an employer&lt;/li&gt;
+&lt;li class="fragment"&gt;Always take the employer match, if offered&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
 &lt;/section&gt;
 &lt;section class="slide level1"&gt;
 
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr class="header"&gt;
-&lt;th style="text-align: left;"&gt;Type&lt;/th&gt;
-&lt;th style="text-align: left;"&gt;Contributions (2018)&lt;/th&gt;
-&lt;th style="text-align: left;"&gt;Age 50+&lt;/th&gt;
-&lt;th style="text-align: left;"&gt;Traditional&lt;/th&gt;
-&lt;th style="text-align: left;"&gt;Roth&lt;/th&gt;
+&lt;th&gt;Type&lt;/th&gt;
+&lt;th&gt;Contributions (2018)&lt;/th&gt;
+&lt;th&gt;Age 50+&lt;/th&gt;
+&lt;th&gt;Traditional&lt;/th&gt;
+&lt;th&gt;Roth&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr class="odd"&gt;
-&lt;td style="text-align: left;"&gt;401(k)&lt;/td&gt;
-&lt;td style="text-align: left;"&gt;$18.5k&lt;/td&gt;
-&lt;td style="text-align: left;"&gt;+$6k&lt;/td&gt;
-&lt;td style="text-align: left;"&gt;✓&lt;/td&gt;
-&lt;td style="text-align: left;"&gt;✓&lt;/td&gt;
+&lt;td&gt;401(k)&lt;/td&gt;
+&lt;td&gt;$18.5k&lt;/td&gt;
+&lt;td&gt;+$6k&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class="even"&gt;
-&lt;td style="text-align: left;"&gt;403(b)&lt;/td&gt;
-&lt;td style="text-align: left;"&gt;$18.5k&lt;/td&gt;
-&lt;td style="text-align: left;"&gt;+$6k&lt;/td&gt;
-&lt;td style="text-align: left;"&gt;✓&lt;/td&gt;
-&lt;td style="text-align: left;"&gt;✓&lt;/td&gt;
+&lt;td&gt;403(b)&lt;/td&gt;
+&lt;td&gt;$18.5k&lt;/td&gt;
+&lt;td&gt;+$6k&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class="odd"&gt;
-&lt;td style="text-align: left;"&gt;457&lt;/td&gt;
-&lt;td style="text-align: left;"&gt;????&lt;/td&gt;
-&lt;td style="text-align: left;"&gt;????&lt;/td&gt;
-&lt;td style="text-align: left;"&gt;?&lt;/td&gt;
-&lt;td style="text-align: left;"&gt;?&lt;/td&gt;
+&lt;td&gt;457&lt;/td&gt;
+&lt;td&gt;????&lt;/td&gt;
+&lt;td&gt;????&lt;/td&gt;
+&lt;td&gt;?&lt;/td&gt;
+&lt;td&gt;?&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class="even"&gt;
-&lt;td style="text-align: left;"&gt;IRA&lt;/td&gt;
-&lt;td style="text-align: left;"&gt;$5.5k&lt;/td&gt;
-&lt;td style="text-align: left;"&gt;+$1k&lt;/td&gt;
-&lt;td style="text-align: left;"&gt;✓&lt;/td&gt;
-&lt;td style="text-align: left;"&gt;✓&lt;/td&gt;
+&lt;td&gt;IRA&lt;/td&gt;
+&lt;td&gt;$5.5k&lt;/td&gt;
+&lt;td&gt;+$1k&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class="odd"&gt;
-&lt;td style="text-align: left;"&gt;HSA&lt;/td&gt;
-&lt;td style="text-align: left;"&gt;$3,450 single $6,900 family&lt;/td&gt;
-&lt;td style="text-align: left;"&gt;+$1k&lt;/td&gt;
-&lt;td style="text-align: left;"&gt;*&lt;/td&gt;
-&lt;td style="text-align: left;"&gt;*&lt;/td&gt;
+&lt;td&gt;HSA&lt;/td&gt;
+&lt;td&gt;$3,450 single $6,900 family&lt;/td&gt;
+&lt;td&gt;+$1k&lt;/td&gt;
+&lt;td&gt;*&lt;/td&gt;
+&lt;td&gt;*&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -250,23 +323,44 @@ I've started giving.&lt;/p&gt;</summary><content type="html">&lt;!DOCTYPE html&g
 &lt;section class="slide level1"&gt;
 
 &lt;h2 id="what-to-invest-in"&gt;What to invest in?&lt;/h2&gt;
-&lt;p&gt;::: incremental * Target date retirement funds * Total stock market / S&amp;amp;P 500 index funds * Total bond market / S&amp;amp;P 500 bond index funds * Real estate investment trusts (REITs) * No individual stocks (too risky) :::&lt;/p&gt;
+&lt;div&gt;
+&lt;ul&gt;
+&lt;li class="fragment"&gt;Target date retirement funds&lt;/li&gt;
+&lt;li class="fragment"&gt;Total stock market / S&amp;amp;P 500 index funds&lt;/li&gt;
+&lt;li class="fragment"&gt;Total bond market / S&amp;amp;P 500 bond index funds&lt;/li&gt;
+&lt;li class="fragment"&gt;Real estate investment trusts (REITs)&lt;/li&gt;
+&lt;li class="fragment"&gt;No individual stocks (too risky)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
 &lt;blockquote&gt;
-&lt;p&gt;I'm biased in favor of low cost, diversified index funds&lt;/p&gt;
+&lt;p&gt;I’m biased in favor of low cost, diversified index funds&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;::: notes * These are only a few examples of things you can invest in * Rebalance on a set schedule (eg: yearly) :::&lt;/p&gt;
+&lt;aside class="notes"&gt;
+&lt;ul&gt;
+&lt;li&gt;These are only a few examples of things you can invest in&lt;/li&gt;
+&lt;li&gt;Rebalance on a set schedule (eg: yearly)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
 &lt;/section&gt;
 &lt;section class="slide level1"&gt;
 
 &lt;h2 id="investor-psychology"&gt;Investor psychology&lt;/h2&gt;
 &lt;p&gt;People are irrational when it comes to investing&lt;/p&gt;
-&lt;p&gt;::: incremental * Your risk tolerance should inform your asset allocation * Create an &lt;a href="https://www.bogleheads.org/wiki/Investment_policy_statement"&gt;investment policy statement&lt;/a&gt; * Meet &lt;a href="http://awealthofcommonsense.com/2014/02/worlds-worst-market-timer/"&gt;Bob, the world's worst market timer&lt;/a&gt; :::&lt;/p&gt;
-&lt;p&gt;::: notes People are&lt;/p&gt;
+&lt;div&gt;
+&lt;ul&gt;
+&lt;li class="fragment"&gt;Your risk tolerance should inform your asset allocation&lt;/li&gt;
+&lt;li class="fragment"&gt;Create an &lt;a href="https://www.bogleheads.org/wiki/Investment_policy_statement"&gt;investment policy statement&lt;/a&gt;&lt;/li&gt;
+&lt;li class="fragment"&gt;Meet &lt;a href="http://awealthofcommonsense.com/2014/02/worlds-worst-market-timer/"&gt;Bob, the world’s worst market timer&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;aside class="notes"&gt;
+&lt;p&gt;People are&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Greedy at the top of the market&lt;/li&gt;
 &lt;li&gt;Fearful at the bottom of the market&lt;/li&gt;
-&lt;li&gt;All sorts of things in between :::&lt;/li&gt;
+&lt;li&gt;All sorts of things in between&lt;/li&gt;
 &lt;/ul&gt;
+&lt;/aside&gt;
 &lt;/section&gt;
 &lt;section id="todo" class="slide level1"&gt;
 &lt;h1&gt;TODO&lt;/h1&gt;
@@ -282,7 +376,9 @@ I've started giving.&lt;/p&gt;</summary><content type="html">&lt;!DOCTYPE html&g
 &lt;p&gt;✘ Commission based&lt;/p&gt;
 &lt;p&gt;✔ A fiduciary&lt;/p&gt;
 &lt;p&gt;✔ Fee-only&lt;/p&gt;
-&lt;p&gt;::: notes In 2017, the financial services industry grossed $1.45 trillion domestically :::&lt;/p&gt;
+&lt;aside class="notes"&gt;
+&lt;p&gt;In 2017, the financial services industry grossed $1.45 trillion domestically&lt;/p&gt;
+&lt;/aside&gt;
 &lt;/section&gt;
 &lt;section class="slide level1"&gt;
 
@@ -290,7 +386,7 @@ I've started giving.&lt;/p&gt;</summary><content type="html">&lt;!DOCTYPE html&g
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://jlcollinsnh.com/stock-series/"&gt;Stock Series (blog posts)&lt;/a&gt; (J L Collins)&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://www.amazon.com/Simple-Path-Wealth-financial-independence/dp/1533667926"&gt;The Simple Path to Wealth&lt;/a&gt; (J L Collins)&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://www.bogleheads.org/wiki/Getting_started"&gt;Bogleheads' Getting Started Wiki Page&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.bogleheads.org/wiki/Getting_started"&gt;Bogleheads’ Getting Started Wiki Page&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://portfoliocharts.com/"&gt;Portfolio Charts&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/section&gt;
@@ -310,29 +406,24 @@ I've started giving.&lt;/p&gt;</summary><content type="html">&lt;!DOCTYPE html&g
   &lt;/div&gt;
 
   &lt;script src="https://lab.hakim.se/reveal-js/lib/js/head.min.js"&gt;&lt;/script&gt;
-  &lt;script src="https://lab.hakim.se/reveal-js/js/reveal.min.js"&gt;&lt;/script&gt;
+  &lt;script src="https://lab.hakim.se/reveal-js/js/reveal.js"&gt;&lt;/script&gt;
 
   &lt;script&gt;
 
-      // Full list of configuration options available here:
+      // Full list of configuration options available at:
       // https://github.com/hakimel/reveal.js#configuration
       Reveal.initialize({
-        controls: true,
-        progress: true,
+        // Push each slide change to the browser history
         history: true,
-        center: true,
-        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
 
-        // Optional libraries used to extend on reveal.js
+        // Optional reveal.js plugins
         dependencies: [
           { src: 'https://lab.hakim.se/reveal-js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-          { src: 'https://lab.hakim.se/reveal-js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-          { src: 'https://lab.hakim.se/reveal-js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
-//          { src: 'https://lab.hakim.se/reveal-js/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; }, }
-//          { src: 'https://lab.hakim.se/reveal-js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
-]});
+          { src: 'https://lab.hakim.se/reveal-js/plugin/zoom-js/zoom.js', async: true },
+          { src: 'https://lab.hakim.se/reveal-js/plugin/notes/notes.js', async: true }
+        ]
+      });
     &lt;/script&gt;
-  &lt;/body&gt;
+    &lt;/body&gt;
 &lt;/html&gt;
 </content></entry></feed>
