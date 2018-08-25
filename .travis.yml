@@ -1,10 +1,11 @@
 language: python
 python:
   - '3.6'
+before_install:
+  - wget https://github.com/jgm/pandoc/releases/download/2.2.3.2/pandoc-2.2.3.2-1-amd64.deb
+  - sudo dpkg -i pandoc-2.2.3.2-1-amd64.deb
 install:
   - pip install -r requirements.txt
-  # Download the latest version of pandoc
-  - python -c "from pypandoc.pandoc_download import download_pandoc; download_pandoc()"
 script: make publish
 deploy:
   local-dir: output  # Defined in the Makefile
