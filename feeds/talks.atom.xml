@@ -10,24 +10,24 @@ I've started giving.&lt;/p&gt;</summary><content type="html">&lt;!DOCTYPE html&g
   &lt;meta name="apple-mobile-web-app-capable" content="yes"&gt;
   &lt;meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"&gt;
   &lt;meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui"&gt;
-  &lt;link rel="stylesheet" href="https://lab.hakim.se/reveal-js/css/reveal.css"&gt;
+  &lt;link rel="stylesheet" href="https://revealjs.com/css/reveal.css"&gt;
   &lt;style type="text/css"&gt;
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
       span.underline{text-decoration: underline;}
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   &lt;/style&gt;
-  &lt;link rel="stylesheet" href="https://lab.hakim.se/reveal-js/css/theme/black.css" id="theme"&gt;
+  &lt;link rel="stylesheet" href="https://revealjs.com/css/theme/black.css" id="theme"&gt;
   &lt;!-- Printing and PDF exports --&gt;
   &lt;script&gt;
     var link = document.createElement( 'link' );
     link.rel = 'stylesheet';
     link.type = 'text/css';
-    link.href = window.location.search.match( /print-pdf/gi ) ? 'https://lab.hakim.se/reveal-js/css/print/pdf.css' : 'https://lab.hakim.se/reveal-js/css/print/paper.css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'https://revealjs.com/css/print/pdf.css' : 'https://revealjs.com/css/print/paper.css';
     document.getElementsByTagName( 'head' )[0].appendChild( link );
   &lt;/script&gt;
   &lt;!--[if lt IE 9]&gt;
-  &lt;script src="https://lab.hakim.se/reveal-js/lib/js/html5shiv.js"&gt;&lt;/script&gt;
+  &lt;script src="https://revealjs.com/lib/js/html5shiv.js"&gt;&lt;/script&gt;
   &lt;![endif]--&gt;
 &lt;/head&gt;
 &lt;body&gt;
@@ -405,8 +405,8 @@ I've started giving.&lt;/p&gt;</summary><content type="html">&lt;!DOCTYPE html&g
     &lt;/div&gt;
   &lt;/div&gt;
 
-  &lt;script src="https://lab.hakim.se/reveal-js/lib/js/head.min.js"&gt;&lt;/script&gt;
-  &lt;script src="https://lab.hakim.se/reveal-js/js/reveal.js"&gt;&lt;/script&gt;
+  &lt;script src="https://revealjs.com/lib/js/head.min.js"&gt;&lt;/script&gt;
+  &lt;script src="https://revealjs.com/js/reveal.js"&gt;&lt;/script&gt;
 
   &lt;script&gt;
 
@@ -418,9 +418,9 @@ I've started giving.&lt;/p&gt;</summary><content type="html">&lt;!DOCTYPE html&g
 
         // Optional reveal.js plugins
         dependencies: [
-          { src: 'https://lab.hakim.se/reveal-js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-          { src: 'https://lab.hakim.se/reveal-js/plugin/zoom-js/zoom.js', async: true },
-          { src: 'https://lab.hakim.se/reveal-js/plugin/notes/notes.js', async: true }
+          { src: 'https://revealjs.com/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'https://revealjs.com/plugin/zoom-js/zoom.js', async: true },
+          { src: 'https://revealjs.com/plugin/notes/notes.js', async: true }
         ]
       });
     &lt;/script&gt;
