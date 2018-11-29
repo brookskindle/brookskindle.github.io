@@ -1,9 +1,9 @@
-Title: Why Finances Matter
-Date: 2018-08-08
+Title: Finances Matter
+Date: 2018-11-28
 Category: talks
-Summary: When you were half as old as you are now, what did you dream of doing with your life? What do you dream of doing now? Too often, the realities of life catch up with us and we find ourselves letting go of dreams we once had and resigning ourselves to a life of somewhat meaningful existence. *Why Finances Matter* is a talk about finding that dream again, reassessing your priorities, and plotting a course towards your own financial freedom.
+Summary: When you were half as old as you are now, what did you dream of doing with your life? What do you dream of doing now? Too often, the realities of life catch up with us and we find ourselves letting go of dreams we once had and resigning ourselves to a life of somewhat meaningful existence. *Finances Matter* is a talk about finding that dream again, arming yourself with the proper tools, and plotting a course towards your own financial freedom.
 
-# Why Finances Matter
+# Finances Matter
 Brooks Kindle
 
 [https://brookskindle.github.io](https://brookskindle.github.io)
@@ -30,30 +30,35 @@ investment decision and make sure you understand the risks behind your actions.
 * Worked part time
 * B.S. in computer science
 * Not much debt
-* Highly paid job
+* Paychecks!
 * Now what?
 
 ::: notes
 * Poster child for the tech industry
 * Very privileged, financially
 * Want to share what I've learned
-* Now what? Typical advice is save 10-15% for the next 40 years and then retire
 :::
 
 # Now what?
 
+:::incremental
+* Save 10-15% for 40+ years?
+* Get married?
+* Have kids?
+* Buy a house?
+* Buy two?
+* Retire?
+:::
+
 . . .
 
-what do I want to do with my life?
-
-TODO: talk about our dream, talk about kiana and bjorn, talk about jeremy and
-Whinney?
-
-> Essentially, get everybody thinking about what they want to do! This is the
-> single biggest motivator
+What do I want to do with my life?
 
 ::: notes
 * This is the million dollar question, sometimes quite literally
+* Societal expectations == autopilot, the easy path
+* Knowing what you want == motivation, purpose, satisfaction
+* Money is just a means to an end, not the end in itself
 :::
 
 # FIRE
@@ -97,14 +102,21 @@ Financial independence *324,000,000 results*
 ## There's no magic
 
 ::: incremental
-* (more) savings
-* smart(er) investments
-* and that's it (really)
+* know what you want out of life
+* save (more)
+* invest (smarter)
 :::
 
 ::: notes
-Start by taking stock of your current situation
+* In an abstract sense, you'll never arrive if you don't know where you're
+  going
+* Most people don't retire early. Most aren't even prepared to retire.
+* Even if retiring early isn't your goal, you can still learn from those who
+  have - they have a better grasp of it than most of the population.
+* Start by taking stock of your current situation
 :::
+
+---
 
 # financial awareness
 
@@ -144,11 +156,75 @@ Don't include non-appreciating assets when calculating net worth\*
 ## How much do you need to retire?
 * 25x your annual spending (the 4% rule)
 * As savings rate increases, time to financial independence decreases
-* What about social security?
 
 ::: notes
 * 25x *expected* spending is more accurate, but that's harder to predict
 :::
+
+---
+
+## Savings rate
+
+spend|save|take a year off in
+---|---|---
+90%|10%|9 years
+80%|20%|4 years
+70%|30%|2.333 years
+60%|40%|1.5 years
+50%|50%|1 year
+
+:::notes
+50% is the inflection point in terms of years spent working vs taking off
+:::
+
+---
+
+## Savings rate
+
+spend|save|don't work for
+---|---|---
+50%|50%|1 year
+40%|60%|1.5 years
+30%|70%|2.333 years
+20%|80%|4 years
+10%|90%|9 years
+
+---
+
+## Savings rate
+spend|save|retire in
+---|---|---
+90%|10%|9\*25 = 225 years
+80%|20%|4\*25 = 100 years
+70%|30%|2.333\*25 = 58.3 years
+60%|40%|1.5\*25 = 37.5 years
+50%|50%|1\*25 = 25 years
+
+---
+
+## Savings rate
+
+spend|save|retire in
+---|---|---
+50%|50%|1\*25 = 25 years
+40%|60%|1/1.5\*25 = 16.67 years
+30%|70%|1/2.333\*25 = 10.72 years
+20%|80%|1/4\*25 = 6.25 years
+10%|90%|1/9\*25 = 2.78 years
+
+---
+
+## Smart(er) investments
+But what if you invested your money instead?
+
+spend|save|ROI|retire in
+---|---|---|---
+80%|20%|0%|100 years
+80%|20%|2%|55 years
+80%|20%|4%|40.3 years
+80%|20%|6%|32.6 years
+80%|20%|8%|27.6 years
+80%|20%|10%|24.1 years
 
 ---
 
@@ -179,7 +255,7 @@ Don't include non-appreciating assets when calculating net worth\*
 
 ::: incremental
 * Pay down debts ~5% over the 10-year treasury yield
-* 10-year treasury yield is ~3.00% (2018-08-01)
+* 10-year treasury yield is ~3.00% (2018-11-28)
 :::
 
 ::: notes
@@ -197,6 +273,7 @@ Don't include non-appreciating assets when calculating net worth\*
 * 401(k), 403(b), 457, IRA, HSA
 * Accounts are yours, even when opened through an employer
 * Always take the employer match, if offered
+* There are ways to withdraw your money early
 :::
 
 ---
@@ -252,12 +329,10 @@ HSA|$3,450 single $6,900 family|+$1k|\*|\*
 
 > I'm biased in favor of low cost, diversified index funds
 
-> TODO: dead people did the best in the stock market (article?). How much would
-> the difference be?
-
 ::: notes
 * These are only a few examples of things you can invest in
 * Rebalance on a set schedule (eg: yearly)
+* Dead people performed the best in the stock market
 :::
 
 ---
@@ -267,8 +342,9 @@ People are irrational when it comes to investing
 
 ::: incremental
 * Your risk tolerance should inform your asset allocation
-* Create an [investment policy
-  statement](https://www.bogleheads.org/wiki/Investment_policy_statement)
+* [Investment policy
+  statements](https://www.bogleheads.org/wiki/Investment_policy_statement) are
+  a good idea
 * Meet [Bob, the world's worst market
   timer](http://awealthofcommonsense.com/2014/02/worlds-worst-market-timer/)
 :::
@@ -283,18 +359,8 @@ People are
 
 ---
 
-# TODO
-sample IPS & networth end summary over the past 10 years
-
----
-
-# TODO
-compound interest is really cool - what if we had saved 10% more or 10% less?
-
----
-
 # Professional help
-Get a financial planner or adviser that is
+If you wish, get a financial planner or adviser that is
 
 ✘ Commission based
 
@@ -320,6 +386,7 @@ In 2017, the financial services industry grossed $1.45 trillion domestically
 * automate savings as much as possible
 * money spent != happiness
 * make sure your spending agrees with your values
+* you should give me feedback
 
 ---
 
