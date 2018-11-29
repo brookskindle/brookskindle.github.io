@@ -1,6 +1,6 @@
 language: python
 python:
-  - '3.6'
+  - '3.7'
 before_install:
   - wget https://github.com/jgm/pandoc/releases/download/2.2.3.2/pandoc-2.2.3.2-1-amd64.deb
   - sudo dpkg -i pandoc-2.2.3.2-1-amd64.deb
