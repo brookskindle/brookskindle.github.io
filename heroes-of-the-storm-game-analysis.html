@@ -105,8 +105,7 @@
   <div>
     <body>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The HOTS Logs website (<a href="https://hotslogs.com">https://hotslogs.com</a>) has an API with a data dump of the past 30 days' worth of replays.</p>
 <p><a href="https://www.hotslogs.com/Info/API">https://www.hotslogs.com/Info/API</a></p>
@@ -131,7 +130,7 @@
 <span class="o">%</span><span class="k">matplotlib</span> inline
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -144,7 +143,7 @@
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">replays</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;/home/brooks/data/hots/Replays.csv&quot;</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -157,7 +156,7 @@
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">replays</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -167,7 +166,7 @@
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[3]:</div>
+    <div class="prompt output_prompt">Out[3]:</div>
 
 
 
@@ -250,8 +249,7 @@
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's prep the data for analysis</p>
 
@@ -276,14 +274,13 @@
 <span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The <code>length</code> column is currently just a string. If we want to plot it, we should turn it into a timedelta object.</p>
 
@@ -298,14 +295,13 @@
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">replays</span><span class="p">[</span><span class="s2">&quot;length&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">(</span><span class="n">replays</span><span class="o">.</span><span class="n">length</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The <code>timestamp</code> column is still just a string. It needs to be in a date format that pandas understands in order to be useful.</p>
 
@@ -317,13 +313,13 @@
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">time</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
 
-with Pool() as pool:
-    replays[&quot;timestamp&quot;] = pool.map(pd.to_datetime, replays.timestamp)
+<span class="k">with</span> <span class="n">Pool</span><span class="p">()</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+    <span class="n">replays</span><span class="p">[</span><span class="s2">&quot;timestamp&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">,</span> <span class="n">replays</span><span class="o">.</span><span class="n">timestamp</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -333,7 +329,7 @@ with Pool() as pool:
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -355,7 +351,7 @@ Wall time: 7min 22s
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">replays</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -365,7 +361,7 @@ Wall time: 7min 22s
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[7]:</div>
+    <div class="prompt output_prompt">Out[7]:</div>
 
 
 
@@ -455,7 +451,7 @@ Wall time: 7min 22s
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">replays</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">timestamp</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -465,7 +461,7 @@ Wall time: 7min 22s
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[8]:</div>
+    <div class="prompt output_prompt">Out[8]:</div>
 
 
 
@@ -481,8 +477,7 @@ Wall time: 7min 22s
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="When-do-people-play?">When do people play?<a class="anchor-link" href="#When-do-people-play?">&#182;</a></h2>
 </div>
@@ -496,7 +491,7 @@ Wall time: 7min 22s
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">games_per_day</span> <span class="o">=</span> <span class="n">replays</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s2">&quot;D&quot;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;timestamp&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">timestamp</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -512,7 +507,7 @@ Wall time: 7min 22s
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Date&quot;</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -522,7 +517,7 @@ Wall time: 7min 22s
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[10]:</div>
+    <div class="prompt output_prompt">Out[10]:</div>
 
 
 
@@ -535,7 +530,7 @@ Wall time: 7min 22s
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 
@@ -553,8 +548,7 @@ Wall time: 7min 22s
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Looks like people play anywhere from 30k to 50k games on any given day. Except on the last day? That doesn't look right.</p>
 
@@ -569,7 +563,7 @@ Wall time: 7min 22s
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">replays</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;timestamp&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -579,7 +573,7 @@ Wall time: 7min 22s
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[11]:</div>
+    <div class="prompt output_prompt">Out[11]:</div>
 
 
 
@@ -637,7 +631,7 @@ Wall time: 7min 22s
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ls</span> <span class="o">-</span><span class="n">l</span> <span class="o">~/</span><span class="n">data</span><span class="o">/</span><span class="n">hots</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -647,7 +641,7 @@ Wall time: 7min 22s
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -666,8 +660,7 @@ drwxr-xr-x 6 brooks brooks      4096 Nov 19 12:43  <span class="ansi-blue-intens
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Even though I downloaded this data on the 27th, it looks like the data only goes up to the first couple of hours on the 26th. Given this, it makes sense why the previous graph shows a drastic decrease in games played on the last day - because <strong>we don't have a full days' worth of data</strong>. If we were to omit games for the last day, we would see a much more accurate picture of games played.</p>
 
@@ -683,7 +676,7 @@ drwxr-xr-x 6 brooks brooks      4096 Nov 19 12:43  <span class="ansi-blue-intens
 <span class="n">games_per_day</span> <span class="o">=</span> <span class="n">replays</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s2">&quot;D&quot;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;timestamp&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">timestamp</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -699,7 +692,7 @@ drwxr-xr-x 6 brooks brooks      4096 Nov 19 12:43  <span class="ansi-blue-intens
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Date&quot;</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -709,7 +702,7 @@ drwxr-xr-x 6 brooks brooks      4096 Nov 19 12:43  <span class="ansi-blue-intens
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[14]:</div>
+    <div class="prompt output_prompt">Out[14]:</div>
 
 
 
@@ -722,7 +715,7 @@ drwxr-xr-x 6 brooks brooks      4096 Nov 19 12:43  <span class="ansi-blue-intens
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 
@@ -740,8 +733,7 @@ drwxr-xr-x 6 brooks brooks      4096 Nov 19 12:43  <span class="ansi-blue-intens
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>That gives us a much better picture of things</p>
 
@@ -760,7 +752,7 @@ drwxr-xr-x 6 brooks brooks      4096 Nov 19 12:43  <span class="ansi-blue-intens
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Variance of games played per day&quot;</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -770,7 +762,7 @@ drwxr-xr-x 6 brooks brooks      4096 Nov 19 12:43  <span class="ansi-blue-intens
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[15]:</div>
+    <div class="prompt output_prompt">Out[15]:</div>
 
 
 
@@ -783,7 +775,7 @@ drwxr-xr-x 6 brooks brooks      4096 Nov 19 12:43  <span class="ansi-blue-intens
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 
@@ -823,7 +815,7 @@ drwxr-xr-x 6 brooks brooks      4096 Nov 19 12:43  <span class="ansi-blue-intens
 <span class="p">])</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -833,7 +825,7 @@ drwxr-xr-x 6 brooks brooks      4096 Nov 19 12:43  <span class="ansi-blue-intens
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[16]:</div>
+    <div class="prompt output_prompt">Out[16]:</div>
 
 
 
@@ -846,7 +838,7 @@ drwxr-xr-x 6 brooks brooks      4096 Nov 19 12:43  <span class="ansi-blue-intens
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 
@@ -864,8 +856,7 @@ drwxr-xr-x 6 brooks brooks      4096 Nov 19 12:43  <span class="ansi-blue-intens
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Not surprisingly, people play more games on the weekend than they do during the week.</p>
 
@@ -873,8 +864,7 @@ drwxr-xr-x 6 brooks brooks      4096 Nov 19 12:43  <span class="ansi-blue-intens
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Match-length">Match length<a class="anchor-link" href="#Match-length">&#182;</a></h2><p>How long do matches last on average, and how does that vary depending on the map being played?</p>
 
@@ -889,7 +879,7 @@ drwxr-xr-x 6 brooks brooks      4096 Nov 19 12:43  <span class="ansi-blue-intens
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">heroes_and_maps</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;/home/brooks/data/hots/HeroIDAndMapID.csv&quot;</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -902,7 +892,7 @@ drwxr-xr-x 6 brooks brooks      4096 Nov 19 12:43  <span class="ansi-blue-intens
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">heroes_and_maps</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">column</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">heroes_and_maps</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -917,7 +907,7 @@ drwxr-xr-x 6 brooks brooks      4096 Nov 19 12:43  <span class="ansi-blue-intens
 <span class="n">heroes_and_maps</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -927,7 +917,7 @@ drwxr-xr-x 6 brooks brooks      4096 Nov 19 12:43  <span class="ansi-blue-intens
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[19]:</div>
+    <div class="prompt output_prompt">Out[19]:</div>
 
 
 
@@ -1012,7 +1002,7 @@ drwxr-xr-x 6 brooks brooks      4096 Nov 19 12:43  <span class="ansi-blue-intens
 <span class="n">heroes_and_maps</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1022,7 +1012,7 @@ drwxr-xr-x 6 brooks brooks      4096 Nov 19 12:43  <span class="ansi-blue-intens
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[20]:</div>
+    <div class="prompt output_prompt">Out[20]:</div>
 
 
 
@@ -1114,7 +1104,7 @@ drwxr-xr-x 6 brooks brooks      4096 Nov 19 12:43  <span class="ansi-blue-intens
 <span class="k">del</span> <span class="n">match_lengths</span><span class="p">[</span><span class="s2">&quot;map_id&quot;</span><span class="p">]</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1127,7 +1117,7 @@ drwxr-xr-x 6 brooks brooks      4096 Nov 19 12:43  <span class="ansi-blue-intens
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">match_lengths</span><span class="p">[</span><span class="s2">&quot;length_mins&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">match_lengths</span><span class="o">.</span><span class="n">length</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">length</span><span class="p">:</span> <span class="n">length</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span> <span class="o">/</span> <span class="mi">60</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1140,7 +1130,7 @@ drwxr-xr-x 6 brooks brooks      4096 Nov 19 12:43  <span class="ansi-blue-intens
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">match_lengths</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1150,7 +1140,7 @@ drwxr-xr-x 6 brooks brooks      4096 Nov 19 12:43  <span class="ansi-blue-intens
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[23]:</div>
+    <div class="prompt output_prompt">Out[23]:</div>
 
 
 
@@ -1244,7 +1234,7 @@ drwxr-xr-x 6 brooks brooks      4096 Nov 19 12:43  <span class="ansi-blue-intens
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Minutes&quot;</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1254,7 +1244,7 @@ drwxr-xr-x 6 brooks brooks      4096 Nov 19 12:43  <span class="ansi-blue-intens
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[24]:</div>
+    <div class="prompt output_prompt">Out[24]:</div>
 
 
 
@@ -1267,7 +1257,7 @@ drwxr-xr-x 6 brooks brooks      4096 Nov 19 12:43  <span class="ansi-blue-intens
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 
@@ -1285,8 +1275,7 @@ drwxr-xr-x 6 brooks brooks      4096 Nov 19 12:43  <span class="ansi-blue-intens
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Garden of Terror may have the longest average playtime (and Towers of Doom the shortest), but the playtime distribution is different for each map played.</p>
 
@@ -1308,7 +1297,7 @@ drwxr-xr-x 6 brooks brooks      4096 Nov 19 12:43  <span class="ansi-blue-intens
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1318,7 +1307,7 @@ drwxr-xr-x 6 brooks brooks      4096 Nov 19 12:43  <span class="ansi-blue-intens
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 
@@ -1336,8 +1325,7 @@ drwxr-xr-x 6 brooks brooks      4096 Nov 19 12:43  <span class="ansi-blue-intens
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>All things being equal, with a dataset of this size I would expect the number of games to be approximately the same across all maps, but this is not the case. Cursed Hollow, Infernal Shrines, and others have ~60k matches played, but others like Warhead Junction and Garden of Terror only have ~7k matches played. Without knowing more information, my hunch is that the maps with a high number of matches played were the maps on current rotation.</p>
 
@@ -1345,8 +1333,7 @@ drwxr-xr-x 6 brooks brooks      4096 Nov 19 12:43  <span class="ansi-blue-intens
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="The-winning-vs.-losing-team">The winning vs. losing team<a class="anchor-link" href="#The-winning-vs.-losing-team">&#182;</a></h2><p>How often does the winning team have a level advantage over the losing team?</p>
 <p>There is basic win/loss information in the <code>ReplayCharacters.csv</code> file, but unfortunately the laptop I'm using only has 3.3g of usable RAM and the file is too large to fit into memory via a pandas DataFrame (ala <code>pd.read_csv(filename)</code>)</p>
@@ -1362,7 +1349,7 @@ drwxr-xr-x 6 brooks brooks      4096 Nov 19 12:43  <span class="ansi-blue-intens
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ls</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">brooks</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">hots</span><span class="o">/</span><span class="n">ReplayCharacters</span><span class="o">.</span><span class="n">csv</span> <span class="o">-</span><span class="n">lh</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1372,7 +1359,7 @@ drwxr-xr-x 6 brooks brooks      4096 Nov 19 12:43  <span class="ansi-blue-intens
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -1386,8 +1373,7 @@ drwxr-xr-x 6 brooks brooks      4096 Nov 19 12:43  <span class="ansi-blue-intens
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>So I'll have to get creative. In this case, I'm going to create a postgres table to contain the information I want, namely the replay id, in game level, experience contribution, and whether or not the player was on the winning team.</p>
 <p>My script for creating such a table <a href="https://gist.github.com/brookskindle/fe1fdffe622eb0cd8995d7d1d68d6b8f">can be found here</a>. On my laptop, it took a little bit over an hour to dump the entire 12M rows into the database.</p>
@@ -1403,7 +1389,7 @@ drwxr-xr-x 6 brooks brooks      4096 Nov 19 12:43  <span class="ansi-blue-intens
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">connection</span> <span class="o">=</span> <span class="s2">&quot;postgresql://brooks:@localhost/hots&quot;</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1413,34 +1399,34 @@ drwxr-xr-x 6 brooks brooks      4096 Nov 19 12:43  <span class="ansi-blue-intens
 <div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">time</span>
-query = &quot;&quot;&quot;\
-WITH winners AS (
-    SELECT
-        replay_id, avg(team_level)::INTEGER as level, sum(exp_contribution) as total_exp
-    FROM character
-    WHERE is_winner
-    GROUP BY replay_id
-), losers AS (
-    SELECT
-        replay_id, avg(team_level)::INTEGER as level, sum(exp_contribution) as total_exp
-    FROM character
-    WHERE NOT is_winner
-    GROUP BY replay_id
-)
-SELECT
-    winners.replay_id, winners.level AS winning_level, winners.total_exp AS winning_exp,
-    losers.level AS losing_level, losers.total_exp AS losing_exp
-FROM winners
-JOIN losers
-ON winners.replay_id=losers.replay_id
-;
-&quot;&quot;&quot;
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">WITH winners AS (</span>
+<span class="s2">    SELECT</span>
+<span class="s2">        replay_id, avg(team_level)::INTEGER as level, sum(exp_contribution) as total_exp</span>
+<span class="s2">    FROM character</span>
+<span class="s2">    WHERE is_winner</span>
+<span class="s2">    GROUP BY replay_id</span>
+<span class="s2">), losers AS (</span>
+<span class="s2">    SELECT</span>
+<span class="s2">        replay_id, avg(team_level)::INTEGER as level, sum(exp_contribution) as total_exp</span>
+<span class="s2">    FROM character</span>
+<span class="s2">    WHERE NOT is_winner</span>
+<span class="s2">    GROUP BY replay_id</span>
+<span class="s2">)</span>
+<span class="s2">SELECT</span>
+<span class="s2">    winners.replay_id, winners.level AS winning_level, winners.total_exp AS winning_exp,</span>
+<span class="s2">    losers.level AS losing_level, losers.total_exp AS losing_exp</span>
+<span class="s2">FROM winners</span>
+<span class="s2">JOIN losers</span>
+<span class="s2">ON winners.replay_id=losers.replay_id</span>
+<span class="s2">;</span>
+<span class="s2">&quot;&quot;&quot;</span>
 
-outcomes = pd.read_sql(query, connection)
+<span class="n">outcomes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">connection</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1450,7 +1436,7 @@ outcomes = pd.read_sql(query, connection)
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -1465,8 +1451,7 @@ Wall time: 40.9 s
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>That's blazingly fast and memory efficient compared to trying to do the same thing in pandas</p>
 
@@ -1481,7 +1466,7 @@ Wall time: 40.9 s
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">outcomes</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1491,7 +1476,7 @@ Wall time: 40.9 s
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[29]:</div>
+    <div class="prompt output_prompt">Out[29]:</div>
 
 
 
@@ -1574,8 +1559,7 @@ Wall time: 40.9 s
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Back to the question at hand - how often do winning teams have the level advantage?</p>
 
@@ -1590,7 +1574,7 @@ Wall time: 40.9 s
 <div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="n">outcomes</span><span class="o">.</span><span class="n">winning_level</span> <span class="o">&gt;</span> <span class="n">outcomes</span><span class="o">.</span><span class="n">losing_level</span><span class="p">)</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1600,7 +1584,7 @@ Wall time: 40.9 s
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[30]:</div>
+    <div class="prompt output_prompt">Out[30]:</div>
 
 
 
@@ -1618,8 +1602,7 @@ dtype: float64</pre>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>87.5% of teams win with a level advantage. What about just an experience advantage?</p>
 
@@ -1634,7 +1617,7 @@ dtype: float64</pre>
 <div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="n">outcomes</span><span class="o">.</span><span class="n">winning_exp</span> <span class="o">&gt;</span> <span class="n">outcomes</span><span class="o">.</span><span class="n">losing_exp</span><span class="p">)</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -1644,7 +1627,7 @@ dtype: float64</pre>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[31]:</div>
+    <div class="prompt output_prompt">Out[31]:</div>
 
 
 
@@ -1662,8 +1645,7 @@ dtype: float64</pre>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="What-can-we-learn-from-this?">What can we learn from this?<a class="anchor-link" href="#What-can-we-learn-from-this?">&#182;</a></h2><p>If you're a Heroes of the Storm player, then it serves you well to know that, while having a higher team level doesn't necessarily cause a team to win, the two are highly correlated. Thus, if you're analyzing your own replays to find areas of improvement, look for the places where the enemy team's experience gain rate is higher than your own team's. It can be a sign of the other team outmaneuvering yours, and over the course of a match, could cost you a win.</p>
 
