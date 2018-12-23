@@ -30,3 +30,8 @@ a.btn:hover {
 .tag-cloud a:hover {
   background-color: #737fa4;
 }
+
+/* Let jupyter-rendered tables scroll left/right on small screens */
+div.output_subarea {
+  overflow-x: auto;
+}
