@@ -189,26 +189,26 @@ what each line of code does.</p>
 
 
 <p>gives as output:</p>
-<div class="highlight"><pre><span></span>  1           0 BUILD_LIST               0
-              3 STORE_NAME               0 (mylist)
+<div class="highlight"><pre><span></span>  <span class="mi">1</span>           <span class="mi">0</span> <span class="n">BUILD_LIST</span>               <span class="mi">0</span>
+              <span class="mi">3</span> <span class="n">STORE_NAME</span>               <span class="mi">0</span> <span class="p">(</span><span class="n">mylist</span><span class="p">)</span>
 
-  2           6 SETUP_LOOP              33 (to 42)
-              9 LOAD_NAME                1 (range)
-             12 LOAD_CONST               0 (1000)
-             15 CALL_FUNCTION            1 (1 positional, 0 keyword pair)
-             18 GET_ITER
-        &gt;&gt;   19 FOR_ITER                19 (to 41)
-             22 STORE_NAME               2 (i)
+  <span class="mi">2</span>           <span class="mi">6</span> <span class="n">SETUP_LOOP</span>              <span class="mi">33</span> <span class="p">(</span><span class="k">to</span> <span class="mi">42</span><span class="p">)</span>
+              <span class="mi">9</span> <span class="n">LOAD_NAME</span>                <span class="mi">1</span> <span class="p">(</span><span class="n">range</span><span class="p">)</span>
+             <span class="mi">12</span> <span class="n">LOAD_CONST</span>               <span class="mi">0</span> <span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+             <span class="mi">15</span> <span class="n">CALL_FUNCTION</span>            <span class="mi">1</span> <span class="p">(</span><span class="mi">1</span> <span class="n">positional</span><span class="p">,</span> <span class="mi">0</span> <span class="n">keyword</span> <span class="n">pair</span><span class="p">)</span>
+             <span class="mi">18</span> <span class="n">GET_ITER</span>
+        <span class="o">&gt;&gt;</span>   <span class="mi">19</span> <span class="n">FOR_ITER</span>                <span class="mi">19</span> <span class="p">(</span><span class="k">to</span> <span class="mi">41</span><span class="p">)</span>
+             <span class="mi">22</span> <span class="n">STORE_NAME</span>               <span class="mi">2</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span>
 
-  3          25 LOAD_NAME                0 (mylist)
-             28 LOAD_ATTR                3 (append)
-             31 LOAD_NAME                2 (i)
-             34 CALL_FUNCTION            1 (1 positional, 0 keyword pair)
-             37 POP_TOP
-             38 JUMP_ABSOLUTE           19
-        &gt;&gt;   41 POP_BLOCK
-        &gt;&gt;   42 LOAD_CONST               1 (None)
-             45 RETURN_VALUE
+  <span class="mi">3</span>          <span class="mi">25</span> <span class="n">LOAD_NAME</span>                <span class="mi">0</span> <span class="p">(</span><span class="n">mylist</span><span class="p">)</span>
+             <span class="mi">28</span> <span class="n">LOAD_ATTR</span>                <span class="mi">3</span> <span class="p">(</span><span class="n">append</span><span class="p">)</span>
+             <span class="mi">31</span> <span class="n">LOAD_NAME</span>                <span class="mi">2</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span>
+             <span class="mi">34</span> <span class="n">CALL_FUNCTION</span>            <span class="mi">1</span> <span class="p">(</span><span class="mi">1</span> <span class="n">positional</span><span class="p">,</span> <span class="mi">0</span> <span class="n">keyword</span> <span class="n">pair</span><span class="p">)</span>
+             <span class="mi">37</span> <span class="n">POP_TOP</span>
+             <span class="mi">38</span> <span class="n">JUMP_ABSOLUTE</span>           <span class="mi">19</span>
+        <span class="o">&gt;&gt;</span>   <span class="mi">41</span> <span class="n">POP_BLOCK</span>
+        <span class="o">&gt;&gt;</span>   <span class="mi">42</span> <span class="n">LOAD_CONST</span>               <span class="mi">1</span> <span class="p">(</span><span class="k">None</span><span class="p">)</span>
+             <span class="mi">45</span> <span class="n">RETURN_VALUE</span>
 </pre></div>
 
 
@@ -223,17 +223,17 @@ sequence.</p>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>  1           0 LOAD_CONST               0 (&lt;code object &lt;listcomp&gt; at 0x7f4d22d959c0, file &quot;&lt;dis&gt;&quot;, line 1&gt;)
-              3 LOAD_CONST               1 (&#39;&lt;listcomp&gt;&#39;)
-              6 MAKE_FUNCTION            0
-              9 LOAD_NAME                0 (range)
-             12 LOAD_CONST               2 (1000)
-             15 CALL_FUNCTION            1 (1 positional, 0 keyword pair)
-             18 GET_ITER
-             19 CALL_FUNCTION            1 (1 positional, 0 keyword pair)
-             22 STORE_NAME               1 (mylist)
-             25 LOAD_CONST               3 (None)
-             28 RETURN_VALUE
+<div class="highlight"><pre><span></span>  <span class="mi">1</span>           <span class="mi">0</span> <span class="n">LOAD_CONST</span>               <span class="mi">0</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">code</span> <span class="k">object</span> <span class="o">&lt;</span><span class="n">listcomp</span><span class="o">&gt;</span> <span class="k">at</span> <span class="mi">0</span><span class="n">x7f4d22d959c0</span><span class="p">,</span> <span class="n">file</span> <span class="ss">&quot;&lt;dis&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="o">&gt;</span><span class="p">)</span>
+              <span class="mi">3</span> <span class="n">LOAD_CONST</span>               <span class="mi">1</span> <span class="p">(</span><span class="s1">&#39;&lt;listcomp&gt;&#39;</span><span class="p">)</span>
+              <span class="mi">6</span> <span class="n">MAKE_FUNCTION</span>            <span class="mi">0</span>
+              <span class="mi">9</span> <span class="n">LOAD_NAME</span>                <span class="mi">0</span> <span class="p">(</span><span class="n">range</span><span class="p">)</span>
+             <span class="mi">12</span> <span class="n">LOAD_CONST</span>               <span class="mi">2</span> <span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+             <span class="mi">15</span> <span class="n">CALL_FUNCTION</span>            <span class="mi">1</span> <span class="p">(</span><span class="mi">1</span> <span class="n">positional</span><span class="p">,</span> <span class="mi">0</span> <span class="n">keyword</span> <span class="n">pair</span><span class="p">)</span>
+             <span class="mi">18</span> <span class="n">GET_ITER</span>
+             <span class="mi">19</span> <span class="n">CALL_FUNCTION</span>            <span class="mi">1</span> <span class="p">(</span><span class="mi">1</span> <span class="n">positional</span><span class="p">,</span> <span class="mi">0</span> <span class="n">keyword</span> <span class="n">pair</span><span class="p">)</span>
+             <span class="mi">22</span> <span class="n">STORE_NAME</span>               <span class="mi">1</span> <span class="p">(</span><span class="n">mylist</span><span class="p">)</span>
+             <span class="mi">25</span> <span class="n">LOAD_CONST</span>               <span class="mi">3</span> <span class="p">(</span><span class="k">None</span><span class="p">)</span>
+             <span class="mi">28</span> <span class="n">RETURN_VALUE</span>
 </pre></div>
 
 
