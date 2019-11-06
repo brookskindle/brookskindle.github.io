@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://brookskindle.github.io/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="https://brookskindle.github.io/theme/pygments/dracula.min.css">
+  <link rel="stylesheet" type="text/css" href="https://brookskindle.github.io/theme/font-awesome/css/font-awesome.min.css">
+
+    <link href="https://brookskindle.github.io/styles/styles.css" rel="stylesheet">
+
+
+
+
+
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#282a36">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#282a36">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Microsoft EDGE -->
+    <meta name="msapplication-TileColor" content="#282a36">
+
+<meta name="author" content="Brooks Kindle" />
+<meta name="description" content="Here&#39;s a question: how do you analyze data that is too big to fit into memory? Those of you that have worked with pandas before are probably intimately familiar with the following syntax, which reads csv file into a DataFrame variable import pandas as pd df = pd.read_csv(&#39;dataset.csv …" />
+<meta name="keywords" content="python, data, large data">
+
+<meta property="og:site_name" content="Brooks Kindle"/>
+<meta property="og:title" content="How to work with large data"/>
+<meta property="og:description" content="Here&#39;s a question: how do you analyze data that is too big to fit into memory? Those of you that have worked with pandas before are probably intimately familiar with the following syntax, which reads csv file into a DataFrame variable import pandas as pd df = pd.read_csv(&#39;dataset.csv …"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="https://brookskindle.github.io/how-to-work-with-large-data.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2019-11-04 00:00:00-08:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="https://brookskindle.github.io/author/brooks-kindle.html">
+<meta property="article:section" content="programming"/>
+<meta property="article:tag" content="python"/>
+<meta property="article:tag" content="data"/>
+<meta property="article:tag" content="large data"/>
+<meta property="og:image" content="/images/profile.jpg">
+
+  <title>Brooks Kindle &ndash; How to work with large data</title>
+
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="https://brookskindle.github.io">
+        <img src="/images/profile.jpg" alt="Brooks Kindle" title="Brooks Kindle">
+      </a>
+      <h1><a href="https://brookskindle.github.io">Brooks Kindle</a></h1>
+
+<p>software engineer</p>
+      <nav>
+        <ul class="list">
+          <li><a href="https://brookskindle.github.io/pages/about.html#about">About</a></li>
+          <li><a href="https://brookskindle.github.io/pages/contact.html#contact">Contact</a></li>
+
+        </ul>
+      </nav>
+
+      <ul class="social">
+        <li><a class="sc-github" href="https://github.com/brookskindle" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-linkedin" href="https://www.linkedin.com/in/brookskindle/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+      </ul>
+    </div>
+
+
+  </aside>
+  <main>
+
+    <nav>
+      <a href="https://brookskindle.github.io">    Home
+</a>
+
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+
+
+    </nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="how-to-work-with-large-data">How to work with large data</h1>
+    <p>
+          Posted on Mon 04 November 2019 in <a href="https://brookskindle.github.io/category/programming.html">programming</a>
+
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>Here's a question: how do you analyze data that is too big to fit into memory?</p>
+<p>Those of you that have worked with <code>pandas</code> before are probably intimately
+familiar with the following syntax, which reads csv file into a <code>DataFrame</code>
+variable</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;dataset.csv&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>In smaller datasets, this is sufficient enough to load your data into memory
+and allows you to focus on the more exciting parts of data analysis, such as:
+cleaning, transforming, and, if you're lucky, actually analyzing the data you
+spent forever tidying up. <a href="https://www.infoworld.com/article/3228245/the-80-20-data-science-dilemma.html">What do you think data scientists do,
+anyways?</a></p>
+<p>But what if the data doesn't completely fit into memory? This article explores
+methods and tools that you can use when working with large data.</p>
+<blockquote>
+<p>I define large data as data that is too large to fit into RAM, but whose
+analysis can still be accomplished from one machine, without the use of large
+datacenters or a distributed compute network.</p>
+</blockquote>
+<h2>The data</h2>
+<p>Today's dataset is the King Country Library System's list of <a href="https://data.seattle.gov/Community/Checkouts-by-Title/tmmm-ytt6">checkouts by
+title</a>, dating
+back to April of 2005. It is a large dataset consisting, at the time of this
+writing, approximately 35 million rows. When downloaded, the csv file weighs in
+at over 7 gigabytes.</p>
+<div class="highlight"><pre><span></span>$ ls -lh Checkouts_by_Title.csv
+-rw-rw-r-- <span class="m">1</span> brooks brooks <span class="m">7</span>.1G Oct <span class="m">12</span> <span class="m">23</span>:59 Checkouts_by_Title.csv
+</pre></div>
+
+
+<p>My desktop machine only has 8 gigabytes of RAM total</p>
+<div class="highlight"><pre><span></span>$ free -m
+              total        used        free      shared  buff/cache   available
+Mem:           <span class="m">7975</span>        <span class="m">2457</span>        <span class="m">3147</span>         <span class="m">117</span>        <span class="m">2370</span>        <span class="m">5122</span>
+Swap:          <span class="m">2047</span>           <span class="m">0</span>        <span class="m">2047</span>
+</pre></div>
+
+
+<p>not enough to load it all into memory.</p>
+<p>How shall we approach the problem?</p>
+<h2>Attempt 1: <a href="https://brookskindle.github.io/using-a-database-large-data.html">using a database</a></h2>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://brookskindle.github.io/tag/python.html">python</a>
+      <a href="https://brookskindle.github.io/tag/data.html">data</a>
+      <a href="https://brookskindle.github.io/tag/large-data.html">large data</a>
+    </p>
+  </div>
+
+
+
+
+
+</article>
+
+    <footer>
+<p>&copy;  </p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p>    </footer>
+  </main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Brooks Kindle ",
+  "url" : "https://brookskindle.github.io",
+  "image": "/images/profile.jpg",
+  "description": "None"
+}
+</script>
+
+</body>
+</html>
