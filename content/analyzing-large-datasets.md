@@ -46,3 +46,7 @@ Swap:          2047           0        2047
 ```
 
 not enough to load it all into memory.
+
+How shall we approach the problem?
+
+## Attempt 1: [using a database]({filename}/database-large-data.md)
