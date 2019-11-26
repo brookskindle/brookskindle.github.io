@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Gotta Go Fast</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style type="text/css">
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+
+      .left-column {
+        float: left;
+        width: 49%;
+      }
+
+      .right-column {
+        float: right;
+        width: 49%;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle
+
+# Gotta Go Fast
+
+![](https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.devopscat.tech%2Fwp-content%2Fuploads%2F2018%2F07%2Fgolang-mascot.jpg&f=1&nofb=1)
+
+A quick look at the essentials of the Go language
+
+---
+
+# Fast facts
+
+* v1.0 in March 2012
+
+* from Google
+
+* By Robert Griesemer, Rob Pike, & Ken Thompson
+
+* Designed for readability and usability
+
+* Fix the bad of C++
+
+* Good for high performance networking and multiprocessing
+
+* Not good for Web frontend
+
+* Lack of generics/operator overloading
+
+???
+
+* Rob Pike and Ken Thompson worked on the original Unix team at Bell Labs
+* I guess Go is a C++++
+* There's a project that compiles Golang into Javascript and Web Assembly
+* Go uses interfaces as a solution to generic programming
+
+---
+
+class: center, middle
+
+# `brew install go`
+---
+
+# Hello world
+```go
+package main
+
+import (
+    "fmt"
+)
+
+func main() {
+    fmt.Println("Hello, world!")
+}
+```
+<sup>hello.go</sup>
+
+--
+
+Run it
+
+https://play.golang.org
+
+--
+
+```console
+$ go build hello.go
+$ ./hello
+Hello, world!
+```
+
+--
+
+```console
+$ go run hello.go
+Hello, world!
+```
+
+---
+
+# Packages
+```go
+*package main
+
+import (
+    "fmt"
+)
+
+func main() {
+    fmt.Println("Hello, world!")
+}
+```
+
+* Package exports are based on capitalization
+
+* `main.main` entrypoint
+
+???
+
+* `package` is required in every file.
+
+* Capitalized declarations are exported. Uncapitalized ones are not.
+
+* Projects without a `main` package are libraries, so an executable is not
+  created.
+
+---
+
+# Imports
+```go
+package main
+
+*import (
+*   "fmt"
+*)
+
+func main() {
+    fmt.Println("Hello, world!")
+}
+```
+
+--
+
+Imported package namespace is on the final part
+```go
+import (
+*   "math/rand"
+)
+
+func main() {
+*   rand. // not math.rand.
+}
+```
+
+---
+
+# Functions
+```go
+package main
+
+import (
+    "fmt"
+)
+
+*func main() {
+*   fmt.Println("Hello, world!")
+*}
+```
+
+--
+
+.left-column[
+javascript
+```javascript
+function greet (name) {
+  console.log(`Hello, ${name}!`)
+}
+```
+```javascript
+function double (x) {
+  return x * 2
+}
+```
+```javascript
+function greet (name = 'Anonymous') {
+  console.log(`Hello, ${name}!`)
+}
+```
+]
+
+--
+
+.right-column[
+go
+```go
+func greet(name string) {
+  fmt.Printf("Hello, %s!\n", name)
+}
+```
+```go
+func double(x float32) float32 {
+  return x * 2
+}
+```
+```go
+???
+```
+]
+
+???
+
+Go has no default or named parameters
+
+---
+
+# Variables and types
+```go
+var greeting string
+greeting = "Hello"
+```
+--
+```go
+var greeting string = "Hello"
+```
+--
+```go
+var greeting = "Hello"
+```
+--
+```go
+greeting := "Hello"
+```
+
+???
+
+`:=` is both a declaration and an assignment (as opposed to an initialization),
+so it cannot be used outside a function.
+
+--
+```go
+const greeting = "Hello"
+```
+--
+Basic types (https://tour.golang.org/basics/11)
+```go`
+bool
+string
+int  int8  int16  int32  int64
+uint uint8 uint16 uint32 uint64 uintptr
+byte // alias for uint8
+rune // alias for int32
+     // represents a Unicode code point
+float32 float64
+complex64 complex128
+```
+
+---
+
+# Hello world cont.
+
+```go
+func main() {
+    const numNames int = 3
+    var names []string
+    names = getNames(numNames)
+
+    for index, name := range names {
+        if name == "Mark" {
+            fmt.Printf("Oh hi %s!", name)
+        } else if name == "Brooks" {
+            fmt.Println("Greetings", name, ".")
+        } else {
+            fmt.Printf("Hello, %s!", name)
+        }
+    }
+}
+
+func getNames(count int) []string {
+    names := [...]string{"Amita", "Bob", "Mark", "CJ", "Dylan", "Naheed"}
+    return names[:count]
+}
+```
+
+---
+
+# Hello world cont.
+
+```go
+func main() {
+    const numNames int = 3
+    var names []string
+    names = getNames(numNames)
+
+    for index, name := range names {
+*       if name == "Mark" {
+*           fmt.Printf("Oh hi %s!", name)
+*       } else if name == "Brooks" {
+*           fmt.Println("Greetings", name, ".")
+*       } else {
+*           fmt.Printf("Hello, %s!", name)
+*       }
+    }
+}
+
+func getNames(count int) []string {
+    names := [...]string{"Amita", "Bob", "Mark", "CJ", "Dylan", "Naheed"}
+    return names[:count]
+}
+```
+
+???
+
+The same as in javascript, but no parens around the condition
+
+---
+
+# Hello world cont.
+
+```go
+func main() {
+    const numNames int = 3
+*   var names []string
+    names = getNames(numNames)
+
+    for index, name := range names {
+        if name == "Mark" {
+            fmt.Printf("Oh hi %s!", name)
+        } else if name == "Brooks" {
+            fmt.Println("Greetings", name, ".")
+        } else {
+            fmt.Printf("Hello, %s!", name)
+        }
+    }
+}
+
+*func getNames(count int) []string {
+*   names := [...]string{"Amita", "Bob", "Mark", "CJ", "Dylan", "Naheed"}
+*   return names[:count]
+}
+```
+
+???
+
+Things with brackets are either arrays, or slices
+
+---
+
+# Slice vs array
+```go
+func main() {
+    array := [5]int{1, 2, 3, 4, 5}
+    slice := array[:]
+    slice2 := array[1:3]
+
+    fmt.Println("Array:", array)
+    fmt.Println("Slice:", slice)
+    fmt.Println("Slice2:", slice2)
+
+    array[0] = 100
+    slice[1] = 99
+    slice = append(slice, 34)
+
+    fmt.Println("Array:", array)
+    fmt.Println("Slice:", slice)
+    fmt.Println("Slice2:", slice2)
+}
+```
+
+```bash
+$ go run main.go
+Array: [1 2 3 4 5]
+Slice: [1 2 3 4 5]
+Slice2: [2 3]
+Array: [100 99 3 4 5]
+Slice: [100 99 3 4 5 34]
+Slice2: [99 3]
+```
+
+???
+
+* Arrays (fixed size) are different than slices (variable size)
+* Slices are references to an array
+* Changing the value in a slice can change the underlying array
+* Can append to a slice. Can not append past an array
+* Arrays are declared with `[5]` or `[...]`
+* Slices are declared with `[]` or `[start:stop]`
+
+---
+
+# Hello world cont.
+
+```go
+func main() {
+    const numNames int = 3
+    var names []string
+    names = getNames(numNames)
+
+*   for index, name := range names {
+        if name == "Mark" {
+            fmt.Printf("Oh hi %s!", name)
+        } else if name == "Brooks" {
+            fmt.Println("Greetings", name, ".")
+        } else {
+            fmt.Printf("Hello, %s!", name)
+        }
+    }
+}
+
+func getNames(count int) []string {
+    names := [...]string{"Amita", "Bob", "Mark", "CJ", "Dylan", "Naheed"}
+    return names[:count]
+}
+```
+
+---
+
+# Loops
+.left-column[
+range
+```go
+numbers := [...]int{1, 2, 3, 4, 5}
+*for _, value := range numbers {
+    fmt.Println(value * 3)
+}
+```
+]
+
+.right-column[
+for loop
+```go
+numbers := [...]int{1, 2, 3, 4, 5}
+*for i := 0; i < len(numbers); i++ {
+    fmt.Println(numbers[i] * 3)
+}
+```
+]
+
+--
+
+No map, reduce, filter functions like Javascript has
+```javascript
+> const numbers = [1, 2, 3, 4, 5]
+> numbers.map(x => x ** 2)
+[ 1, 4, 9, 16, 25 ]
+> numbers.reduce((total, x) => total += x, 0)
+15
+> numbers.filter(x => x > 3)
+[ 4, 5 ]
+```
+
+---
+
+# Maps
+
+.left-column[
+```go
+const letters string = "abccdeeffff"
+var frequency map[rune]int
+
+fmt.Println(letters)
+fmt.Println(frequency)
+
+for _, char := range letters {
+    _, exists := frequency[char]
+    if exists {
+        frequency[char]++
+    } else {
+        frequency[char] = 1
+    }
+}
+
+for char, count := range frequency {
+    fmt.Printf("%c:%d\n", char, count)
+}
+```
+]
+
+--
+
+.right-column[
+```console
+$ go run main.go
+abccdeeffff
+map[]
+panic: assignment to entry in nil map
+
+goroutine 1 [running]:
+main.main()
+        /home/brooks/main.go:27 +0x194
+exit status 2
+```
+]
+
+---
+
+# Maps
+
+.left-column[
+```go
+const letters string = "abccdeeffff"
+var frequency map[rune]int
+
+fmt.Println(letters)
+fmt.Println(frequency)
+
+for _, char := range letters {
+    _, exists := frequency[char]
+    if exists {
+        frequency[char]++
+    } else {
+*       frequency[char] = 1
+    }
+}
+
+for char, count := range frequency {
+    fmt.Printf("%c:%d\n", char, count)
+}
+```
+]
+
+.right-column[
+```console
+$ go run main.go
+abccdeeffff
+map[]
+panic: assignment to entry in nil map
+
+goroutine 1 [running]:
+main.main()
+        /home/brooks/main.go:27 +0x194
+exit status 2
+```
+]
+
+---
+
+# Maps
+
+.left-column[
+```go
+const letters string = "abccdeeffff"
+*var frequency map[rune]int
+
+fmt.Println(letters)
+fmt.Println(frequency)
+
+for _, char := range letters {
+    _, exists := frequency[char]
+    if exists {
+        frequency[char]++
+    } else {
+        frequency[char] = 1
+    }
+}
+
+for char, count := range frequency {
+    fmt.Printf("%c:%d\n", char, count)
+}
+```
+]
+
+.right-column[
+```console
+$ go run main.go
+abccdeeffff
+map[]
+panic: assignment to entry in nil map
+
+goroutine 1 [running]:
+main.main()
+        /home/brooks/main.go:27 +0x194
+exit status 2
+```
+]
+
+---
+
+# Maps
+
+.left-column[
+```go
+const letters string = "abccdeeffff"
+*var frequency = map[rune]int{}
+
+fmt.Println(letters)
+fmt.Println(frequency)
+
+for _, char := range letters {
+    _, exists := frequency[char]
+    if exists {
+        frequency[char]++
+    } else {
+        frequency[char] = 1
+    }
+}
+
+for char, count := range frequency {
+    fmt.Printf("%c:%d\n", char, count)
+}
+```
+]
+
+.right-column[
+```console
+$ go run main.go
+abccdeeffff
+map[]
+f:4
+a:1
+b:1
+c:2
+d:1
+e:2
+```
+]
+
+???
+
+In this case we don't need anything in the initialization brackets `{}` since
+we don't yet know what the key-value pairs the map has
+
+---
+
+# Error handling - return values
+```go
+package main
+
+import (
+    "os"
+)
+
+func main() {
+*   file, err := os.Open("README.md")
+*   if err != nil {
+        return
+    }
+    // else, continue
+}
+```
+
+--
+
+```go
+func errorIfNegative(x int) (int, error) {
+    if x < 0 {
+        return x, errors.New("Value must be positive")
+    }
+    return x, nil
+}
+```
+
+???
+
+* `errors.New` requires which package to be imported again?
+
+* Javascript convention: pass error as first value into callback
+
+* Go convention: return error as last value
+
+---
+
+# Error handling - panic/recover/defer
+.left-column[
+```go
+func main() {
+    do1()
+}
+
+func do1() { do2() }
+func do2() {
+    panic("I dOn'T kNoW wHaT tO dO!")
+}
+```
+
+```console
+$ go run main.go
+panic: I dOn'T kNoW wHaT tO dO!
+
+goroutine 1 [running]:
+main.do2(...)
+        /home/brooks/main.go:8
+main.do1(...)
+        /home/brooks/main.go:6
+main.main()
+        /home/brooks/main.go:12 +0x3a
+exit status 2
+```
+]
+
+--
+
+.right-column[
+```go
+func main() {
+    defer func () {
+        if r := recover(); r != nil {
+            fmt.Println("Caught")
+        }
+    }()
+    fmt.Println("Calling do1")
+    do1()
+    fmt.Println("Never executed")
+}
+
+func do1() { do2() }
+func do2() {
+    panic("I dOn'T kNoW wHaT tO dO!")
+}
+```
+```console
+$ go run main.go
+Calling do1
+Caught
+```
+]
+
+???
+
+* Only panic under extreme circumstances. More often than not, explicit error
+  checks are better.
+
+---
+
+# Installing and using packages
+
+Standard Library - https://golang.org/pkg/
+```go
+import (
+    "compress/gzip"
+    "database/sql"
+    "errors"
+    "fmt"
+)
+```
+
+--
+
+Remote packages
+```console
+$ go get github.com/golang/example/stringutil
+```
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/golang/example/stringutil"
+)
+
+func main() {
+    fmt.Println(stringutil.Reverse("Hello world"))
+}
+```
+
+???
+
+* Go doesn't have an official package index like npmjs.com for javascript, or
+  pypi.org for python
+
+* It supports reading from remote git URLs (SVN, mercurial, too, probably)
+
+---
+
+# $GOPATH
+
+```console
+$ cat ~/.bashrc | grep GOPATH
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$PATH
+```
+`GOPATH` is like `node_modules`.
+```console
+$ tree -d -L 4 $GOPATH
+/home/brooks/go
+├── bin
+├── pkg
+└── src
+    └── github.com
+        └── golang
+            └── example
+```
+
+???
+
+* If `GOPATH` isn't set, defaults to `$HOME/go` for unix systems
+
+* Like `PATH`, `GOPATH` can use multiple directories
+
+---
+
+# Dependency versioning
+
+```console
+go get github.com/golang/example/stringutil # <-- fetches latest
+```
+
+--
+
+<hr>
+Vendoring approach (Go 1.10 and below)
+* Place code within `vendor` subdirectory
+
+--
+
+<hr>
+Modules (Go 1.11+)
+* `go.mod`
+
+* ```console
+  go get github.com/golang/example/stringutil@cfe12d6494f
+  ```
+
+* No need for GOPATH
+
+* https://golang.org/doc/go1.11#modules
+
+---
+
+
+class: middle, center
+
+# Bye
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js" type="text/javascript">
+    </script>
+    <script type="text/javascript">
+      var slideshow = remark.create({
+        highlightLines: true,
+        highlightStyle: "default"
+      })
+    </script>
+  </body>
+</html>
