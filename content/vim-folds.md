@@ -1,5 +1,5 @@
 Title: Vim folds helped me write a markdown presentation
-Date: 2019-11-26
+Date: 2019-11-27
 Category: Programming
 Tags: vim, efficiency, markdown
 
@@ -72,6 +72,6 @@ automatically, but that's fine. I ended up making a macro to fold a single
 slide, and then runing that macro over the rest of the file - automatically
 folding each slide.
 
-![]({static}/images/fold-macro.gif)
+![]({static}/images/fold-macro.png)
 
 Neat!
