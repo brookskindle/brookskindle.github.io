@@ -70,8 +70,8 @@ Cool!
 Now, since this is a one off fold, vim can't fold the rest of the file
 automatically, but that's fine. I ended up making a macro to fold a single
 slide, and then runing that macro over the rest of the file - automatically
-folding each slide.
+folding each slide. The end result looks something like this
 
 ![]({static}/images/fold-macro.png)
 
-Neat!
+That's much easier to work with than eight-hundred pages of un-folded markdown!
