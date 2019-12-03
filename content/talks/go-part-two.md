@@ -173,6 +173,37 @@ func main() {
 
 ---
 
+# Structs
+
+```go
+type item struct {
+    name string
+    price int
+}
+
+*func NewItem(name string, price int) *item {
+*   i := item{name: name, price: price}
+*   return &i
+*}
+
+func main() {
+    fmt.Println(item{"Red Scarf", 25})
+    fmt.Println(item{name: "Grey Shoes", price: 25})
+    fmt.Println(item{})
+
+    var purchase *item = NewItem("Green Sweater", 50)
+    purchase.price = 10
+    fmt.Println(purchase)
+}
+```
+
+???
+
+* Can create structs with no values (zeroes for values)
+    * Ensure proper struct creation with a "constructor" function
+
+---
+
 # Should I return a pointer or a value?
 ```go
 func NewItem(name string, price int) *item {
@@ -201,7 +232,8 @@ Go recommends: https://github.com/golang/go/wiki/CodeReviewComments#pass-values
 
 ---
 
-# Structs and pointers (or not)
+# Structs example
+Let's update the contents of a struct
 
 ```go
 type item struct {
@@ -214,9 +246,9 @@ func NewItem(name string, price int) item {
     return i
 }
 
-func discountBy(i item, amount int) {
-    i.price -= amount
-}
+*func discountBy(i item, amount int) {
+*   i.price -= amount
+*}
 
 func main() {
     var cardigan item = NewItem("Cardigan", 90)
@@ -233,6 +265,242 @@ $ go run items.go
 90
 ```
 
+???
+
+The output is 90? I expected the price to be reduced.
+
+---
+
+# Structs example with pointers
+Let's update the contents of a struct
+
+```go
+type item struct {
+    name string
+    price int
+}
+
+func NewItem(name string, price int) item {
+    i := item{name: name, price: price}
+    return i
+}
+
+*func discountBy(i *item, amount int) {
+    i.price -= amount
+}
+
+func main() {
+    var cardigan item = NewItem("Cardigan", 90)
+*   discountBy(&cardigan, 70)
+
+    fmt.Println(cardigan.price)
+}
+```
+
+```console
+$ go run items.go
+*20
+```
+
+???
+
+What are some other ways we can do the same thing?
+* Return a new `item` object from discountBy
+* Make it a method on the class instead of a stand-alone method
+    * But Go doesn't have classes, they have interfaces
+
+---
+
+# Methods
+
+```go
+type item struct {
+    name string
+    price int
+}
+
+func NewItem(name string, price int) item {
+    i := item{name: name, price: price}
+    return i
+}
+
+*func (i item) discountBy(amount int) {
+*   i.price -= amount
+*}
+
+func main() {
+    var cardigan item = NewItem("Cardigan", 90)
+*   cardigan.discountBy(70)
+
+    fmt.Println(cardigan.price)
+}
+```
+
+???
+
+* `(i item)` is called a receiver.
+
+--
+
+```console
+$ go run items.go
+90
+```
+
+???
+
+* Same problem as last time. We pass the receiver by value.
+    * Original price isn't updated
+    * We can pass a receiver pointer, instead.
+
+---
+
+# Methods
+
+```go
+type item struct {
+    name string
+    price int
+}
+
+func NewItem(name string, price int) item {
+    i := item{name: name, price: price}
+    return i
+}
+
+*func (i *item) discountBy(amount int) {
+    i.price -= amount
+}
+
+func main() {
+    var cardigan item = NewItem("Cardigan", 90)
+    cardigan.discountBy(70)
+
+    fmt.Println(cardigan.price)
+}
+```
+
+```console
+$ go run items.go
+*20
+```
+
+???
+
+Use receiver pointers if
+* you need to modify a value instead of returning
+* if your object is large (prevent copy overhead)
+
 ---
 
 # Interfaces
+
+```go
+*type limitedQuantityItem struct {
+    name string
+    price int
+*   quantity int
+}
+
+func (i *limitedQuantityItem) discountBy(amount int) {
+    i.price -= amount
+}
+
+*func updateDiscount(i *item) {
+*   // fetch discount price from an API
+*   i.discountBy(discount)
+*}
+
+func main() {
+    var cardigan item = NewItem("Cardigan", 90)
+    var sweater limitedQuantityItem = NewLimitedQuantityItem("Sweater", 45)
+*   updateDiscount(&cardigan)
+*   updateDiscount(&sweater)
+}
+```
+
+--
+
+```console
+$ go run items.go
+# command-line-arguments
+./item.go:41:20: cannot use &sweater (type *limitedQuantityItem) as type *item
+    in argument to updateDiscount
+```
+
+???
+
+How can a function accept multiple types?
+* IE, polymorphism
+
+---
+
+# Interfaces
+
+```go
+type limitedQuantityItem struct {
+    name string
+    price int
+    quantity int
+}
+
+func (i *limitedQuantityItem) discountBy(amount int) {
+    i.price -= amount
+}
+
+*func updateDiscount(i *item) {
+    // fetch discount price from an API
+    i.discountBy(discount)
+}
+
+func main() {
+    var cardigan item = NewItem("Cardigan", 90)
+    var sweater limitedQuantityItem = NewLimitedQuantityItem("Sweater", 45)
+    updateDiscount(&cardigan)
+*   updateDiscount(&sweater)
+}
+```
+
+```console
+$ go run items.go
+# command-line-arguments
+./item.go:41:20: cannot use &sweater (type *limitedQuantityItem) as type *item
+    in argument to updateDiscount
+```
+
+---
+
+# Interfaces
+
+```go
+*type itemInterface interface {
+*   discountBy(int)
+*}
+
+*func updateDiscount(i itemInterface) {
+    // fetch discount price from an API
+    i.DiscountBy(40)
+}
+
+func main() {
+    var cardigan item = NewItem("Cardigan", 90)
+    var sweater limitedQuantityItem = NewLimitedQuantityItem("Sweater", 45, 10)
+    updateDiscount(&cardigan)
+    updateDiscount(&sweater)
+
+    fmt.Println(cardigan.price)
+    fmt.Println(sweater.price)
+}
+```
+
+```console
+$ go run items.go
+50
+5
+```
+
+---
+
+class: center, middle
+
+# Bye
