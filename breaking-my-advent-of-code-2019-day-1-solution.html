@@ -1,0 +1,405 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://brookskindle.github.io/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="https://brookskindle.github.io/theme/pygments/dracula.min.css">
+  <link rel="stylesheet" type="text/css" href="https://brookskindle.github.io/theme/font-awesome/css/font-awesome.min.css">
+
+    <link href="https://brookskindle.github.io/styles/styles.css" rel="stylesheet">
+
+
+
+
+
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#282a36">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#282a36">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Microsoft EDGE -->
+    <meta name="msapplication-TileColor" content="#282a36">
+
+<meta name="author" content="Brooks Kindle" />
+<meta name="description" content="The Advent of Code 2019 challenge is open. These are my solutions to the problems presented on day 1. Part one Asks us to figure out how much fuel is required to lift a given spacecraft module if we know its&#39; mass. import math import sys def calculate_fuel_cost(mass): return …" />
+<meta name="keywords" content="advent of code 2019, python, testing">
+
+<meta property="og:site_name" content="Brooks Kindle"/>
+<meta property="og:title" content="Breaking my Advent of Code 2019, day 1 solution"/>
+<meta property="og:description" content="The Advent of Code 2019 challenge is open. These are my solutions to the problems presented on day 1. Part one Asks us to figure out how much fuel is required to lift a given spacecraft module if we know its&#39; mass. import math import sys def calculate_fuel_cost(mass): return …"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="https://brookskindle.github.io/breaking-my-advent-of-code-2019-day-1-solution.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2019-12-04 00:00:00-08:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="https://brookskindle.github.io/author/brooks-kindle.html">
+<meta property="article:section" content="programming"/>
+<meta property="article:tag" content="advent of code 2019"/>
+<meta property="article:tag" content="python"/>
+<meta property="article:tag" content="testing"/>
+<meta property="og:image" content="/images/profile.jpg">
+
+  <title>Brooks Kindle &ndash; Breaking my Advent of Code 2019, day 1 solution</title>
+
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="https://brookskindle.github.io">
+        <img src="/images/profile.jpg" alt="Brooks Kindle" title="Brooks Kindle">
+      </a>
+      <h1><a href="https://brookskindle.github.io">Brooks Kindle</a></h1>
+
+<p>software engineer</p>
+      <nav>
+        <ul class="list">
+          <li><a href="https://brookskindle.github.io/pages/about.html#about">About</a></li>
+          <li><a href="https://brookskindle.github.io/pages/contact.html#contact">Contact</a></li>
+
+        </ul>
+      </nav>
+
+      <ul class="social">
+        <li><a class="sc-github" href="https://github.com/brookskindle" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-linkedin" href="https://www.linkedin.com/in/brookskindle/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+      </ul>
+    </div>
+
+
+  </aside>
+  <main>
+
+    <nav>
+      <a href="https://brookskindle.github.io">    Home
+</a>
+
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+
+
+    </nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="breaking-my-advent-of-code-2019-day-1-solution">Breaking my Advent of Code 2019, day 1 solution</h1>
+    <p>
+          Posted on Wed 04 December 2019 in <a href="https://brookskindle.github.io/category/programming.html">programming</a>
+
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>The <a href="https://adventofcode.com/2019">Advent of Code 2019 challenge</a> is open.
+These are my solutions to the problems presented on day 1.</p>
+<h2>Part one</h2>
+<p>Asks us to figure out how much fuel is required to lift a given spacecraft
+module if we know its' mass.</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="k">def</span> <span class="nf">calculate_fuel_cost</span><span class="p">(</span><span class="n">mass</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">mass</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span>
+
+
+<span class="k">def</span> <span class="nf">test_calculate_fuel_cost</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">calculate_fuel_cost</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+    <span class="k">assert</span> <span class="n">calculate_fuel_cost</span><span class="p">(</span><span class="mi">14</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+    <span class="k">assert</span> <span class="n">calculate_fuel_cost</span><span class="p">(</span><span class="mi">1969</span><span class="p">)</span> <span class="o">==</span> <span class="mi">654</span>
+    <span class="k">assert</span> <span class="n">calculate_fuel_cost</span><span class="p">(</span><span class="mi">100756</span><span class="p">)</span> <span class="o">==</span> <span class="mi">33583</span>
+
+
+<span class="k">def</span> <span class="nf">get_module_masses</span><span class="p">():</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;aoc-day1-input.txt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">mass_file</span><span class="p">:</span>
+        <span class="n">masses</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">mass_file</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">masses</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">masses</span> <span class="o">=</span> <span class="n">get_module_masses</span><span class="p">()</span>
+    <span class="n">fuel_costs</span> <span class="o">=</span> <span class="p">[</span><span class="n">calculate_fuel_cost</span><span class="p">(</span><span class="n">mass</span><span class="p">)</span> <span class="k">for</span> <span class="n">mass</span> <span class="ow">in</span> <span class="n">masses</span><span class="p">]</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">fuel_costs</span><span class="p">))</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;test&quot;</span><span class="p">:</span>
+        <span class="n">test_calculate_fuel_cost</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+
+<h2>Part two</h2>
+<p>Asks us to make our fuel equation more accurate, to account for the additional
+mass incurred by the fuel itself. In this case, only the fuel calculation
+function needs to be updated (and corresponding tests). Everything else can
+stay the same.</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_fuel_cost</span><span class="p">(</span><span class="n">mass</span><span class="p">):</span>
+    <span class="n">cost</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">mass</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span>
+    <span class="k">if</span> <span class="n">cost</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>  <span class="c1"># No fuel required for small masses</span>
+
+    <span class="c1"># Fuel also weighs an amount. Recurse to determine how much additional</span>
+    <span class="c1"># fuel is needed just to lift the fuel off the ground.</span>
+    <span class="k">return</span> <span class="n">cost</span> <span class="o">+</span> <span class="n">calculate_fuel_cost</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">test_calculate_fuel_cost</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">calculate_fuel_cost</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+    <span class="k">assert</span> <span class="n">calculate_fuel_cost</span><span class="p">(</span><span class="mi">14</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+    <span class="k">assert</span> <span class="n">calculate_fuel_cost</span><span class="p">(</span><span class="mi">1969</span><span class="p">)</span> <span class="o">==</span> <span class="mi">966</span>
+    <span class="k">assert</span> <span class="n">calculate_fuel_cost</span><span class="p">(</span><span class="mi">100756</span><span class="p">)</span> <span class="o">==</span> <span class="mi">50346</span>
+</pre></div>
+
+
+<h2>Breaking the code</h2>
+<p>Let's do a thought experiment. Could my implementation ever fail to give the
+correct answer? For this problem, I was given an input of <code>100</code> lines with a
+maximum mass of <code>149238</code>. Ignoring malformed input data, what if we had to
+operate on ridiculously gigantic inputs?</p>
+<p>The second solution involves using recursion to find a more accurate mass
+calculation.</p>
+<div class="highlight"><pre><span></span><span class="k">return</span> <span class="n">cost</span> <span class="o">+</span> <span class="n">calculate_fuel_cost</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Python limits the number of recursive calls that can be made</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">sys</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">sys</span><span class="o">.</span><span class="n">getrecursionlimit</span><span class="p">()</span>
+<span class="mi">1000</span>
+</pre></div>
+
+
+<p>and unlike some languages, does not <a href="https://www.geeksforgeeks.org/tail-call-elimination/">optimize tail
+recursion</a>.</p>
+<p>What does that mean for us? If we're given a sufficiently large enough input
+mass, it's possible the program will run out of recursive calls before it can
+calculate the final fuel cost.</p>
+<h2>An abnormally large mass</h2>
+<p>If we use a sufficiently large enough input, can we break it? Below I've
+outlined the results of several calls to <code>calculate_fuel_cost</code>, with varying
+masses.</p>
+<table>
+<thead>
+<tr>
+<th>mass</th>
+<th>recursive calls made</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>100,000</td>
+<td>9</td>
+</tr>
+<tr>
+<td>1e10</td>
+<td>19</td>
+</tr>
+<tr>
+<td>1e20</td>
+<td>40</td>
+</tr>
+<tr>
+<td>1e30</td>
+<td>61</td>
+</tr>
+<tr>
+<td>1e40</td>
+<td>82</td>
+</tr>
+<tr>
+<td>1e300</td>
+<td>627</td>
+</tr>
+<tr>
+<td>1e308</td>
+<td>644</td>
+</tr>
+<tr>
+<td><code>int(1e308) * int(1e100)</code></td>
+<td>854</td>
+</tr>
+<tr>
+<td><code>int(1e308) * int(1e167)</code></td>
+<td>994</td>
+</tr>
+<tr>
+<td><code>int(1e308) * int(1e170)</code></td>
+<td>1000</td>
+</tr>
+</tbody>
+</table>
+<p>Conclusion: yes, after an abnormally large value was passed to the function, I
+succeeded in breaking it.</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">calculate_fuel_cost</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mf">1e308</span><span class="p">)</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="mf">1e168</span><span class="p">))</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s2">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+  <span class="n">File</span> <span class="s2">&quot;day1-pt2.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">13</span><span class="p">,</span> <span class="ow">in</span> <span class="n">calculate_fuel_cost</span>
+    <span class="k">return</span> <span class="n">cost</span> <span class="o">+</span> <span class="n">calculate_fuel_cost</span><span class="p">(</span><span class="n">cost</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+  <span class="n">File</span> <span class="s2">&quot;day1-pt2.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">13</span><span class="p">,</span> <span class="ow">in</span> <span class="n">calculate_fuel_cost</span>
+    <span class="k">return</span> <span class="n">cost</span> <span class="o">+</span> <span class="n">calculate_fuel_cost</span><span class="p">(</span><span class="n">cost</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+  <span class="n">File</span> <span class="s2">&quot;day1-pt2.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">13</span><span class="p">,</span> <span class="ow">in</span> <span class="n">calculate_fuel_cost</span>
+    <span class="k">return</span> <span class="n">cost</span> <span class="o">+</span> <span class="n">calculate_fuel_cost</span><span class="p">(</span><span class="n">cost</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+  <span class="p">[</span><span class="n">Previous</span> <span class="n">line</span> <span class="n">repeated</span> <span class="mi">993</span> <span class="n">more</span> <span class="n">times</span><span class="p">]</span>
+  <span class="n">File</span> <span class="s2">&quot;day1-pt2.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">8</span><span class="p">,</span> <span class="ow">in</span> <span class="n">calculate_fuel_cost</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Recursive calls made: {i}&quot;</span><span class="p">)</span>
+<span class="ne">RecursionError</span><span class="p">:</span> <span class="n">maximum</span> <span class="n">recursion</span> <span class="n">depth</span> <span class="n">exceeded</span> <span class="k">while</span> <span class="n">calling</span> <span class="n">a</span> <span class="n">Python</span> <span class="nb">object</span>
+</pre></div>
+
+
+<p>That's one massive mass.</p>
+<hr>
+<p>Interestingly, after <code>1e308</code>, python started converting scientific notation to
+the infinity value, <code>inf</code>, and attempts to pass in a slightly larger value than
+that resulted in an <code>OverflowError</code> because <code>math.floor</code> was unequipped to
+handle such large numbers (or consciously refused to).</p>
+<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">calculate_fuel_cost</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mf">1e308</span><span class="p">)</span> <span class="o">*</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s2">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+  <span class="n">File</span> <span class="s2">&quot;day1-pt2.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">5</span><span class="p">,</span> <span class="ow">in</span> <span class="n">calculate_fuel_cost</span>
+    <span class="n">cost</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">mass</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span>
+<span class="ne">OverflowError</span><span class="p">:</span> <span class="n">integer</span> <span class="n">division</span> <span class="n">result</span> <span class="n">too</span> <span class="n">large</span> <span class="k">for</span> <span class="n">a</span> <span class="nb">float</span>
+</pre></div>
+
+
+<p>In the name of science, I replaced the function call with integer division</p>
+<div class="highlight"><pre><span></span><span class="n">cost</span> <span class="o">=</span> <span class="p">(</span><span class="n">mass</span> <span class="o">//</span> <span class="mi">3</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span>
+</pre></div>
+
+
+<p>to continue the experiment. The show must go on!</p>
+<h2>A (very) large file</h2>
+<p>The other potential problem with my solution is that I read and store every
+input value into an array prior to processing, instead of streaming the input
+and keeping a running tally of the total fuel cost.</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_module_masses</span><span class="p">():</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;aoc-day1-input.txt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">mass_file</span><span class="p">:</span>
+        <span class="n">masses</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">mass_file</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">masses</span>
+</pre></div>
+
+
+<p>Effectively, my solution is an offline algorithm, not an <a href="https://www.geeksforgeeks.org/online-algorithm/">online
+algorithm</a>, so the more input
+it has to process, the more memory the program will take up. At some point, our
+program will run out of memory, given enough input.</p>
+<p>...so let's do it!</p>
+<p>There's a couple of options to take here.</p>
+<ol>
+<li>
+<p>Create a ridiculously huge file filled with numbers, and then run the
+   program like normal. This would take forever and I don't want to bother with
+   writing a tens-of-gigabytes sized file to disk just for the sake of this
+   program.</p>
+</li>
+<li>
+<p>Modify the code to read numbers from stdin instead of a file. This is
+   arguably the most sane solution because many command line programs have the
+   option to use stdin for input, instead of a file.</p>
+</li>
+<li>
+<p>Make the input file a named pipe (FIFO) and supply the file with an infinite
+   amount of random numbers through <code>/dev/urandom</code>.</p>
+</li>
+</ol>
+<p>I hardly ever get to work with named pipes, so let's use the last option.
+First, I'll create the file.</p>
+<div class="highlight"><pre><span></span>$ mkfifo aoc-day1-input.txt
+$ ls aoc-day1-input.txt
+prw-r--r-- <span class="m">1</span> brooks brooks <span class="m">0</span> Dec  <span class="m">4</span> <span class="m">22</span>:56 aoc-day1-input.txt
+</pre></div>
+
+
+<p>Then in a new terminal, use <code>/dev/urandom</code> to supply it with an
+endless supply of numbers.</p>
+<div class="highlight"><pre><span></span><span class="gp">$</span> cat /dev/urandom <span class="p">|</span> tr -dc <span class="s1">&#39;1-9&#39;</span> <span class="p">|</span> fold -w <span class="m">2</span> &gt; aoc-day1-input.txt
+</pre></div>
+
+
+<p>Finally, I'll run the program and watch the memory usage slowly increase</p>
+<div class="highlight"><pre><span></span><span class="gp">$</span> python day1.py
+</pre></div>
+
+
+<table>
+<thead>
+<tr>
+<th>time</th>
+<th>system memory usage</th>
+<th>image</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 minutes</td>
+<td>900mb</td>
+<td><img alt="" src="https://brookskindle.github.io/images/memory-balloon-initial.png"></td>
+</tr>
+<tr>
+<td>1 minute</td>
+<td>1.5gb</td>
+<td><img alt="" src="https://brookskindle.github.io/images/memory-balloon-1min.png"></td>
+</tr>
+<tr>
+<td>5 minutes</td>
+<td>2.8gb</td>
+<td><img alt="" src="https://brookskindle.github.io/images/memory-balloon-5min.png"></td>
+</tr>
+</tbody>
+</table>
+<p>I stopped the program before I ran out of memory, but you get the picture.</p>
+<hr>
+<p>There you have it - it's a good thing to keep in mind that even a program that
+seems simple and straightforward can have problems if exposed to the right (or
+wrong) conditions.</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://brookskindle.github.io/tag/advent-of-code-2019.html">advent of code 2019</a>
+      <a href="https://brookskindle.github.io/tag/python.html">python</a>
+      <a href="https://brookskindle.github.io/tag/testing.html">testing</a>
+    </p>
+  </div>
+
+
+
+
+
+</article>
+
+    <footer>
+<p>&copy;  </p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p>    </footer>
+  </main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Brooks Kindle ",
+  "url" : "https://brookskindle.github.io",
+  "image": "/images/profile.jpg",
+  "description": "None"
+}
+</script>
+
+</body>
+</html>
