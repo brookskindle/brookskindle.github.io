@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://brookskindle.github.io/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="https://brookskindle.github.io/theme/pygments/dracula.min.css">
+  <link rel="stylesheet" type="text/css" href="https://brookskindle.github.io/theme/font-awesome/css/font-awesome.min.css">
+
+    <link href="https://brookskindle.github.io/styles/styles.css" rel="stylesheet">
+
+
+
+
+
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#282a36">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#282a36">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Microsoft EDGE -->
+    <meta name="msapplication-TileColor" content="#282a36">
+
+<meta name="author" content="Brooks Kindle" />
+<meta name="description" content="This is a short post, showcasing my solution to problem 22 on Project Euler. I worked on this problem over lunch with a few co-workers, and they found the solution useful. If you find this article, I hope it is useful to you as well. The prompt for this exercise …" />
+<meta name="keywords" content="python">
+
+<meta property="og:site_name" content="Brooks Kindle"/>
+<meta property="og:title" content="Project Euler Problem 22"/>
+<meta property="og:description" content="This is a short post, showcasing my solution to problem 22 on Project Euler. I worked on this problem over lunch with a few co-workers, and they found the solution useful. If you find this article, I hope it is useful to you as well. The prompt for this exercise …"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="https://brookskindle.github.io/project-euler-problem-22.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2019-12-12 00:00:00-08:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="https://brookskindle.github.io/author/brooks-kindle.html">
+<meta property="article:section" content="programming"/>
+<meta property="article:tag" content="python"/>
+<meta property="og:image" content="/images/profile.jpg">
+
+  <title>Brooks Kindle &ndash; Project Euler Problem 22</title>
+
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="https://brookskindle.github.io">
+        <img src="/images/profile.jpg" alt="Brooks Kindle" title="Brooks Kindle">
+      </a>
+      <h1><a href="https://brookskindle.github.io">Brooks Kindle</a></h1>
+
+<p>software engineer</p>
+      <nav>
+        <ul class="list">
+          <li><a href="https://brookskindle.github.io/pages/about.html#about">About</a></li>
+          <li><a href="https://brookskindle.github.io/pages/contact.html#contact">Contact</a></li>
+
+        </ul>
+      </nav>
+
+      <ul class="social">
+        <li><a class="sc-github" href="https://github.com/brookskindle" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-linkedin" href="https://www.linkedin.com/in/brookskindle/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+      </ul>
+    </div>
+
+
+  </aside>
+  <main>
+
+    <nav>
+      <a href="https://brookskindle.github.io">    Home
+</a>
+
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+
+
+    </nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="project-euler-problem-22">Project Euler Problem 22</h1>
+    <p>
+          Posted on Thu 12 December 2019 in <a href="https://brookskindle.github.io/category/programming.html">programming</a>
+
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>This is a short post, showcasing my solution to <a href="https://projecteuler.net/problem=22">problem 22 on Project
+Euler</a>. I worked on this problem over
+lunch with a few co-workers, and they found the solution useful. If you find
+this article, I hope it is useful to you as well.</p>
+<p>The prompt for this exercise is simple: given a file containing names,
+calculate the total score for all names in the file. The score for a given name
+can be calculated by taking sum of each character's alphabetical value (<code>A</code> is
+1, <code>B</code> is 2, and so on) and multiplying it by its' position in the list,
+assuming the list is alphabetically sorted from <code>A</code> to <code>Z</code>.</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_sorted_names</span><span class="p">():</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;names.txt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fd</span><span class="p">:</span>
+        <span class="n">names</span> <span class="o">=</span> <span class="n">fd</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Remove the surrounding quotes from each name</span>
+    <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">names</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">calculate_name_score</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">name</span><span class="o">.</span><span class="n">upper</span><span class="p">():</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">char</span><span class="p">)</span> <span class="o">-</span> <span class="mi">64</span>
+    <span class="k">return</span> <span class="n">total</span>
+
+
+<span class="k">def</span> <span class="nf">calculate_list_score</span><span class="p">(</span><span class="n">names</span><span class="p">):</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">names</span><span class="p">):</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="n">calculate_name_score</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">total</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">names</span> <span class="o">=</span> <span class="n">get_sorted_names</span><span class="p">()</span>
+    <span class="n">score</span> <span class="o">=</span> <span class="n">calculate_list_score</span><span class="p">(</span><span class="n">names</span><span class="p">)</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;{score:,}&quot;</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+
+<p>It requires python 3.6 or greater to run, but that requirement can be removed
+if you change the f-string in the <code>main</code> function to an older <code>.format</code> style
+string.</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://brookskindle.github.io/tag/python.html">python</a>
+    </p>
+  </div>
+
+
+
+
+
+</article>
+
+    <footer>
+<p>&copy;  </p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p>    </footer>
+  </main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Brooks Kindle ",
+  "url" : "https://brookskindle.github.io",
+  "image": "/images/profile.jpg",
+  "description": "None"
+}
+</script>
+
+</body>
+</html>
