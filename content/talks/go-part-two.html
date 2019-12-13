@@ -200,6 +200,8 @@ func main() {
 
 * Can create structs with no values (zeroes for values)
     * Ensure proper struct creation with a "constructor" function
+* In statements, `*` dereferences a pointer.
+* In types, `*` signifies an object is a pointer type
 
 ---
 
@@ -231,6 +233,8 @@ func main() {
 
 * Can create structs with no values (zeroes for values)
     * Ensure proper struct creation with a "constructor" function
+* In statements, `*` dereferences a pointer.
+* In types, `*` signifies an object is a pointer type
 
 ---
 
@@ -509,7 +513,7 @@ $ go run items.go
 
 *func updateDiscount(i itemInterface) {
     // fetch discount price from an API
-    i.DiscountBy(40)
+    i.discountBy(40)
 }
 
 func main() {
