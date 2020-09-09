@@ -1,5 +1,6 @@
 Title: CascadiaJS 2020
 Date: 2020-09-04
+Modified: 2020-09-09
 Category: Programming
 Tags: javascript, conferences, cascadiajs2020
 
@@ -50,4 +51,7 @@ experience and, if given the chance, I will definitely attend the next one.
 
 * [pudding.cool](https://pudding.cool/), a data-driven journalism site
 
-![blurred image of a notebook]({static}/images/notes-blurred.jpg)
+Despite being virtual, we still managed to take a group photo.
+<a alt="picture of cascadiajs attendees" target="_blank" href="https://openseadragon.github.io/openseadragonizer/?img=https%3A%2F%2Fbucketeer-426ab8bc-d3c6-42d1-a2a7-683f96de6df6.s3.amazonaws.com%2Fpublic%2Fgroup_photo_415.png&encoded=true">
+    ![]({static}/images/cascadiajs-2020-photo-scaled.jpg)
+</a>
