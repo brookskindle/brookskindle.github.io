@@ -6,7 +6,9 @@ Tags: javascript, conferences, cascadiajs2020
 
 I attended my first JavaScript conference,
 [CascadiaJS](https://2020.cascadiajs.com/), this year. It was an amazing
-experience and, if given the chance, I will definitely attend the next one.
+experience and, if given the chance, I will definitely attend the next one. For
+future reference, here are the [speakers](https://2020.cascadiajs.com/speakers)
+and the [talks they gave](https://2020.cascadiajs.com/schedule).
 
 ## Highlights
 * [Jim Liu](https://twitter.com/jimcalliu), for volunteering his time to
