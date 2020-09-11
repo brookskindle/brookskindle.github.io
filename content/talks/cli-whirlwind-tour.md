@@ -1,3 +1,5 @@
+class: center, middle
+
 # My command line
 A whirlwind tour of useful command-line tools and features that I use
 
@@ -6,8 +8,11 @@ A whirlwind tour of useful command-line tools and features that I use
 # Why the command line?
 
 * All developers have to use it
+
 * Might as well be productive in it
+
 * Reproducibility is a breeze in the terminal
+
 * It can be fun (no, really)
 
 ???
@@ -31,7 +36,7 @@ that sort of thing
 
 ---
 
-# Zsh line navigation
+# Shell line navigation
 **Description**: Shortcuts to more easily manipulate the current line
 
 **Good for**: Making (more) precision edits
@@ -55,15 +60,16 @@ WORDCHARS=$WORDCHARS:s:/:
 ---
 
 # pbcopy/pbpaste
-**Description**: asdf
+**Description**: Commands that copy or paste from the system clipboard
 
-**Good for**: asdf
+**Good for**: If you're too lazy to use a mouse
 
-**How to use**: asdf
+**How to use**: `echo hello | pbcopy`, `pbpaste > contents.txt`
 
-**How to install**: asdf
+**How to install**: Already installed on a mac.
 
-**See also**: asdf
+**See also**: [xclip](https://opensource.com/article/19/7/xclip) (the linux
+equivalent)
 
 ---
 
@@ -102,20 +108,82 @@ productivity tools.
 
 ---
 
-# git (add, reset [-p, FILENAME_HERE]) (revert --no-commit)
-**Description**: asdf
+# git flags
+**Description**: Optional flags to pass to git commands
 
-**Good for**: asdf
+**Good for**: Finer control over git
 
-**How to use**: asdf
+**How to use**: `git [add/reset] -p`, `git branch -vva`, `git revert
+--no-commit`, `git diff --cached`, `git commit --verbose`
 
-**How to install**: asdf
+**How to install**: Installed alongside `git`
 
-**See also**: asdf
+**See also**: [useful git
+aliases](https://www.durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-examples/)
 
 ---
 
-# ag - the_silver_searcher
+# shell aliases
+**Description**: Built-in shell functions or commands
+
+**Good for**: Automating or shortening commands, without creating an external
+script
+
+**How to use**: `alias`, `alias frb=cd ~/code/work/frb`, `alias gs=git status`
+
+**How to install**: Built-in to the shell
+
+**See also**: [zsh-z](https://github.com/agkozak/zsh-z)
+
+---
+
+# curl/httpie
+**Description**: Make HTTP requests against a webpage
+
+**Good for**: Working with APIs
+
+**How to use**: `curl ipinfo.io`, `http ipinfo.io`
+
+**How to install**: `curl` already installed, `brew install httpie`. Can also
+be `pip install`ed
+
+**See also**: [httpie cheatsheet](https://devhints.io/httpie), [curl
+cheatsheet](https://devhints.io/curl)
+
+---
+
+# jq
+**Description**: General purpose JSON processor
+
+**Good for**: Filtering/sifting through JSON payloads
+
+**How to use**: `cat response.json | jq`, `cat response.json | jq
+.stores[].name`
+
+**How to install**: `brew install jq`
+
+**See also**: [jq tutorial](https://stedolan.github.io/jq/tutorial/)
+
+---
+
+# visidata
+**Description**: Interactive utility for exploring data in a tabular form.
+
+**Good for**: **Understanding the structure of JSON payloads**. Quick analysis of
+csv and json files. Also works with postgres databases, sqlite, and urls (say
+whaaat?). ALSO MAP PLOTTING!
+
+**How to use**: `vd employees.csv`, `cat stores.json | vd -f json`
+
+**How to install**: `brew install visidata`
+
+**See also**:  [Lightning demo](https://www.youtube.com/watch?v=N1CBDTgGtOU),
+[An Introduction to
+VisiData](https://jsvine.github.io/intro-to-visidata/index.html)
+
+---
+
+# ag
 **Description**: Replacement for `grep`
 
 **Good for**: Finding text in files or folders
@@ -155,67 +223,7 @@ productivity tools.
 
 **See also**: [everything is a
 file](https://www.howtogeek.com/117939/htg-explains-what-everything-is-a-file-means-on-linux/),
-[useless use of
-cat](https://stackoverflow.com/questions/11710552/useless-use-of-cat), [tee
-command](https://www.geeksforgeeks.org/tee-command-linux-example)
-
----
-
-# aliases
-**Description**: Built-in shell functions or commands
-
-**Good for**: Automating or shortening commands, without creating an external
-script
-
-**How to use**: `alias`, `alias frb=cd ~/code/work/frb`, `alias gs=git status`
-
-**How to install**: Built-in to the shell
-
-**See also**: [zsh-z](https://github.com/agkozak/zsh-z)
-
----
-
-# environment variables, $PATH, $OLDPWD
-**Description**: String values that your shell has access to
-
-**Good for**: Configuring a program's behavior or passing secret values to it
-
-**How to use**: `env`, `process.env` (node), `os.getenv(...)` (python)
-
-**How to install**: Built-in to the shell
-
-**See also**: [direnv](https://direnv.net/)
-
-```console
-$ env
-PATH=/home/brooks/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/var/lib/snapd/snap/bin
-XDG_CURRENT_DESKTOP=i3
-TERM=xterm-termite
-USER=brooks
-HOME=/home/brooks
-BROWSER=/usr/bin/chromium
-SHELL=/bin/zsh
-XDG_SESSION_TYPE=x11
-EDITOR=/usr/bin/vim
-PWD=/home/brooks/code/brookskindle.github.io/content/talks
-SHLVL=1
-OLDPWD=/home/brooks
-PROMPT=%F{183}%2~ %F{%(?.231.210)}$
-```
-
----
-
-# brew services
-**Description**: List brew-managed background services
-
-**Good for**: Automatically starting/stopping Redis, Postgres, Docker(?),
-etc...
-
-**How to use**: `brew services list`, `brew services [start,stop] redis`
-
-**How to install**: ~~brew install~~ kidding, it's installed with `brew`
-
-**See also**:
+[tee command](https://www.geeksforgeeks.org/tee-command-linux-example)
 
 ---
 
@@ -236,96 +244,30 @@ Postgres](https://rollout.io/blog/unleash-the-power-of-storing-json-in-postgres/
 ---
 
 # redis-cli / redis-server
-**Description**: asdf
+**Description**: key:value store used as a lightweight database/cache/message
+broker
 
-**Good for**: asdf
+**Good for**: Exactly that
 
-**How to use**: asdf
+**How to use**: `redis-cli`, `redis-cli keys "*"`, `redis-cli -h
+test-redis.com`
 
-**How to install**: asdf
+**How to install**: `brew install redis`
 
-**See also**: asdf
-
----
-
-# visidata
-**Description**: Interactive utility for exploring data in a tabular form.
-
-**Good for**: **Understanding the structure of JSON payloads**. Quick analysis of
-csv and json files. Also works with postgres databases, sqlite, and urls (say
-whaaat?). ALSO MAP PLOTTING!
-
-**How to use**: `vd employees.csv`, `cat stores.json | vd -f json`
-
-**How to install**: `brew install visidata`
-
-**See also**:  [Lightning demo](https://www.youtube.com/watch?v=N1CBDTgGtOU),
-[An Introduction to
-VisiData](https://jsvine.github.io/intro-to-visidata/index.html)
----
-
-# docker
-**Description**: asdf
-
-**Good for**: asdf
-
-**How to use**: asdf
-
-**How to install**: asdf
-
-**See also**: asdf
+**See also**: [redis quickstart](https://redis.io/topics/quickstart)
 
 ---
 
-# k8s (esp. autocomplete), minikube
-**Description**: asdf
+# brew services
+**Description**: List brew-managed background services
 
-**Good for**: asdf
+**Good for**: Automatically starting/stopping Redis, Postgres, Docker, etc...
 
-**How to use**: asdf
+**How to use**: `brew services`, `brew services [start,stop] redis`
 
-**How to install**: asdf
+**How to install**: ~~brew install~~ kidding, it's installed with `brew`
 
-**See also**: asdf
-
----
-
-# openssl / create a cert
-**Description**: asdf
-
-**Good for**: asdf
-
-**How to use**: asdf
-
-**How to install**: asdf
-
-**See also**: asdf
-
----
-
-# curl/httpie
-**Description**: asdf
-
-**Good for**: asdf
-
-**How to use**: asdf
-
-**How to install**: asdf
-
-**See also**: asdf
-
----
-
-# jq
-**Description**: asdf
-
-**Good for**: asdf
-
-**How to use**: asdf
-
-**How to install**: asdf
-
-**See also**: asdf
+**See also**:
 
 ---
 
@@ -335,38 +277,38 @@ VisiData](https://jsvine.github.io/intro-to-visidata/index.html)
 **Good for**: Mimicking backend servers with files, hosting front-end apps
 locally, testing ssl certificates
 
-**How to use**: asdf
+**How to use**: `serve .`
 
-**How to install**: asdf
+**How to install**: `npm install serve`
 
-**See also**: [mockserver](https://www.mock-server.com/), `python3 -m
-http.server`
+**See also**: `serve --help`, [mockserver](https://www.mock-server.com/),
+`python3 -m http.server`
 
 ---
 
 # bat
-**Description**: asdf
+**Description**: A drop-in replacement for `cat`, with extra eye candy
 
-**Good for**: asdf
+**Good for**: Grokking a file without using a heavy editor to do so
 
-**How to use**: asdf
+**How to use**: `bat NAME_OF_FILE`
 
-**How to install**: asdf
+**How to install**: `brew install bat`
 
-**See also**: asdf
+**See also**:
 
 ---
 
 # pup
-**Description**: asdf
+**Description**: Parse/prettify html from the command line
 
-**Good for**: asdf
+**Good for**: Making sense of hard-to-read HTML
 
-**How to use**: asdf
+**How to use**: `curl some-website.com | pup --color`
 
-**How to install**: asdf
+**How to install**: `brew install pup`
 
-**See also**: asdf
+**See also**: [pup usage](https://github.com/ericchiang/pup#examples)
 
 ---
 
@@ -378,13 +320,13 @@ $ cmatrix
 $ telnet towel.blinkenlights.nl
 ```
 
-**Description**: asdf
+**Description**: The CLI isn't just for serious business
 
-**Good for**: asdf
+**Good for**: ???
 
-**How to use**: asdf
+**How to use**:
 
-**How to install**: asdf
+**How to install**: `brew install pipes-sh`, `brew install cmatrix`
 
 **See also**:
 [github.com/ligurio/awesome-ttygames](https://github.com/ligurio/awesome-ttygames),
