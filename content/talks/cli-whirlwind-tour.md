@@ -1,14 +1,13 @@
 # My command line
 A whirlwind tour of useful command-line tools and features that I use
 
---
-
 ---
 
 # Why the command line?
 
 * All developers have to use it
 * Might as well be productive in it
+* Reproducibility is a breeze in the terminal
 * It can be fun (no, really)
 
 ???
@@ -17,30 +16,376 @@ There will be some repeats from part 1, but only those that I still find useful
 
 ---
 
-# environment variables, $PATH, $OLDCWD
-# shell: stdin/stdout/stderr (0, 1, 2), redirects, here strings, pipes, everything is a file
-# shell aliases
-# brew (specifically, services)
-# psql, createdb, dropdb, pg_dump
-# ctrl + w to delete part of a word
-# tmux (or simply iterm tabs/windows)
-# yabai
-# visidata (data: stores.json, zipcodes, employees list)
-# docker
-# k8s (esp. autocomplete), minikube
-# openssl / create a cert
-# pup
-# CLI makes repeatability and discoverability a breeze
-# curl/httpie
-# jq
-# man
-# aws && aws-okta
-# serve / python3 -m http.server
-# ipython
-# bat
+# fzf
+**Description**: A general-purpose interactive fuzzy text finder
+
+**Good for**: A **way better** reverse search for your shell
+
+**How to use**: Press `ctrl` + `r` from your shell
+
+**How to install**: `brew install fzf && $(brew --prefix)/opt/fzf/install`
+([link](https://github.com/junegunn/fzf#using-homebrew-or-linuxbrew))
+
+**See also**: [fzf.vim](https://github.com/junegunn/fzf.vim), if you're into
+that sort of thing
+
+---
+
+# Zsh line navigation
+**Description**: Shortcuts to more easily manipulate the current line
+
+**Good for**: Making (more) precision edits
+
+**How to use**: `ctrl` + `a` (beg of line), + `e` (end of line),  + `w` (delete
+word), + `u` (delete line)
+
+**How to install**: Built-in to the shell
+
+**See also**: [zsh
+shortcuts](https://cheatography.com/davidsouther/cheat-sheets/bash-zsh-shourtcuts/),
+[iTerm Natural Text Editing](https://apple.stackexchange.com/a/218639)
+
+```sh
+# Modify zsh's word split regex so that we can erase just one part of a
+# directory. Eg: erasing ~/dotfiles/zsh takes three ctrl+w motions, instead of
+# just one.
+WORDCHARS=$WORDCHARS:s:/:
+```
+
+---
+
 # pbcopy/pbpaste
-# redis-cli / redis-server
-# grep / ag
-# find / fd
-# pipes.sh / cmatrix
+**Description**: asdf
+
+**Good for**: asdf
+
+**How to use**: asdf
+
+**How to install**: asdf
+
+**See also**: asdf
+
+---
+
+# tmux
+**Description**: A terminal multiplexer
+
+**Good for**: Managing multiple shell instances
+
+**How to use**: `tmux`, `tmux attach`
+
+**How to install**: `brew install tmux`
+
+**See also**: [A Quick and Easy Guide to
+tmux](https://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/),
+alternatively, [iTerm Window
+Arrangements](https://webstudiya.com/develop-faster-with-iterm-profiles-and-window-arrangements/)
+
+---
+
+# Spectacle app, Yabai
+**Description**: Programs for X window management
+
+**Good for**: Tiling graphical programs like you do your terminal ones
+
+**How to use**: Focus a window and use the tiling window shortcuts
+
+**How to install**: Download from [spectacleapp.com](https://spectacleapp.com), or
+follow the [Yabai README](https://github.com/koekeishiya/yabai).
+
+**See also**: [Yabai demo](https://www.youtube.com/watch?v=AdwhjIg_Xe4)
+
+???
+
+Okay, so these aren't command line tools, but they are general purpose
+productivity tools.
+
+---
+
 # git (add, reset [-p, FILENAME_HERE]) (revert --no-commit)
+**Description**: asdf
+
+**Good for**: asdf
+
+**How to use**: asdf
+
+**How to install**: asdf
+
+**See also**: asdf
+
+---
+
+# ag - the_silver_searcher
+**Description**: Replacement for `grep`
+
+**Good for**: Finding text in files or folders
+
+**How to use**: `ag searchstring`, `ag -w WORD_HERE`
+
+**How to install**: `brew install the_silver_searcher`
+
+**See also**: [ripgrep](https://github.com/BurntSushi/ripgrep),
+[the_platinum_searcher](https://github.com/monochromegane/the_platinum_searcher)
+
+---
+
+# fd - [github.com/sharkdp/fd](https://github.com/sharkdp/fd)
+**Description**: Replacement for fd
+
+**Good for**: Finding files of a certain name or type
+
+**How to use**: `fd test`, `fd -e json`
+
+**How to install**: `brew install fd`
+
+**See also**:
+
+---
+
+# redirects, pipes, here strings, special files
+
+**Description**: The way in which the shell handles program interactions
+
+**Good for**: Chaining commands together, or saving output to a file
+
+**How to use**: `>`, `<`, `|`, `<<<`, `/dev/std{in,out,err}` (0, 1, 2),
+`/dev/null`, `mkfifo`
+
+**How to install**: Built-in to the shell
+
+**See also**: [everything is a
+file](https://www.howtogeek.com/117939/htg-explains-what-everything-is-a-file-means-on-linux/),
+[useless use of
+cat](https://stackoverflow.com/questions/11710552/useless-use-of-cat), [tee
+command](https://www.geeksforgeeks.org/tee-command-linux-example)
+
+---
+
+# aliases
+**Description**: Built-in shell functions or commands
+
+**Good for**: Automating or shortening commands, without creating an external
+script
+
+**How to use**: `alias`, `alias frb=cd ~/code/work/frb`, `alias gs=git status`
+
+**How to install**: Built-in to the shell
+
+**See also**: [zsh-z](https://github.com/agkozak/zsh-z)
+
+---
+
+# environment variables, $PATH, $OLDPWD
+**Description**: String values that your shell has access to
+
+**Good for**: Configuring a program's behavior or passing secret values to it
+
+**How to use**: `env`, `process.env` (node), `os.getenv(...)` (python)
+
+**How to install**: Built-in to the shell
+
+**See also**: [direnv](https://direnv.net/)
+
+```console
+$ env
+PATH=/home/brooks/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/var/lib/snapd/snap/bin
+XDG_CURRENT_DESKTOP=i3
+TERM=xterm-termite
+USER=brooks
+HOME=/home/brooks
+BROWSER=/usr/bin/chromium
+SHELL=/bin/zsh
+XDG_SESSION_TYPE=x11
+EDITOR=/usr/bin/vim
+PWD=/home/brooks/code/brookskindle.github.io/content/talks
+SHLVL=1
+OLDPWD=/home/brooks
+PROMPT=%F{183}%2~ %F{%(?.231.210)}$
+```
+
+---
+
+# brew services
+**Description**: List brew-managed background services
+
+**Good for**: Automatically starting/stopping Redis, Postgres, Docker(?),
+etc...
+
+**How to use**: `brew services list`, `brew services [start,stop] redis`
+
+**How to install**: ~~brew install~~ kidding, it's installed with `brew`
+
+**See also**:
+
+---
+
+# PostgreSQL
+**Description**: General purpose relational database
+
+**Good for**: Applications whose data is structured in nature
+
+**How to use**: `createdb`/`dropdb` to create/drop database, `psql` to connect
+to a database, and `pg_dump` to create a backup.
+
+**How to install**: `brew install postgres`
+
+**See also**: [learn SQL in 5
+mins](https://towardsdatascience.com/learn-beginner-sql-in-5-steps-in-5-minutes-c44c47fa39a1), [pgcli](https://www.pgcli.com/), [using JSON in
+Postgres](https://rollout.io/blog/unleash-the-power-of-storing-json-in-postgres/)
+
+---
+
+# redis-cli / redis-server
+**Description**: asdf
+
+**Good for**: asdf
+
+**How to use**: asdf
+
+**How to install**: asdf
+
+**See also**: asdf
+
+---
+
+# visidata
+**Description**: Interactive utility for exploring data in a tabular form.
+
+**Good for**: **Understanding the structure of JSON payloads**. Quick analysis of
+csv and json files. Also works with postgres databases, sqlite, and urls (say
+whaaat?). ALSO MAP PLOTTING!
+
+**How to use**: `vd employees.csv`, `cat stores.json | vd -f json`
+
+**How to install**: `brew install visidata`
+
+**See also**:  [Lightning demo](https://www.youtube.com/watch?v=N1CBDTgGtOU),
+[An Introduction to
+VisiData](https://jsvine.github.io/intro-to-visidata/index.html)
+---
+
+# docker
+**Description**: asdf
+
+**Good for**: asdf
+
+**How to use**: asdf
+
+**How to install**: asdf
+
+**See also**: asdf
+
+---
+
+# k8s (esp. autocomplete), minikube
+**Description**: asdf
+
+**Good for**: asdf
+
+**How to use**: asdf
+
+**How to install**: asdf
+
+**See also**: asdf
+
+---
+
+# openssl / create a cert
+**Description**: asdf
+
+**Good for**: asdf
+
+**How to use**: asdf
+
+**How to install**: asdf
+
+**See also**: asdf
+
+---
+
+# curl/httpie
+**Description**: asdf
+
+**Good for**: asdf
+
+**How to use**: asdf
+
+**How to install**: asdf
+
+**See also**: asdf
+
+---
+
+# jq
+**Description**: asdf
+
+**Good for**: asdf
+
+**How to use**: asdf
+
+**How to install**: asdf
+
+**See also**: asdf
+
+---
+
+# serve
+**Description**: Host static files/directories as a website
+
+**Good for**: Mimicking backend servers with files, hosting front-end apps
+locally, testing ssl certificates
+
+**How to use**: asdf
+
+**How to install**: asdf
+
+**See also**: [mockserver](https://www.mock-server.com/), `python3 -m
+http.server`
+
+---
+
+# bat
+**Description**: asdf
+
+**Good for**: asdf
+
+**How to use**: asdf
+
+**How to install**: asdf
+
+**See also**: asdf
+
+---
+
+# pup
+**Description**: asdf
+
+**Good for**: asdf
+
+**How to use**: asdf
+
+**How to install**: asdf
+
+**See also**: asdf
+
+---
+
+# Just for fun
+
+```console
+$ pipes.sh
+$ cmatrix
+$ telnet towel.blinkenlights.nl
+```
+
+**Description**: asdf
+
+**Good for**: asdf
+
+**How to use**: asdf
+
+**How to install**: asdf
+
+**See also**:
+[github.com/ligurio/awesome-ttygames](https://github.com/ligurio/awesome-ttygames),
+[sl](https://github.com/mtoyoda/sl), [gti](https://r-wos.org/hacks/gti)
