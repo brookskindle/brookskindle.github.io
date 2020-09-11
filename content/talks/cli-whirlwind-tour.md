@@ -1,6 +1,6 @@
 class: center, middle
 
-# My command line
+# The command line
 A whirlwind tour of useful command-line tools and features that I use
 
 ---
@@ -32,7 +32,8 @@ There will be some repeats from part 1, but only those that I still find useful
 ([link](https://github.com/junegunn/fzf#using-homebrew-or-linuxbrew))
 
 **See also**: [fzf.vim](https://github.com/junegunn/fzf.vim), if you're into
-that sort of thing
+that sort of thing, [zsh unlimited
+history](https://unix.stackexchange.com/a/273929)
 
 ---
 
@@ -41,8 +42,11 @@ that sort of thing
 
 **Good for**: Making (more) precision edits
 
-**How to use**: `ctrl` + `a` (beg of line), + `e` (end of line),  + `w` (delete
-word), + `u` (delete line)
+**How to use**:
+* `ctrl` + `a` (go to beginning of line)
+* `ctrl` + `e` (go to end of line)
+* `ctrl` + `w` (delete previous word)
+* `ctrl` + `u` (delete entire line)
 
 **How to install**: Built-in to the shell
 
@@ -64,7 +68,9 @@ WORDCHARS=$WORDCHARS:s:/:
 
 **Good for**: If you're too lazy to use a mouse
 
-**How to use**: `echo hello | pbcopy`, `pbpaste > contents.txt`
+**How to use**:
+* `echo hello | pbcopy`
+* `pbpaste > contents.txt`
 
 **How to install**: Already installed on a mac.
 
@@ -78,7 +84,7 @@ equivalent)
 
 **Good for**: Managing multiple shell instances
 
-**How to use**: `tmux`, `tmux attach`
+**How to use**: `tmux` // `tmux attach`
 
 **How to install**: `brew install tmux`
 
@@ -113,8 +119,12 @@ productivity tools.
 
 **Good for**: Finer control over git
 
-**How to use**: `git [add/reset] -p`, `git branch -vva`, `git revert
---no-commit`, `git diff --cached`, `git commit --verbose`
+**How to use**:
+* `git [add/reset] -p`
+* `git branch -vva`
+* `git revert --no-commit`
+* `git diff --cached`
+* `git commit --verbose`
 
 **How to install**: Installed alongside `git`
 
@@ -129,7 +139,10 @@ aliases](https://www.durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-ex
 **Good for**: Automating or shortening commands, without creating an external
 script
 
-**How to use**: `alias`, `alias frb=cd ~/code/work/frb`, `alias gs=git status`
+**How to use**:
+* `alias`
+* `alias frb=cd ~/code/work/frb`
+* `alias gs=git status`
 
 **How to install**: Built-in to the shell
 
@@ -142,7 +155,7 @@ script
 
 **Good for**: Working with APIs
 
-**How to use**: `curl ipinfo.io`, `http ipinfo.io`
+**How to use**: `curl ipinfo.io` // `http ipinfo.io`
 
 **How to install**: `curl` already installed, `brew install httpie`. Can also
 be `pip install`ed
@@ -157,8 +170,9 @@ cheatsheet](https://devhints.io/curl)
 
 **Good for**: Filtering/sifting through JSON payloads
 
-**How to use**: `cat response.json | jq`, `cat response.json | jq
-.stores[].name`
+**How to use**:
+* `cat response.json | jq`
+* `cat response.json | jq '.stores[].name'`
 
 **How to install**: `brew install jq`
 
@@ -173,7 +187,9 @@ cheatsheet](https://devhints.io/curl)
 csv and json files. Also works with postgres databases, sqlite, and urls (say
 whaaat?). ALSO MAP PLOTTING!
 
-**How to use**: `vd employees.csv`, `cat stores.json | vd -f json`
+**How to use**:
+* `vd employees.csv`
+* `cat stores.json | vd -f json`
 
 **How to install**: `brew install visidata`
 
@@ -188,25 +204,31 @@ VisiData](https://jsvine.github.io/intro-to-visidata/index.html)
 
 **Good for**: Finding text in files or folders
 
-**How to use**: `ag searchstring`, `ag -w WORD_HERE`
+**How to use**:
+* `ag searchstring`
+* `cat largeFile.js | ag -w WORD_HERE`
 
 **How to install**: `brew install the_silver_searcher`
 
-**See also**: [ripgrep](https://github.com/BurntSushi/ripgrep),
+**See also**: [ag](https://github.com/ggreer/the_silver_searcher),
+[ripgrep](https://github.com/BurntSushi/ripgrep),
 [the_platinum_searcher](https://github.com/monochromegane/the_platinum_searcher)
 
 ---
 
-# fd - [github.com/sharkdp/fd](https://github.com/sharkdp/fd)
-**Description**: Replacement for fd
+# fd
+**Description**: Replacement for `find`
 
 **Good for**: Finding files of a certain name or type
 
-**How to use**: `fd test`, `fd -e json`
+**How to use**:
+* `fd test`
+* `fd -p test`
+* `fd -e json`
 
 **How to install**: `brew install fd`
 
-**See also**:
+**See also**: [github.com/sharkdp/fd](https://github.com/sharkdp/fd)
 
 ---
 
@@ -216,8 +238,14 @@ VisiData](https://jsvine.github.io/intro-to-visidata/index.html)
 
 **Good for**: Chaining commands together, or saving output to a file
 
-**How to use**: `>`, `<`, `|`, `<<<`, `/dev/std{in,out,err}` (0, 1, 2),
-`/dev/null`, `mkfifo`
+**How to use**:
+* `>`
+* `<`
+* `|`
+* `<<<`
+* `/dev/std{in,out,err}` (0, 1, 2)
+* `/dev/null`
+* `mkfifo`
 
 **How to install**: Built-in to the shell
 
@@ -232,8 +260,10 @@ file](https://www.howtogeek.com/117939/htg-explains-what-everything-is-a-file-me
 
 **Good for**: Applications whose data is structured in nature
 
-**How to use**: `createdb`/`dropdb` to create/drop database, `psql` to connect
-to a database, and `pg_dump` to create a backup.
+**How to use**:
+* `createdb`/`dropdb` to create/drop database
+* `psql` to connect to a database
+* `pg_dump` to create a backup
 
 **How to install**: `brew install postgres`
 
@@ -249,8 +279,10 @@ broker
 
 **Good for**: Exactly that
 
-**How to use**: `redis-cli`, `redis-cli keys "*"`, `redis-cli -h
-test-redis.com`
+**How to use**:
+* `redis-cli`
+* `redis-cli keys "*"`
+* `redis-cli -h test-redis.com`
 
 **How to install**: `brew install redis`
 
@@ -263,7 +295,9 @@ test-redis.com`
 
 **Good for**: Automatically starting/stopping Redis, Postgres, Docker, etc...
 
-**How to use**: `brew services`, `brew services [start,stop] redis`
+**How to use**:
+* `brew services`
+* `brew services [start,stop] redis`
 
 **How to install**: ~~brew install~~ kidding, it's installed with `brew`
 
