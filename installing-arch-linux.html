@@ -329,8 +329,9 @@ $ vim /etc/localhost
 
 
 <p>Edit <code>/etc/mkinitcpio.conf</code>, add <code>sd-encrypt</code> to the HOOKS section, and swap
-<code>udev</code> with <code>systemd</code>. More information on hooks at
-https://wiki.archlinux.org/index.php/Mkinitcpio#Common_hooks</p>
+<code>udev</code> with <code>systemd</code>. More information on hooks is on the
+<a href="https://wiki.archlinux.org/index.php/Mkinitcpio#Common_hooks">mkinitcpio</a>
+ArchWiki page</p>
 <div class="highlight"><pre><span></span>HOOKS=(base systemd autodetect modconf block filesystems keyboard sd-encrypt fsck)
 </pre></div>
 
