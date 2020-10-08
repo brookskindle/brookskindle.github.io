@@ -1,0 +1,237 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://brookskindle.github.io/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="https://brookskindle.github.io/theme/pygments/dracula.min.css">
+  <link rel="stylesheet" type="text/css" href="https://brookskindle.github.io/theme/font-awesome/css/font-awesome.min.css">
+
+    <link href="https://brookskindle.github.io/styles/styles.css" rel="stylesheet">
+
+
+
+
+
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#282a36">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#282a36">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Microsoft EDGE -->
+    <meta name="msapplication-TileColor" content="#282a36">
+
+<meta name="author" content="Brooks Kindle" />
+<meta name="description" content="As part of the nature of my work, I have to interact with a lot of systems and tools. My .zshrc file has slowly grown in order to support this multi-project workflow. So, too, has the startup time for my shell. Want to know how long it takes right now …" />
+<meta name="keywords" content="zsh, performance">
+
+<meta property="og:site_name" content="Brooks Kindle"/>
+<meta property="og:title" content="Reducing zsh startup time by 400%"/>
+<meta property="og:description" content="As part of the nature of my work, I have to interact with a lot of systems and tools. My .zshrc file has slowly grown in order to support this multi-project workflow. So, too, has the startup time for my shell. Want to know how long it takes right now …"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="https://brookskindle.github.io/reducing-zsh-startup-time-by-400.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2020-10-08 00:00:00-07:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="https://brookskindle.github.io/author/brooks-kindle.html">
+<meta property="article:section" content="Programming"/>
+<meta property="article:tag" content="zsh"/>
+<meta property="article:tag" content="performance"/>
+<meta property="og:image" content="/images/profile.jpg">
+
+  <title>Brooks Kindle &ndash; Reducing zsh startup time by 400%</title>
+
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="https://brookskindle.github.io">
+        <img src="/images/profile.jpg" alt="Brooks Kindle" title="Brooks Kindle">
+      </a>
+      <h1><a href="https://brookskindle.github.io">Brooks Kindle</a></h1>
+
+<p>software engineer</p>
+      <nav>
+        <ul class="list">
+          <li><a href="https://brookskindle.github.io/pages/about.html#about">About</a></li>
+          <li><a href="https://brookskindle.github.io/pages/contact.html#contact">Contact</a></li>
+
+        </ul>
+      </nav>
+
+      <ul class="social">
+        <li><a class="sc-github" href="https://github.com/brookskindle" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-linkedin" href="https://www.linkedin.com/in/brookskindle/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+      </ul>
+    </div>
+
+
+  </aside>
+  <main>
+
+    <nav>
+      <a href="https://brookskindle.github.io">    Home
+</a>
+
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+
+
+    </nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="reducing-zsh-startup-time-by-400">Reducing zsh startup time by 400%</h1>
+    <p>
+          Posted on Thu 08 October 2020 in <a href="https://brookskindle.github.io/category/programming.html">Programming</a>
+
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>As part of the nature of my work, I have to interact with a lot of systems and
+tools. My <code>.zshrc</code> file has slowly grown in order to support this multi-project
+workflow. So, too, has the startup time for my shell.</p>
+<p>Want to know how long it takes right now? Over a second.</p>
+<div class="highlight"><pre><span></span>$ <span class="nv">time</span> <span class="nv">zsh</span> <span class="o">-</span><span class="nv">i</span> <span class="o">-</span><span class="nv">c</span> <span class="k">exit</span>
+<span class="nv">zsh</span> <span class="o">-</span><span class="nv">i</span> <span class="o">-</span><span class="nv">c</span> <span class="k">exit</span>  <span class="mi">1</span>.<span class="mi">24</span><span class="nv">s</span> <span class="nv">user</span> <span class="mi">0</span>.<span class="mi">84</span><span class="nv">s</span> <span class="nv">system</span> <span class="mi">85</span><span class="o">%</span> <span class="nv">cpu</span> <span class="mi">2</span>.<span class="mi">423</span> <span class="nv">total</span>
+</pre></div>
+
+
+<p>That's insane! I use tmux, so I have to pay this price every time a new window
+or pane is opened and it's frustrating to say the least.</p>
+<p>It's best to measure first before cutting. I followed Steven Van Bael's post on
+<a href="https://stevenvanbael.com/profiling-zsh-startup">profiling zsh startup time</a>
+and added <code>zmodload zsh/zprof</code> as the first line and <code>zprof</code> as the last in
+<code>~/.zshrc</code>.</p>
+<div class="highlight"><pre><span></span><span class="n">num</span>  <span class="n">calls</span>                <span class="n">time</span>                       <span class="k">self</span>            <span class="n">name</span>
+<span class="c1">-----------------------------------------------------------------------------------</span>
+ <span class="mi">1</span><span class="p">)</span>    <span class="mi">1</span>         <span class="mi">203</span><span class="p">.</span><span class="mi">32</span>   <span class="mi">203</span><span class="p">.</span><span class="mi">32</span>   <span class="mi">24</span><span class="p">.</span><span class="mi">07</span><span class="o">%</span>    <span class="mi">203</span><span class="p">.</span><span class="mi">22</span>   <span class="mi">203</span><span class="p">.</span><span class="mi">22</span>   <span class="mi">24</span><span class="p">.</span><span class="mi">05</span><span class="o">%</span>  <span class="n">nvm_die_on_prefix</span>
+ <span class="mi">2</span><span class="p">)</span>    <span class="mi">1</span>         <span class="mi">182</span><span class="p">.</span><span class="mi">80</span>   <span class="mi">182</span><span class="p">.</span><span class="mi">80</span>   <span class="mi">21</span><span class="p">.</span><span class="mi">64</span><span class="o">%</span>    <span class="mi">182</span><span class="p">.</span><span class="mi">80</span>   <span class="mi">182</span><span class="p">.</span><span class="mi">80</span>   <span class="mi">21</span><span class="p">.</span><span class="mi">64</span><span class="o">%</span>  <span class="n">virtualenvwrapper_run_hook</span>
+ <span class="mi">3</span><span class="p">)</span>    <span class="mi">2</span>         <span class="mi">432</span><span class="p">.</span><span class="mi">98</span>   <span class="mi">216</span><span class="p">.</span><span class="mi">49</span>   <span class="mi">51</span><span class="p">.</span><span class="mi">25</span><span class="o">%</span>    <span class="mi">147</span><span class="p">.</span><span class="mi">32</span>    <span class="mi">73</span><span class="p">.</span><span class="mi">66</span>   <span class="mi">17</span><span class="p">.</span><span class="mi">44</span><span class="o">%</span>  <span class="n">nvm</span>
+ <span class="mi">4</span><span class="p">)</span>    <span class="mi">1</span>          <span class="mi">85</span><span class="p">.</span><span class="mi">92</span>    <span class="mi">85</span><span class="p">.</span><span class="mi">92</span>   <span class="mi">10</span><span class="p">.</span><span class="mi">17</span><span class="o">%</span>     <span class="mi">85</span><span class="p">.</span><span class="mi">77</span>    <span class="mi">85</span><span class="p">.</span><span class="mi">77</span>   <span class="mi">10</span><span class="p">.</span><span class="mi">15</span><span class="o">%</span>  <span class="n">__kubectl_bash_source</span>
+ <span class="mi">5</span><span class="p">)</span>    <span class="mi">1</span>          <span class="mi">82</span><span class="p">.</span><span class="mi">22</span>    <span class="mi">82</span><span class="p">.</span><span class="mi">22</span>    <span class="mi">9</span><span class="p">.</span><span class="mi">73</span><span class="o">%</span>     <span class="mi">72</span><span class="p">.</span><span class="mi">98</span>    <span class="mi">72</span><span class="p">.</span><span class="mi">98</span>    <span class="mi">8</span><span class="p">.</span><span class="mi">64</span><span class="o">%</span>  <span class="n">nvm_ensure_version_installed</span>
+ <span class="mi">6</span><span class="p">)</span>    <span class="mi">1</span>         <span class="mi">472</span><span class="p">.</span><span class="mi">63</span>   <span class="mi">472</span><span class="p">.</span><span class="mi">63</span>   <span class="mi">55</span><span class="p">.</span><span class="mi">94</span><span class="o">%</span>     <span class="mi">39</span><span class="p">.</span><span class="mi">65</span>    <span class="mi">39</span><span class="p">.</span><span class="mi">65</span>    <span class="mi">4</span><span class="p">.</span><span class="mi">69</span><span class="o">%</span>  <span class="n">nvm_auto</span>
+ <span class="mi">7</span><span class="p">)</span>    <span class="mi">1</span>          <span class="mi">30</span><span class="p">.</span><span class="mi">29</span>    <span class="mi">30</span><span class="p">.</span><span class="mi">29</span>    <span class="mi">3</span><span class="p">.</span><span class="mi">59</span><span class="o">%</span>     <span class="mi">30</span><span class="p">.</span><span class="mi">29</span>    <span class="mi">30</span><span class="p">.</span><span class="mi">29</span>    <span class="mi">3</span><span class="p">.</span><span class="mi">59</span><span class="o">%</span>  <span class="n">handle_completion_insecurities</span>
+ <span class="mi">8</span><span class="p">)</span>    <span class="mi">1</span>         <span class="mi">200</span><span class="p">.</span><span class="mi">14</span>   <span class="mi">200</span><span class="p">.</span><span class="mi">14</span>   <span class="mi">23</span><span class="p">.</span><span class="mi">69</span><span class="o">%</span>     <span class="mi">16</span><span class="p">.</span><span class="mi">70</span>    <span class="mi">16</span><span class="p">.</span><span class="mi">70</span>    <span class="mi">1</span><span class="p">.</span><span class="mi">98</span><span class="o">%</span>  <span class="n">virtualenvwrapper_initialize</span>
+ <span class="mi">9</span><span class="p">)</span>    <span class="mi">1</span>          <span class="mi">15</span><span class="p">.</span><span class="mi">86</span>    <span class="mi">15</span><span class="p">.</span><span class="mi">86</span>    <span class="mi">1</span><span class="p">.</span><span class="mi">88</span><span class="o">%</span>     <span class="mi">15</span><span class="p">.</span><span class="mi">86</span>    <span class="mi">15</span><span class="p">.</span><span class="mi">86</span>    <span class="mi">1</span><span class="p">.</span><span class="mi">88</span><span class="o">%</span>  <span class="n">compinit</span>
+<span class="mi">10</span><span class="p">)</span>    <span class="mi">1</span>          <span class="mi">10</span><span class="p">.</span><span class="mi">79</span>    <span class="mi">10</span><span class="p">.</span><span class="mi">79</span>    <span class="mi">1</span><span class="p">.</span><span class="mi">28</span><span class="o">%</span>     <span class="mi">10</span><span class="p">.</span><span class="mi">68</span>    <span class="mi">10</span><span class="p">.</span><span class="mi">68</span>    <span class="mi">1</span><span class="p">.</span><span class="mi">26</span><span class="o">%</span>  <span class="n">_zsh_highlight_load_highlighters</span>
+<span class="mi">11</span><span class="p">)</span>    <span class="mi">1</span>           <span class="mi">9</span><span class="p">.</span><span class="mi">24</span>     <span class="mi">9</span><span class="p">.</span><span class="mi">24</span>    <span class="mi">1</span><span class="p">.</span><span class="mi">09</span><span class="o">%</span>      <span class="mi">9</span><span class="p">.</span><span class="mi">24</span>     <span class="mi">9</span><span class="p">.</span><span class="mi">24</span>    <span class="mi">1</span><span class="p">.</span><span class="mi">09</span><span class="o">%</span>  <span class="n">nvm_is_version_installed</span>
+<span class="mi">12</span><span class="p">)</span>    <span class="mi">2</span>           <span class="mi">5</span><span class="p">.</span><span class="mi">88</span>     <span class="mi">2</span><span class="p">.</span><span class="mi">94</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">70</span><span class="o">%</span>      <span class="mi">5</span><span class="p">.</span><span class="mi">88</span>     <span class="mi">2</span><span class="p">.</span><span class="mi">94</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">70</span><span class="o">%</span>  <span class="n">grep</span><span class="o">-</span><span class="n">flag</span><span class="o">-</span><span class="n">available</span>
+<span class="mi">13</span><span class="p">)</span>    <span class="mi">1</span>           <span class="mi">5</span><span class="p">.</span><span class="mi">47</span>     <span class="mi">5</span><span class="p">.</span><span class="mi">47</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">65</span><span class="o">%</span>      <span class="mi">5</span><span class="p">.</span><span class="mi">47</span>     <span class="mi">5</span><span class="p">.</span><span class="mi">47</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">65</span><span class="o">%</span>  <span class="n">_zsh_highlight_bind_widgets</span>
+<span class="mi">14</span><span class="p">)</span>    <span class="mi">1</span>           <span class="mi">4</span><span class="p">.</span><span class="mi">12</span>     <span class="mi">4</span><span class="p">.</span><span class="mi">12</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">49</span><span class="o">%</span>      <span class="mi">4</span><span class="p">.</span><span class="mi">12</span>     <span class="mi">4</span><span class="p">.</span><span class="mi">12</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">49</span><span class="o">%</span>  <span class="n">nvm_supports_source_options</span>
+<span class="mi">15</span><span class="p">)</span>    <span class="mi">1</span>           <span class="mi">3</span><span class="p">.</span><span class="mi">22</span>     <span class="mi">3</span><span class="p">.</span><span class="mi">22</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">38</span><span class="o">%</span>      <span class="mi">3</span><span class="p">.</span><span class="mi">20</span>     <span class="mi">3</span><span class="p">.</span><span class="mi">20</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">38</span><span class="o">%</span>  <span class="n">powerlevel9k_vcs_init</span>
+<span class="mi">16</span><span class="p">)</span>    <span class="mi">1</span>           <span class="mi">2</span><span class="p">.</span><span class="mi">17</span>     <span class="mi">2</span><span class="p">.</span><span class="mi">17</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">26</span><span class="o">%</span>      <span class="mi">2</span><span class="p">.</span><span class="mi">17</span>     <span class="mi">2</span><span class="p">.</span><span class="mi">17</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">26</span><span class="o">%</span>  <span class="n">termColors</span>
+<span class="mi">17</span><span class="p">)</span>    <span class="mi">2</span>           <span class="mi">1</span><span class="p">.</span><span class="mi">84</span>     <span class="mi">0</span><span class="p">.</span><span class="mi">92</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">22</span><span class="o">%</span>      <span class="mi">1</span><span class="p">.</span><span class="mi">84</span>     <span class="mi">0</span><span class="p">.</span><span class="mi">92</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">22</span><span class="o">%</span>  <span class="n">env_default</span>
+<span class="mi">18</span><span class="p">)</span>    <span class="mi">2</span>           <span class="mi">1</span><span class="p">.</span><span class="mi">53</span>     <span class="mi">0</span><span class="p">.</span><span class="mi">76</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">18</span><span class="o">%</span>      <span class="mi">1</span><span class="p">.</span><span class="mi">53</span>     <span class="mi">0</span><span class="p">.</span><span class="mi">76</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">18</span><span class="o">%</span>  <span class="n">colors</span>
+<span class="mi">19</span><span class="p">)</span>    <span class="mi">1</span>           <span class="mi">7</span><span class="p">.</span><span class="mi">69</span>     <span class="mi">7</span><span class="p">.</span><span class="mi">69</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">91</span><span class="o">%</span>      <span class="mi">1</span><span class="p">.</span><span class="mi">31</span>     <span class="mi">1</span><span class="p">.</span><span class="mi">31</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">16</span><span class="o">%</span>  <span class="n">prompt_powerlevel9k_setup</span>
+<span class="mi">20</span><span class="p">)</span>   <span class="mi">36</span>           <span class="mi">1</span><span class="p">.</span><span class="mi">14</span>     <span class="mi">0</span><span class="p">.</span><span class="mi">03</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">14</span><span class="o">%</span>      <span class="mi">0</span><span class="p">.</span><span class="mi">96</span>     <span class="mi">0</span><span class="p">.</span><span class="mi">03</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">11</span><span class="o">%</span>  <span class="n">set_default</span>
+<span class="mi">21</span><span class="p">)</span>    <span class="mi">5</span>           <span class="mi">0</span><span class="p">.</span><span class="mi">78</span>     <span class="mi">0</span><span class="p">.</span><span class="mi">16</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">09</span><span class="o">%</span>      <span class="mi">0</span><span class="p">.</span><span class="mi">78</span>     <span class="mi">0</span><span class="p">.</span><span class="mi">16</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">09</span><span class="o">%</span>  <span class="k">add</span><span class="o">-</span><span class="n">zsh</span><span class="o">-</span><span class="n">hook</span>
+<span class="mi">22</span><span class="p">)</span>    <span class="mi">1</span>           <span class="mi">0</span><span class="p">.</span><span class="mi">59</span>     <span class="mi">0</span><span class="p">.</span><span class="mi">59</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">07</span><span class="o">%</span>      <span class="mi">0</span><span class="p">.</span><span class="mi">59</span>     <span class="mi">0</span><span class="p">.</span><span class="mi">59</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">07</span><span class="o">%</span>  <span class="n">virtualenvwrapper_setup_tab_completion</span>
+<span class="mi">23</span><span class="p">)</span>    <span class="mi">2</span>           <span class="mi">0</span><span class="p">.</span><span class="mi">47</span>     <span class="mi">0</span><span class="p">.</span><span class="mi">23</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">06</span><span class="o">%</span>      <span class="mi">0</span><span class="p">.</span><span class="mi">47</span>     <span class="mi">0</span><span class="p">.</span><span class="mi">23</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">06</span><span class="o">%</span>  <span class="k">is</span><span class="o">-</span><span class="k">at</span><span class="o">-</span><span class="n">least</span>
+<span class="mi">24</span><span class="p">)</span>    <span class="mi">2</span>           <span class="mi">0</span><span class="p">.</span><span class="mi">45</span>     <span class="mi">0</span><span class="p">.</span><span class="mi">22</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">05</span><span class="o">%</span>      <span class="mi">0</span><span class="p">.</span><span class="mi">45</span>     <span class="mi">0</span><span class="p">.</span><span class="mi">22</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">05</span><span class="o">%</span>  <span class="n">bashcompinit</span>
+<span class="mi">25</span><span class="p">)</span>    <span class="mi">4</span>           <span class="mi">0</span><span class="p">.</span><span class="mi">34</span>     <span class="mi">0</span><span class="p">.</span><span class="mi">09</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">04</span><span class="o">%</span>      <span class="mi">0</span><span class="p">.</span><span class="mi">34</span>     <span class="mi">0</span><span class="p">.</span><span class="mi">09</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">04</span><span class="o">%</span>  <span class="n">compdef</span>
+<span class="mi">26</span><span class="p">)</span>    <span class="mi">2</span>           <span class="mi">0</span><span class="p">.</span><span class="mi">32</span>     <span class="mi">0</span><span class="p">.</span><span class="mi">16</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">04</span><span class="o">%</span>      <span class="mi">0</span><span class="p">.</span><span class="mi">32</span>     <span class="mi">0</span><span class="p">.</span><span class="mi">16</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">04</span><span class="o">%</span>  <span class="p">(</span><span class="n">anon</span><span class="p">)</span>
+<span class="mi">27</span><span class="p">)</span>    <span class="mi">3</span>           <span class="mi">0</span><span class="p">.</span><span class="mi">50</span>     <span class="mi">0</span><span class="p">.</span><span class="mi">17</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">06</span><span class="o">%</span>      <span class="mi">0</span><span class="p">.</span><span class="mi">24</span>     <span class="mi">0</span><span class="p">.</span><span class="mi">08</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">03</span><span class="o">%</span>  <span class="n">complete</span>
+<span class="mi">28</span><span class="p">)</span>    <span class="mi">2</span>           <span class="mi">0</span><span class="p">.</span><span class="mi">22</span>     <span class="mi">0</span><span class="p">.</span><span class="mi">11</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">03</span><span class="o">%</span>      <span class="mi">0</span><span class="p">.</span><span class="mi">22</span>     <span class="mi">0</span><span class="p">.</span><span class="mi">11</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">03</span><span class="o">%</span>  <span class="n">nvm_has</span>
+<span class="mi">29</span><span class="p">)</span>   <span class="mi">41</span>           <span class="mi">0</span><span class="p">.</span><span class="mi">22</span>     <span class="mi">0</span><span class="p">.</span><span class="mi">01</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">03</span><span class="o">%</span>      <span class="mi">0</span><span class="p">.</span><span class="mi">22</span>     <span class="mi">0</span><span class="p">.</span><span class="mi">01</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">03</span><span class="o">%</span>  <span class="k">defined</span>
+<span class="mi">30</span><span class="p">)</span>    <span class="mi">1</span>         <span class="mi">476</span><span class="p">.</span><span class="mi">81</span>   <span class="mi">476</span><span class="p">.</span><span class="mi">81</span>   <span class="mi">56</span><span class="p">.</span><span class="mi">44</span><span class="o">%</span>      <span class="mi">0</span><span class="p">.</span><span class="mi">06</span>     <span class="mi">0</span><span class="p">.</span><span class="mi">06</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="o">%</span>  <span class="n">nvm_process_parameters</span>
+<span class="mi">31</span><span class="p">)</span>    <span class="mi">1</span>           <span class="mi">0</span><span class="p">.</span><span class="mi">08</span>     <span class="mi">0</span><span class="p">.</span><span class="mi">08</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="o">%</span>      <span class="mi">0</span><span class="p">.</span><span class="mi">05</span>     <span class="mi">0</span><span class="p">.</span><span class="mi">05</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="o">%</span>  <span class="n">print_deprecation_warning</span>
+<span class="mi">32</span><span class="p">)</span>    <span class="mi">1</span>           <span class="mi">0</span><span class="p">.</span><span class="mi">05</span>     <span class="mi">0</span><span class="p">.</span><span class="mi">05</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="o">%</span>      <span class="mi">0</span><span class="p">.</span><span class="mi">05</span>     <span class="mi">0</span><span class="p">.</span><span class="mi">05</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="o">%</span>  <span class="n">virtualenvwrapper_verify_workon_home</span>
+<span class="mi">33</span><span class="p">)</span>    <span class="mi">2</span>           <span class="mi">0</span><span class="p">.</span><span class="mi">05</span>     <span class="mi">0</span><span class="p">.</span><span class="mi">02</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="o">%</span>      <span class="mi">0</span><span class="p">.</span><span class="mi">05</span>     <span class="mi">0</span><span class="p">.</span><span class="mi">02</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">01</span><span class="o">%</span>  <span class="n">segment_in_use</span>
+<span class="mi">34</span><span class="p">)</span>    <span class="mi">1</span>           <span class="mi">0</span><span class="p">.</span><span class="mi">02</span>     <span class="mi">0</span><span class="p">.</span><span class="mi">02</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="o">%</span>      <span class="mi">0</span><span class="p">.</span><span class="mi">02</span>     <span class="mi">0</span><span class="p">.</span><span class="mi">02</span>    <span class="mi">0</span><span class="p">.</span><span class="mi">00</span><span class="o">%</span>  <span class="n">nvm_is_zsh</span>
+<span class="p">...</span>
+</pre></div>
+
+
+<p>The biggest culprit is <code>nvm</code>, the node version manager, followed by <code>kubectl</code>,
+the CLI tool for kubernetes. I need both, but I don't need them all the time. I
+can move their initializations to a function or alias and call them on an
+as-needed basis.</p>
+<div class="highlight"><pre><span></span><span class="c1"># Allow kubectl tab-completion</span>
+<span class="nb">alias</span> <span class="nv">k</span><span class="o">=</span><span class="s1">&#39;kubectl&#39;</span>
+<span class="nb">source</span> &lt;<span class="o">(</span>kubectl completion zsh<span class="o">)</span>
+<span class="nb">complete</span> -F __start_kubectl k
+
+<span class="nb">export</span> <span class="nv">NVM_DIR</span><span class="o">=</span>~/.nvm
+<span class="nb">source</span> <span class="k">$(</span>brew --prefix nvm<span class="k">)</span>/nvm.sh
+</pre></div>
+
+
+<p>becomes</p>
+<div class="highlight"><pre><span></span><span class="k">function</span> init_kubectl<span class="o">()</span> <span class="o">{</span>
+    <span class="c1"># Allow kubectl tab-completion</span>
+    <span class="nb">alias</span> <span class="nv">k</span><span class="o">=</span><span class="s1">&#39;kubectl&#39;</span>
+    <span class="nb">source</span> &lt;<span class="o">(</span>kubectl completion zsh<span class="o">)</span>
+    <span class="nb">complete</span> -F __start_kubectl k
+<span class="o">}</span>
+
+<span class="k">function</span> init_nvm<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">export</span> <span class="nv">NVM_DIR</span><span class="o">=</span>~/.nvm
+    <span class="c1"># source $(brew --prefix nvm)/nvm.sh</span>
+    <span class="nb">source</span> /usr/local/opt/nvm/nvm.sh
+<span class="o">}</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>$ <span class="nv">time</span> <span class="nv">zsh</span> <span class="o">-</span><span class="nv">i</span> <span class="o">-</span><span class="nv">c</span> <span class="k">exit</span>
+<span class="nv">zsh</span> <span class="o">-</span><span class="nv">i</span> <span class="o">-</span><span class="nv">c</span> <span class="k">exit</span>  <span class="mi">0</span>.<span class="mi">29</span><span class="nv">s</span> <span class="nv">user</span> <span class="mi">0</span>.<span class="mi">15</span><span class="nv">s</span> <span class="nv">system</span> <span class="mi">83</span><span class="o">%</span> <span class="nv">cpu</span> <span class="mi">0</span>.<span class="mi">524</span> <span class="nv">total</span>
+</pre></div>
+
+
+<p>This comes out to a 427% performance improvement, but in practical terms it
+means that the startup time is much less of a PITA. Not bad for 5 minutes of
+effort; this is truly the <a href="https://en.wikipedia.org/wiki/Pareto_principle">Pareto
+principle</a> at work.</p>
+<p>If you are interested in a more in-depth analysis of zsh performance, htr3n's
+post on a <a href="https://htr3n.github.io/2018/07/faster-zsh/">faster zsh</a> goes much
+further than I did.</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://brookskindle.github.io/tag/zsh.html">zsh</a>
+      <a href="https://brookskindle.github.io/tag/performance.html">performance</a>
+    </p>
+  </div>
+
+
+
+
+
+</article>
+
+    <footer>
+<p>&copy;  </p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p>    </footer>
+  </main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Brooks Kindle ",
+  "url" : "https://brookskindle.github.io",
+  "image": "/images/profile.jpg",
+  "description": "None"
+}
+</script>
+
+</body>
+</html>
