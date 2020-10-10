@@ -34,7 +34,7 @@
  .highlight .gr { color: #f8f8f2 } /* Generic.Error */
  .highlight .gh { color: #f8f8f2; font-weight: bold } /* Generic.Heading */
  .highlight .gi { color: #f8f8f2; font-weight: bold } /* Generic.Inserted */
- .highlight .go { color: #44475a } /* Generic.Output */
+ .highlight .go { color: #f8f8f2 } /* Generic.Output */ /* NOTE: Original value was #44475a, but was too hard to read against the dark background*/
  .highlight .gp { color: #f8f8f2 } /* Generic.Prompt */
  .highlight .gs { color: #f8f8f2 } /* Generic.Strong */
  .highlight .gu { color: #f8f8f2; font-weight: bold } /* Generic.Subheading */
