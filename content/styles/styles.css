@@ -8,27 +8,27 @@ a.anchor-link {
 
 /* Site theming: dracula colors!!! */
 aside {
-  background-color: #282a36;
+  background-color: #2e3047;
 }
 a {
-  color: #6272a4;
+  color: #3153C0;
 }
 a:hover {
-  color: #737fa4;
+  color: #183CB0;
 }
 a.btn {
   color: #f8f8f2;
-  background-color: #6272a4;
+  background-color: #3153C0;
 }
 a.btn:hover {
-  background-color: #737fa4;
+  background-color: #183CB0;
 }
 .tag-cloud a {
   color: #f8f8f2;
-  background-color: #6272a4;
+  background-color: #3153C0;
 }
 .tag-cloud a:hover {
-  background-color: #737fa4;
+  background-color: #183CB0;
 }
 
 /* Let jupyter-rendered tables scroll left/right on small screens */

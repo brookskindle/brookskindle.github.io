@@ -86,6 +86,5 @@ SOCIAL = (
     ("linkedin", "https://www.linkedin.com/in/brookskindle/"),
 )
 
-# Use dracula colors: https://github.com/dracula/dracula-theme/
-PYGMENTS_STYLE = "dracula"
-BROWSER_COLOR = "#282a36"
+PYGMENTS_STYLE = "dracula" # https://github.com/dracula/dracula-theme/
+BROWSER_COLOR = "#2e3047"
