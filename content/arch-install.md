@@ -59,7 +59,7 @@ ISO](https://www.archlinux.org/download/) and make a bootable USB drive with
 the image. I did this with the `dd` command. Then: restart your machine, boot
 from your new install media, and after a short while you will be greeted with a
 single prompt.
-```
+```console
 #
 ```
 

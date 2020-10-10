@@ -193,7 +193,7 @@ There's a couple of options to take here.
 I hardly ever get to work with named pipes, so let's use the last option.
 First, I'll create the file.
 
-```
+```console
 $ mkfifo aoc-day1-input.txt
 $ ls aoc-day1-input.txt
 prw-r--r-- 1 brooks brooks 0 Dec  4 22:56 aoc-day1-input.txt

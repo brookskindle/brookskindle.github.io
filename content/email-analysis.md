@@ -47,7 +47,7 @@ data is ready to be downloaded.
 I chose a gzipped tar file format (`.tgz`), so I can uncompress it using
 `gunzip` and `tar`.
 
-```
+```console
 $ gunzip takeout-20200923T060647Z-001.tgz
 $ tar -xvf takeout-20200924T022153Z-001.tar
 Takeout/Mail/User Settings/Forwarding Addresses.json
@@ -189,7 +189,7 @@ $ vd mail.csv
 To keep things practical, I restricted the search to the past two years instead
 of for all time. For privacy reasons, I will not share most of the results, but
 here are some of the interesting ones.
-```tsv
+```
 domain               count   percent    histogram
 linkedin.com         442     14.21	    **************************************************
 google.com           225     7.23	    *************************

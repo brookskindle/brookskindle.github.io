@@ -9,7 +9,7 @@ workflow. So, too, has the startup time for my shell.
 
 Want to know how long it takes right now? Over a second.
 
-```
+```console
 $ time zsh -i -c exit
 zsh -i -c exit  1.24s user 0.84s system 85% cpu 2.423 total
 ```
@@ -94,7 +94,7 @@ function init_nvm() {
 }
 ```
 
-```
+```console
 $ time zsh -i -c exit
 zsh -i -c exit  0.29s user 0.15s system 83% cpu 0.524 total
 ```
