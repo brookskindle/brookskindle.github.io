@@ -42,7 +42,7 @@
 <meta property="og:url" content="https://brookskindle.github.io/installing-arch-linux.html"/>
 <meta property="og:type" content="article"/>
 <meta property="article:published_time" content="2020-09-23 00:00:00-07:00"/>
-<meta property="article:modified_time" content=""/>
+<meta property="article:modified_time" content="2020-11-28 00:00:00-08:00"/>
 <meta property="article:author" content="https://brookskindle.github.io/author/brooks-kindle.html">
 <meta property="article:section" content="Programming"/>
 <meta property="article:tag" content="operating systems"/>
@@ -435,12 +435,15 @@ time around I'm using it without a display manager.</p>
 
 <p>A graphical environment can be started at any time using <code>startx</code>.</p>
 <h3>Audio</h3>
-<div class="highlight"><pre><span></span><span class="gp">$</span> sudo pacman -S pulseaudio pavucontrol
+<div class="highlight"><pre><span></span><span class="gp">$</span> sudo pacman -S pulseaudio pavucontrol pulseaudio-alsa
 </pre></div>
 
 
 <p>In my i3config, I use <code>pactl</code> to map volume control to a few keys. Can be
-started with <code>start-pulseaudio-x11</code></p>
+started with <code>start-pulseaudio-x11</code>.</p>
+<p>Some applications will only work directly with <code>alsa</code>, so install
+<code>pulseaudio-alsa</code> for compatibility (and to allow multiple applications to play
+audio at the same time).</p>
 <h3>Video</h3>
 <p>Luckily I didn't have to set anything up in order to support video streaming
 from my webcam</p>
