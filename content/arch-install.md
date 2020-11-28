@@ -1,5 +1,6 @@
 Title: Installing Arch Linux
 Date: 2020-09-23
+Modified: 2020-11-28
 Category: Programming
 Tags: operating systems, arch, minimal, linux
 
@@ -337,10 +338,14 @@ A graphical environment can be started at any time using `startx`.
 
 ### Audio
 ```console
-$ sudo pacman -S pulseaudio pavucontrol
+$ sudo pacman -S pulseaudio pavucontrol pulseaudio-alsa
 ```
 In my i3config, I use `pactl` to map volume control to a few keys. Can be
-started with `start-pulseaudio-x11`
+started with `start-pulseaudio-x11`.
+
+Some applications will only work directly with `alsa`, so install
+`pulseaudio-alsa` for compatibility (and to allow multiple applications to play
+audio at the same time).
 
 ### Video
 Luckily I didn't have to set anything up in order to support video streaming
