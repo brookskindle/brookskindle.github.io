@@ -29,11 +29,11 @@
  .highlight .cpf { color: #6272a4 } /* Comment.PreprocFile */
  .highlight .c1 { color: #6272a4 } /* Comment.Single */
  .highlight .cs { color: #6272a4 } /* Comment.Special */
- .highlight .gd { color: #8b080b } /* Generic.Deleted */
+ .highlight .gd { color: #ff5555 } /* Generic.Deleted */
  .highlight .ge { color: #f8f8f2; text-decoration: underline } /* Generic.Emph */
  .highlight .gr { color: #f8f8f2 } /* Generic.Error */
  .highlight .gh { color: #f8f8f2; font-weight: bold } /* Generic.Heading */
- .highlight .gi { color: #f8f8f2; font-weight: bold } /* Generic.Inserted */
+ .highlight .gi { color: #50fa7b; font-weight: bold } /* Generic.Inserted */
  .highlight .go { color: #f8f8f2 } /* Generic.Output */ /* NOTE: Original value was #44475a, but was too hard to read against the dark background*/
  .highlight .gp { color: #f8f8f2 } /* Generic.Prompt */
  .highlight .gs { color: #f8f8f2 } /* Generic.Strong */
