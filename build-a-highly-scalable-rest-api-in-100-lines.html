@@ -1,0 +1,672 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://brookskindle.github.io/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="https://brookskindle.github.io/theme/pygments/dracula.min.css">
+  <link rel="stylesheet" type="text/css" href="https://brookskindle.github.io/theme/font-awesome/css/font-awesome.min.css">
+
+    <link href="https://brookskindle.github.io/styles/styles.css" rel="stylesheet">
+
+
+
+
+
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#2e3047">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#2e3047">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Microsoft EDGE -->
+    <meta name="msapplication-TileColor" content="#2e3047">
+
+<meta name="author" content="Brooks Kindle" />
+<meta name="description" content="Today I&#39;ll be walking through how to build a REST API endpoint with the following features: Automatic TLS/SSL encryption Accessible by both front and back-end applications Horizontally scalable API key validation and limiting Persistent storage Automated deployments All in about 100 lines of code. It can be a bit …" />
+<meta name="keywords" content="serverless, aws, javascript">
+
+<meta property="og:site_name" content="Brooks Kindle"/>
+<meta property="og:title" content="Build a highly scalable REST API in 100 lines"/>
+<meta property="og:description" content="Today I&#39;ll be walking through how to build a REST API endpoint with the following features: Automatic TLS/SSL encryption Accessible by both front and back-end applications Horizontally scalable API key validation and limiting Persistent storage Automated deployments All in about 100 lines of code. It can be a bit …"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="https://brookskindle.github.io/build-a-highly-scalable-rest-api-in-100-lines.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2020-12-02 00:00:00-08:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="https://brookskindle.github.io/author/brooks-kindle.html">
+<meta property="article:section" content="programming"/>
+<meta property="article:tag" content="serverless"/>
+<meta property="article:tag" content="aws"/>
+<meta property="article:tag" content="javascript"/>
+<meta property="og:image" content="/images/profile.jpg">
+
+  <title>Brooks Kindle &ndash; Build a highly scalable REST API in 100 lines</title>
+
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="https://brookskindle.github.io">
+        <img src="/images/profile.jpg" alt="Brooks Kindle" title="Brooks Kindle">
+      </a>
+      <h1><a href="https://brookskindle.github.io">Brooks Kindle</a></h1>
+
+<p>software engineer</p>
+      <nav>
+        <ul class="list">
+          <li><a href="https://brookskindle.github.io/pages/about.html#about">About</a></li>
+          <li><a href="https://brookskindle.github.io/pages/contact.html#contact">Contact</a></li>
+
+        </ul>
+      </nav>
+
+      <ul class="social">
+        <li><a class="sc-github" href="https://github.com/brookskindle" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-linkedin" href="https://www.linkedin.com/in/brookskindle/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+      </ul>
+    </div>
+
+
+  </aside>
+  <main>
+
+    <nav>
+      <a href="https://brookskindle.github.io">    Home
+</a>
+
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+
+
+    </nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="build-a-highly-scalable-rest-api-in-100-lines">Build a highly scalable REST API in 100 lines</h1>
+    <p>
+          Posted on Wed 02 December 2020 in <a href="https://brookskindle.github.io/category/programming.html">programming</a>
+
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>Today I'll be walking through how to build a REST API endpoint with the
+following features:</p>
+<ul>
+<li>Automatic TLS/SSL encryption</li>
+<li>Accessible by both front and back-end applications</li>
+<li>Horizontally scalable</li>
+<li>API key validation and limiting</li>
+<li>Persistent storage</li>
+<li>Automated deployments</li>
+</ul>
+<p>All in about 100 lines of code. It can be a bit more if you wish to include
+verbose comments, or it can be a bit less if you discount the starting
+boilerplate code. <strong>The line count itself is not important</strong>, but serves as a
+proxy to illustrate the little amount of effort it takes to start a modern REST
+API if you choose the right tools to do so.</p>
+<h2>The tools?</h2>
+<p><a href="https://aws.amazon.com/lambda/">AWS Lambda</a>, the <a href="https://www.serverless.com">Serverless
+Framework</a>, and <a href="https://nodejs.org/en/">node.js</a>.</p>
+<p>Lambda bills itself as a pay-for-usage way of running code without setting up a
+server to run it. Even so, you'll still need to configure the environment
+through what's known as a <a href="https://docs.aws.amazon.com/cloudformation/">CloudFormation
+template</a> - a configuration file
+written in either JSON or YAML. CloudFormation templates <em>will</em> get verbose and
+tedius to write for anything beyond a sample application. That's where the next
+framework comes in.</p>
+<p>Serverless is a provisioning framework meant to make deploying lambdas a more
+pleasant experience. It works with a number of cloud providers, defaulting to
+AWS. You will still end up needing to write parts of Cloudformation here and
+there (read: make sure to have the docs handy), but the <code>serverless.yaml</code>
+configuration file is miles easier to understand and work with than vanilla
+CloudFormation.</p>
+<p>node.js, but this can be interchangeable as both Serverless and AWS allow
+lambdas to be written in a great many languages.</p>
+<h2>The API?</h2>
+<p>We will build an API with one endpoint, <code>/hello</code>. It will require an API key to
+access, and when invoked correctly will return a JSON payload greeting the
+person (customizeable through the <code>name</code> url parameter). The endpoint will also
+keep track of the number of people who have called the endpoint with a given
+name, and will tell them how many other people of the same name have come
+before.</p>
+<h2>The code?</h2>
+<p>I'm glad you're excited, but rather than showing you all the code up front, I
+think it will be helpful to walk through the changes step by step as if reading
+a series of git commits.</p>
+<h3><code>7731ca0</code> Initial commit</h3>
+<p>The boilerplate code we're left with after going through the serverless
+<a href="https://www.serverless.com/framework/docs/getting-started/">getting started
+guide</a>. Some
+unnecessary lines have been removed for the sake of brevity.</p>
+<p><strong>handler.js</strong></p>
+<div class="highlight"><pre><span></span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">hello</span> <span class="o">=</span> <span class="nx">async</span> <span class="nx">event</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="nx">statusCode</span><span class="o">:</span> <span class="mi">200</span><span class="p">,</span>
+    <span class="nx">body</span><span class="o">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span>
+      <span class="p">{</span>
+        <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;Go Serverless v1.0! Your function executed successfully!&#39;</span><span class="p">,</span>
+        <span class="nx">input</span><span class="o">:</span> <span class="nx">event</span><span class="p">,</span>
+      <span class="p">},</span>
+      <span class="kc">null</span><span class="p">,</span>
+      <span class="mi">2</span>
+    <span class="p">),</span>
+  <span class="p">};</span>
+<span class="p">};</span>
+</pre></div>
+
+
+<p>A single exported async function; the entrypoint for our lambda. Maybe it's
+obvious to say this, but every time the lambda is invoked, this function is
+called. The function itself accepts one parameter, <code>event</code>, and returns a JSON response with a
+success message.</p>
+<p>Up to 3 parameters can be passed to the function, depending on signature, but
+in this case we only need the first. AWS has more documentation on the <a href="https://docs.aws.amazon.com/lambda/latest/dg/nodejs-handler.html">node.js
+handler</a> for
+the curious.</p>
+<p><strong>serverless.yml</strong></p>
+<div class="highlight"><pre><span></span><span class="c1"># For full config options, check the docs:</span>
+<span class="c1">#    docs.serverless.com</span>
+
+<span class="nt">service</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SERVICE_NAME_HERE</span>
+<span class="c1"># app and org for use with dashboard.serverless.com</span>
+<span class="nt">app</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">APP_NAME_HERE</span>
+<span class="nt">org</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SERVERLESS_ACCOUNT_HERE</span>
+
+<span class="c1"># You can pin your service to only deploy with a specific Serverless version</span>
+<span class="c1"># Check out our docs for more details</span>
+<span class="nt">frameworkVersion</span><span class="p">:</span> <span class="s">&#39;2&#39;</span>
+
+<span class="nt">provider</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">aws</span>
+  <span class="nt">runtime</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nodejs12.x</span>
+
+<span class="nt">functions</span><span class="p">:</span>
+  <span class="nt">hello</span><span class="p">:</span>
+    <span class="nt">handler</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">handler.hello</span>
+</pre></div>
+
+
+<p>Most important right now is the <code>functions</code> section, which defines a <code>hello</code>
+lambda whose entrypoint is the <code>hello</code> function of <code>handler.js</code>. At this point,
+we can already deploy the code to AWS through <code>serverless deploy</code> and invoke
+it with <code>serverless invoke -f hello</code></p>
+<blockquote>
+<p>When deploying, serverless converts the above yaml file to a CloudFormation
+template and executes that. Neat, huh? If you're curious and want to take a
+peek behind the curtains, run <code>serverless package</code> and check out the
+CloudFormation files that are generated in the <code>.serverless</code> folder.</p>
+</blockquote>
+<h3><code>8ee5621</code> Make endpoint public</h3>
+<div class="highlight"><pre><span></span><span class="gd">--- a/blocks/lambda-webhook-callback/serverless.yml</span>
+<span class="gi">+++ b/blocks/lambda-webhook-callback/serverless.yml</span>
+<span class="gu">@@ -63,10 +63,10 @@ functions:</span>
+functions:
+  hello:
+    handler: handler.hello
+<span class="gi">+    events:</span>
+<span class="gi">+      - http:</span>
+<span class="gi">+          path: hello</span>
+<span class="gi">+          method: get</span>
+</pre></div>
+
+
+<p>These four lines allow us to call our lambda externally through an https
+endpoint.</p>
+<div class="highlight"><pre><span></span><span class="gp">$</span> curl <span class="s1">&#39;https://sdlfkj3408jjlk.execute-api.us-east-1.amazonaws.com/dev/hello&#39;</span>
+<span class="go">{</span>
+<span class="go">  &quot;message&quot;: &quot;Go Serverless v1.0! Your function executed successfully!&quot;,</span>
+<span class="go">  &quot;input&quot;: {</span>
+<span class="go">    ...</span>
+<span class="go">  }</span>
+<span class="go">}</span>
+</pre></div>
+
+
+<p>Serverless achieves this by automatically configuring an <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html">API
+Gateway</a>
+entry for the application.</p>
+<h3><code>d169028</code> Greet based on url param</h3>
+<div class="highlight"><pre><span></span><span class="gd">--- a/blocks/lambda-webhook-callback/handler.js</span>
+<span class="gi">+++ b/blocks/lambda-webhook-callback/handler.js</span>
+<span class="gu">@@ -1,12 +1,16 @@</span>
+ &#39;use strict&#39;;
+
+ module.exports.hello = async event =&gt; {
+<span class="gi">+  let name = &#39;anonymous&#39;</span>
+<span class="gi">+  if (event.queryStringParameters &amp;&amp; event.queryStringParameters.name) {</span>
+<span class="gi">+    name = event.queryStringParameters.name</span>
+<span class="gi">+  }</span>
+<span class="gi">+</span>
+   return {
+     statusCode: 200,
+     body: JSON.stringify(
+       {
+<span class="gd">-        message: &#39;Go Serverless v1.0! Your function executed successfully!&#39;,</span>
+<span class="gd">-        input: event,</span>
+<span class="gi">+        message: `Hello ${name}!`</span>
+       },
+       null,
+       2
+</pre></div>
+
+
+<p>Now that our lambda can be called by the API Gateway, we get all sorts of
+interesting properties through the <code>event</code> parameter. In this case, we want to
+know if the user passed in a <code>name</code> url parameter.</p>
+<div class="highlight"><pre><span></span><span class="gp">$</span> curl <span class="s1">&#39;https://sdflkj398987.execute-api.us-east-1.amazonaws.com/dev/hello&#39;</span>
+<span class="go">{</span>
+<span class="go">  &quot;message&quot;: &quot;Hello anonymous!&quot;</span>
+<span class="go">}</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="gp">$</span> curl <span class="s1">&#39;https://sdflkj398987.execute-api.us-east-1.amazonaws.com/dev/hello?name=brooks&#39;</span>
+<span class="go">{</span>
+<span class="go">  &quot;message&quot;: &quot;Hello brooks!&quot;</span>
+<span class="go">}</span>
+</pre></div>
+
+
+<p><a href="https://docs.aws.amazon.com/lambda/latest/dg/services-apigateway.html">API Gateway docs with example <code>event</code>
+payload</a></p>
+<h3><code>f486d35</code> Require api keys</h3>
+<div class="highlight"><pre><span></span><span class="gd">--- a/blocks/lambda-webhook-callback/serverless.yml</span>
+<span class="gi">+++ b/blocks/lambda-webhook-callback/serverless.yml</span>
+<span class="gu">@@ -23,6 +23,16 @@ frameworkVersion: &#39;2&#39;</span>
+ provider:
+   name: aws
+   runtime: nodejs12.x
+<span class="gi">+  apiKeys:</span>
+<span class="gi">+    - testkey1</span>
+<span class="gi">+    - testkey2</span>
+
+<span class="gu">@@ -67,6 +77,7 @@ functions:</span>
+       - http:
+           path: hello
+           method: get
+<span class="gi">+          private: true</span>
+</pre></div>
+
+
+<p>API keys are configured for the whole project, so if you end up having more
+than one function/lambda they will all share the same set of API keys.
+Setting our function to private will now only allow traffic through if they
+have an <code>X-Api-Key</code> header with a valid API key. Serverless has great
+documentation on <a href="https://www.serverless.com/framework/docs/providers/aws/events/apigateway/#setting-api-keys-for-your-rest-api">setting up
+keys</a>
+as well, there's many more ways to customize them than I've shown here.</p>
+<div class="highlight"><pre><span></span><span class="gp">$</span> curl <span class="s1">&#39;https://sdflkj398987.execute-api.us-east-1.amazonaws.com/dev/hello&#39;</span>
+<span class="go">{&quot;message&quot;:&quot;Forbidden&quot;}</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="gp">$</span> curl <span class="s1">&#39;https://sdflkj398987.execute-api.us-east-1.amazonaws.com/dev/hello&#39;</span> <span class="se">\</span>
+    -H <span class="s1">&#39;x-api-key: sdlfkjo4582730sdflskdfj034lskdfj&#39;</span>
+<span class="go">{</span>
+<span class="go">  &quot;message&quot;: &quot;Hello anonymous!&quot;</span>
+<span class="go">}</span>
+</pre></div>
+
+
+<h3><code>b2d9941</code> Set CORS for endpoint</h3>
+<div class="highlight"><pre><span></span><span class="gd">--- a/blocks/lambda-webhook-callback/serverless.yml</span>
+<span class="gi">+++ b/blocks/lambda-webhook-callback/serverless.yml</span>
+<span class="gu">@@ -78,6 +78,7 @@ functions:</span>
+           path: hello
+           method: get
+           private: true
+<span class="gi">+          cors: true</span>
+</pre></div>
+
+
+<p>This is a small code change, but the impact is huge. With CORS enabled, our API
+can now be queried from any front end application.</p>
+<p>What is CORS? Cross-Origin-Resource-Sharing. In brief, it's a security check
+that the browser makes when making "special" requests to endpoints on a
+different domain than itself. Our API requires the special <code>x-api-key</code> header,
+which the browser identifies as "special," so it fires off an <code>OPTIONS</code> http
+request against the endpoint to check if this action is allowed or not. If
+you're not familiar with what CORS is or how it works, the Mozilla web docs
+have a <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">comprehensive
+article</a> to
+understanding CORS.</p>
+<h3><code>22d2412</code> Set usage plans for keys</h3>
+<div class="highlight"><pre><span></span><span class="gd">--- a/blocks/lambda-webhook-callback/serverless.yml</span>
+<span class="gi">+++ b/blocks/lambda-webhook-callback/serverless.yml</span>
+<span class="gu">@@ -26,13 +26,26 @@ provider:</span>
+   apiKeys:
+<span class="gd">-    - testkey1</span>
+<span class="gd">-    - testkey2</span>
+<span class="gi">+    - free:</span>
+<span class="gi">+      - testkey1</span>
+<span class="gi">+    - paid:</span>
+<span class="gi">+      - testkey2</span>
+<span class="gi">+  usagePlan:</span>
+<span class="gi">+    - free:</span>
+<span class="gi">+        quota:</span>
+<span class="gi">+          limit: 5</span>
+<span class="gi">+          period: DAY</span>
+<span class="gi">+        throttle:</span>
+<span class="gi">+          burstLimit: 5</span>
+<span class="gi">+          rateLimit: 5</span>
+<span class="gi">+    - paid:</span>
+<span class="gi">+        quota:</span>
+<span class="gi">+          limit: 5000</span>
+<span class="gi">+          period: DAY</span>
+<span class="gi">+        throttle:</span>
+<span class="gi">+          burstLimit: 200</span>
+<span class="gi">+          rateLimit: 100</span>
+</pre></div>
+
+
+<p>I'll re-iterate the serverless documentation on <a href="https://www.serverless.com/framework/docs/providers/aws/events/apigateway/#setting-api-keys-for-your-rest-api">setting up API
+keys</a>.
+With this change, we can now limit by API keys, the number of requests that
+come in on a set time period (in this case <code>DAY</code>). Exceeding this limit will
+result in a 429 Too Many Requests error.</p>
+<div class="highlight"><pre><span></span><span class="gp">$</span> curl <span class="s1">&#39;https://3lskdjfsdlf8.execute-api.us-east-1.amazonaws.com/dev/hello&#39;</span> <span class="se">\</span>
+    -H <span class="s1">&#39;x-api-key: jsdlkfjslkj343434234lksjdflkj&#39;</span>
+<span class="go">{&quot;message&quot;:&quot;Limit Exceeded&quot;}</span>
+</pre></div>
+
+
+<h3><code>b8a7405</code> Integrate with DynamoDB</h3>
+<p>This is a big one. Also not included in this diff is <code>package.json</code> and
+<code>package-lock.json</code>, needed because we introduced <code>aws-sdk</code> as a dependency.
+The two files can be created, however, with <code>npm init --y &amp;&amp; npm install
+aws-sdk</code>.</p>
+<p>To make things easier, let's walk through the changes per file.</p>
+<div class="highlight"><pre><span></span><span class="gh">diff --git a/blocks/lambda-webhook-callback/handler.js b/blocks/lambda-webhook-callback/handler.js</span>
+<span class="gh">index b6e6b0d..956f2eb 100644</span>
+<span class="gd">--- a/blocks/lambda-webhook-callback/handler.js</span>
+<span class="gi">+++ b/blocks/lambda-webhook-callback/handler.js</span>
+<span class="gu">@@ -1,11 +1,29 @@</span>
+<span class="gi">+const AWS = require(&#39;aws-sdk&#39;)</span>
+<span class="gi">+const dynamo = new AWS.DynamoDB.DocumentClient()</span>
+<span class="gi">+</span>
+ module.exports.hello = async event =&gt; {
+   let name = &#39;anonymous&#39;
+   if (event.queryStringParameters &amp;&amp; event.queryStringParameters.name) {
+     name = event.queryStringParameters.name
+   }
+
+<span class="gi">+  const params = {</span>
+<span class="gi">+    TableName: process.env.TABLE_NAME</span>
+<span class="gi">+    Item: {</span>
+<span class="gi">+      name: name</span>
+<span class="gi">+    }</span>
+<span class="gi">+  }</span>
+<span class="gi">+  const result = await dynamo.put(params).promise()</span>
+<span class="gi">+</span>
+   return {
+     statusCode: 200,
+     body: JSON.stringify(
+</pre></div>
+
+
+<p>We're using the aws-sdk to initialize a DynamoDB connection. DynamoDB is
+Amazon's own NoSQL offering and we'll be using it as a way to persist data
+between calls. At present, all we are saving to the table is the name of the
+user we're greeting.</p>
+<p>Also note: for flexibility, we expect the table name to be available via the
+<code>TABLE_NAME</code> environment variable rather than hardcoding a value for it. The
+reason why will become apparent when we look at the next file.</p>
+<div class="highlight"><pre><span></span><span class="gh">diff --git a/blocks/lambda-webhook-callback/serverless.yml b/blocks/lambda-webhook-callback/serverless.yml</span>
+<span class="gh">index d889190..7e6fc28 100644</span>
+<span class="gd">--- a/blocks/lambda-webhook-callback/serverless.yml</span>
+<span class="gi">+++ b/blocks/lambda-webhook-callback/serverless.yml</span>
+<span class="gu">@@ -46,6 +46,18 @@ provider:</span>
+         throttle:
+           burstLimit: 200
+           rateLimit: 100
+<span class="gi">+  iamRoleStatements:</span>
+<span class="gi">+    - Effect: Allow</span>
+<span class="gi">+      Action:</span>
+<span class="gi">+        - dynamodb:PutItem</span>
+<span class="gi">+      Resource: !Sub &#39;arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${helloTable}&#39;</span>
+<span class="gi">+</span>
+<span class="gi">+  environment:</span>
+<span class="gi">+    TABLE_NAME: !Ref helloTable</span>
+<span class="gu">@@ -58,3 +70,20 @@ functions:</span>
+           method: get
+           private: true
+           cors: true
+<span class="gi">+</span>
+<span class="gi">+resources:</span>
+<span class="gi">+  Resources:</span>
+<span class="gi">+    helloTable:</span>
+<span class="gi">+      Type: AWS::DynamoDB::Table</span>
+<span class="gi">+      Properties:</span>
+<span class="gi">+        BillingMode: PAY_PER_REQUEST</span>
+<span class="gi">+        AttributeDefinitions:</span>
+<span class="gi">+          - AttributeName: name</span>
+<span class="gi">+            AttributeType: S</span>
+<span class="gi">+        KeySchema:</span>
+<span class="gi">+          - AttributeName: name</span>
+<span class="gi">+            KeyType: HASH</span>
+</pre></div>
+
+
+<p>Let's look at the <strong>resources</strong> first. This section defines a DynamoDB table,
+which we're referencing as <code>helloTable</code>. The syntax for this section is
+CloudFormation, as the <a href="https://www.serverless.com/framework/docs/providers/aws/guide/resources/">serverless docs on
+resources</a>
+suggest. As Dynamo is a NoSQL database, no schema is needed, but it does need
+to know the table's primary key, which is <code>name</code> in this case.</p>
+<p>Up next, <strong>environment</strong>. The lambda will have access to these values through
+the use of environment variables (eg: <code>process.env.VARIABLE_NAME</code>). The <code>!Ref</code>
+part is a bit confusing for someone not familiar with CloudFormation, so here
+goes. In the previous section, <code>helloTable</code> is the reference name for our
+table, but it does not actually represent the name of the table when it gets
+created. In the absense of a defined table name, CloudFormation will choose one
+for us on stack create/update, so the only way to reference the name of our
+table is through a <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html">Ref
+value</a></p>
+<p>If we created the database and our code knows the name of the database to
+connect to, what else is left? <strong>iamRoleStatements</strong>, or access/authentication,
+which is handled within AWS by IAM. IAM is based on the
+<a href="https://en.wikipedia.org/wiki/Role-based_access_control">RBAC</a> access paradigm
+. An IAM role can be configured to allow access to all sorts of <code>resources</code>
+within AWS, but in this case the only action we need to do right now is a
+<code>PutItem</code> action on a DynamoDB. See <a href="https://www.serverless.com/framework/docs/providers/aws/guide/iam/">IAM
+docs</a>.</p>
+<p>The last potentially confusing part of the IAM section is the <code>!Sub</code> resource
+value. Functionally, this acts no differently than the <code>!Ref</code> section of the
+environments, with one difference. <code>!Ref</code> only returns the name of the
+resource, and for <code>Resource</code> under IAM, we are required to provide the fully
+qualified ARN value of the thing we're trying to access. It's a bit like
+specifying the name of a file vs. specifying the full path to a file. More
+documentation on the contents of the <code>!Sub</code> section:
+<a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARN</a>,
+<a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/pseudo-parameter-reference.html">Pseudo-parameter
+references</a>,
+<a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-sub.html#w2ab1c33c28c59c11">!Sub</a>.</p>
+<h3><code>3f338a6</code> Count the number of visitors</h3>
+<div class="highlight"><pre><span></span><span class="gh">diff --git a/blocks/lambda-webhook-callback/handler.js b/blocks/lambda-webhook-callback/handler.js</span>
+<span class="gh">index e1b1496..6568753 100644</span>
+<span class="gd">--- a/blocks/lambda-webhook-callback/handler.js</span>
+<span class="gi">+++ b/blocks/lambda-webhook-callback/handler.js</span>
+<span class="gu">@@ -14,20 +14,26 @@ module.exports.hello = async event =&gt; {</span>
+
+   const params = {
+     TableName: process.env.TABLE_NAME,
+<span class="gd">-    Item: {</span>
+<span class="gd">-      name: name,</span>
+<span class="gd">-    }</span>
+<span class="gi">+    Key: {</span>
+<span class="gi">+      name,</span>
+<span class="gi">+    },</span>
+<span class="gi">+    UpdateExpression: &#39;ADD #count :num&#39;,</span>
+<span class="gi">+    ExpressionAttributeNames: {</span>
+<span class="gi">+      &#39;#count&#39;: &#39;greeting_count&#39;,</span>
+<span class="gi">+    },</span>
+<span class="gi">+    ExpressionAttributeValues: {</span>
+<span class="gi">+      &#39;:num&#39;: 1,</span>
+<span class="gi">+    },</span>
+<span class="gi">+    ReturnValues: &#39;UPDATED_NEW&#39;,</span>
+   }
+<span class="gd">-  const result = await dynamo.put(params).promise()</span>
+<span class="gi">+  const result = await dynamo.update(params).promise()</span>
+
+   return {
+     statusCode: 200,
+     body: JSON.stringify(
+       {
+<span class="gd">-        message: `Hello ${name}!`</span>
+<span class="gi">+        message: `Hello ${name} #${result.Attributes.greeting_count}!`</span>
+       },
+       null,
+       2
+<span class="gh">diff --git a/blocks/lambda-webhook-callback/serverless.yml b/blocks/lambda-webhook-callback/serverless.yml</span>
+<span class="gh">index 0741a40..d726cf7 100644</span>
+<span class="gd">--- a/blocks/lambda-webhook-callback/serverless.yml</span>
+<span class="gi">+++ b/blocks/lambda-webhook-callback/serverless.yml</span>
+<span class="gu">@@ -53,7 +53,7 @@ provider:</span>
+   iamRoleStatements:
+     - Effect: Allow
+       Action:
+<span class="gd">-        - dynamodb:PutItem</span>
+<span class="gi">+        - dynamodb:UpdateItem</span>
+       Resource: !Sub &#39;arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${helloTable}&#39;
+</pre></div>
+
+
+<p>With this commit, we change the response value of our endpoint to also include
+the visitor count per name. Instead of putting an item, we are updating an item
+(which can create new elements <em>or</em> update existing ones) and adding a
+<code>greeting_count</code> field (<a href="https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html">API docs on node.js DynamoDB
+client</a>).
+Calling our API now looks like this:</p>
+<div class="highlight"><pre><span></span><span class="gp">$</span> curl <span class="s1">&#39;https://34iisdflkj.execute-api.us-east-1.amazonaws.com/dev/hello&#39;</span> <span class="se">\</span>
+    -H <span class="s1">&#39;x-api-key: lksjdfljl3j45lk2345jlkjsdflksjdfljklsdkjf&#39;</span>
+<span class="go">{</span>
+<span class="go">  &quot;message&quot;: &quot;Hello anonymous #1!&quot;</span>
+<span class="go">}</span>
+<span class="gp">$</span> curl <span class="s1">&#39;https://34iisdflkj.execute-api.us-east-1.amazonaws.com/dev/hello&#39;</span> <span class="se">\</span>
+    -H <span class="s1">&#39;x-api-key: lksjdfljl3j45lk2345jlkjsdflksjdfljklsdkjf&#39;</span>
+<span class="go">{</span>
+<span class="go">  &quot;message&quot;: &quot;Hello anonymous #2!&quot;</span>
+<span class="go">}</span>
+<span class="gp">$</span> curl <span class="s1">&#39;https://34iisdflkj.execute-api.us-east-1.amazonaws.com/dev/hello?name=brooks&#39;</span> <span class="se">\</span>
+    -H <span class="s1">&#39;x-api-key: lksjdfljl3j45lk2345jlkjsdflksjdfljklsdkjf&#39;</span>
+<span class="go">{</span>
+<span class="go">  &quot;message&quot;: &quot;Hello brooks #1!&quot;</span>
+<span class="go">}</span>
+</pre></div>
+
+
+<h3><code>6ddad1f</code> Dynamo: use SET, not ADD</h3>
+<div class="highlight"><pre><span></span><span class="gh">diff --git a/blocks/lambda-webhook-callback/handler.js b/blocks/lambda-webhook-callback/handler.js</span>
+<span class="gh">index 6568753..2e53aa4 100644</span>
+<span class="gd">--- a/blocks/lambda-webhook-callback/handler.js</span>
+<span class="gi">+++ b/blocks/lambda-webhook-callback/handler.js</span>
+<span class="gu">@@ -17,11 +17,12 @@ module.exports.hello = async event =&gt; {</span>
+     Key: {
+       name,
+     },
+<span class="gd">-    UpdateExpression: &#39;ADD #count :num&#39;,</span>
+<span class="gi">+    UpdateExpression: &#39;SET #count = if_not_exists(#count, :initial) + :num&#39;,</span>
+     ExpressionAttributeNames: {
+       &#39;#count&#39;: &#39;greeting_count&#39;,
+     },
+     ExpressionAttributeValues: {
+<span class="gi">+      &#39;:initial&#39;: 0,</span>
+       &#39;:num&#39;: 1,
+     },
+     ReturnValues: &#39;UPDATED_NEW&#39;,
+</pre></div>
+
+
+<p>This is a best practices change because functionally the two <code>UpdateExpression</code>
+lines do the same thing. However, AWS recommends <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.UpdateExpressions.html#Expressions.UpdateExpressions.ADD">using SET in most
+cases</a> instead of ADD.
+Initially I thought ADD would be a more obvious and simple solution, but the
+more I think about it, SET makes it abundantly clear what the logic is if
+<code>greeting_count</code> does not yet exist as an attribute. ADD hides this logic, and
+therefore has the potential to cause hard-to-debug errors.</p>
+<h3><code>4562185</code> Add DeletionPolicy note</h3>
+<div class="highlight"><pre><span></span><span class="gd">--- a/blocks/lambda-webhook-callback/serverless.yml</span>
+<span class="gi">+++ b/blocks/lambda-webhook-callback/serverless.yml</span>
+<span class="gu">@@ -82,6 +82,12 @@ resources:</span>
+   Resources:
+     helloTable:
+       Type: AWS::DynamoDB::Table
+<span class="gi">+      DeletionPolicy: Retain</span>
+       Properties:
+         BillingMode: PAY_PER_REQUEST
+         AttributeDefinitions:
+</pre></div>
+
+
+<p>This change is optional, but in a production setting you most likely want to
+retain your database in the case of CloudFormation stack removal. The exception
+to this would be if your database contained <strong>only</strong> information that is easy
+to regenerate programmatically. For some resources, CloudFormation performs a
+backup before deletion, but in the case of DynamoDB, <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-deletionpolicy.html#aws-attribute-deletionpolicy-options">this does not
+happen</a>.</p>
+<hr>
+<h2>Closing thoughts</h2>
+<p>And that's it.</p>
+<p>This project only scratched the surface of what is possible with the right
+toolset and a healthy dose of documentation. In a real life scenario, a REST
+API server would be much more complicated not only in terms of supported
+features, but also in terms of team size and software process bottlenecks. But
+that's for you to figure out if you fit that scenario 🙃. Additional resources:</p>
+<ul>
+<li><a href="https://aws.amazon.com/blogs/compute/best-practices-for-organizing-larger-serverless-applications/">AWS: organizing large serverless
+  applications</a></li>
+<li><a href="https://www.serverless.com/blog/structuring-a-real-world-serverless-app">Serverless: real world app
+  structures</a></li>
+<li><a href="https://serverless-stack.com/">Build a full-stack app in Serverless</a></li>
+</ul>
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="https://brookskindle.github.io/tag/serverless.html">serverless</a>
+      <a href="https://brookskindle.github.io/tag/aws.html">aws</a>
+      <a href="https://brookskindle.github.io/tag/javascript.html">javascript</a>
+    </p>
+  </div>
+
+
+
+
+
+</article>
+
+    <footer>
+<p>&copy;  </p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p>    </footer>
+  </main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Brooks Kindle ",
+  "url" : "https://brookskindle.github.io",
+  "image": "/images/profile.jpg",
+  "description": "None"
+}
+</script>
+
+</body>
+</html>
