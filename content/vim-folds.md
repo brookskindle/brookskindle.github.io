@@ -1,7 +1,7 @@
 Title: Vim folds helped me write a markdown presentation
 Date: 2019-11-27
 Category: Programming
-Tags: vim, efficiency, markdown
+Tags: vim, markdown
 
 Vim. For a program that was released in 1991, I am still amazed at the vast
 amount of features that I both know, and have yet to learn.

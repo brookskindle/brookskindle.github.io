@@ -1,7 +1,7 @@
 Title: Build a highly scalable REST API in 100 lines
 Date: 2020-12-02
 Category: programming
-Tags: serverless, aws, javascript
+Tags: serverless, javascript
 
 Today I'll be walking through how to build a REST API endpoint with the
 following features:

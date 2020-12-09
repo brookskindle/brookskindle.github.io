@@ -2,7 +2,7 @@ Title: CascadiaJS 2020
 Date: 2020-09-04
 Modified: 2020-09-09
 Category: Programming
-Tags: javascript, conferences, cascadiajs2020
+Tags: javascript, conferences
 
 I attended my first JavaScript conference,
 [CascadiaJS](https://2020.cascadiajs.com/), this year. It was an amazing

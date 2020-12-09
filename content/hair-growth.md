@@ -1,6 +1,6 @@
 Title: One year of hair growth
 Date: 2020-10-17
-Category: Personal
+Category: personal
 Tags: hair
 
 Last year I decided it would be fun to learn how to cut my own hair, and, after

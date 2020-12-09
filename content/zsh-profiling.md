@@ -1,7 +1,7 @@
 Title: Reducing zsh startup time by 400%
 Date: 2020-10-08
 Category: Programming
-Tags: zsh, performance
+Tags: shell, performance
 
 As part of the nature of my work, I have to interact with a lot of systems and
 tools. My `.zshrc` file has slowly grown in order to support this multi-project

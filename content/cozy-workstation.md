@@ -4,7 +4,6 @@ Summary:
 Summary: or: hygge, and why I spend so much time theming my computer
 Date: 2020-11-30
 Category: programming
-Tags: workflow, cozy
 
 Let me cut to the chase: I work in software and have a number of digital
 hobbies. As a result, much of my time is spent in front of a computer. You may

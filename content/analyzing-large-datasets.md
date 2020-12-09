@@ -1,7 +1,7 @@
 Title: How to work with large data
 Date: 2019-11-04
 Category: programming
-Tags: python, data, large data
+Tags: python, data
 
 Here's a question: how do you analyze data that is too big to fit into memory?
 

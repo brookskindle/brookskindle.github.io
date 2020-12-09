@@ -1,7 +1,7 @@
 Title: Breaking my Advent of Code 2019, day 1 solution
 Date: 2019-12-04
 Category: programming
-Tags: advent of code 2019, python, testing
+Tags: python
 
 The [Advent of Code 2019 challenge](https://adventofcode.com/2019) is open.
 These are my solutions to the problems presented on day 1.

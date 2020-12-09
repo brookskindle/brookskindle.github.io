@@ -1,7 +1,7 @@
 Title: Embracing Javascript
 Date: 2019-06-28
 Category: programming
-Tags: javascript, node
+Tags: javascript
 
 I have a confession to make; I don't know javascript all that well. As a
 developer whose strengths lie primarily in back-end work, I've always held the

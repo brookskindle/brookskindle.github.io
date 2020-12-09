@@ -1,7 +1,7 @@
 Title: Encrypting files using PGP/GPG
 Date: 2020-11-08
-Category: Programming
-Tags: security, encryption
+Category: programming
+Tags: security
 
 This past week I had to encrypt several sensitive files before transmitting
 them to a third party vendor we were working with. It being my first time doing

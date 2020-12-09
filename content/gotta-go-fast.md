@@ -1,8 +1,8 @@
 Title: Gotta Go Fast
 Date: 2019-11-25
 Modified: 2019-12-03
-Category: Programming
-Tags: go, talks
+Category: talks
+Tags: go
 
 ![](https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.devopscat.tech%2Fwp-content%2Fuploads%2F2018%2F07%2Fgolang-mascot.jpg&f=1&nofb=1)
 

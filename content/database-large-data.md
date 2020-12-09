@@ -1,7 +1,7 @@
 Title: Using a database | large data
 Date: 2019-11-05
 Category: programming
-Tags: python, data, large data
+Tags: python, data
 
 > This is part of a series of articles on [how to work with large
 data]({filename}/analyzing-large-datasets.md)

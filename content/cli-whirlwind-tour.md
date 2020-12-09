@@ -1,7 +1,7 @@
 Title: CLI Whirlwind Tour
 Date: 2020-09-11
-Category: Programming
-Tags: command line, talks
+Category: talks
+Tags: command line
 
 Do you use the command line? These are a couple presentations I put together
 showcasing useful or interesting tools that you can make use of on the command

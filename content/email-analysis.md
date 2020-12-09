@@ -1,7 +1,7 @@
 Title: I analyzed over 3 gigabytes of email (my own)
 Date: 2020-10-02
 Category: programming
-Tags: data, python, email, minimalism, visidata
+Tags: python, data
 
 How often do you get excited when your phone vibrates and an email notification
 shows up? If you're like me, not very. Much like how I only seem to receive

@@ -1,7 +1,7 @@
 Title: Pin your versions. Or don't.
 Date: 2018-06-25
 Category: programming
-Tags: python, pip
+Tags: python
 
 Here's a hypothetical situation. Suppose you're starting a new project and you
 want to use the `requests` library. Installing `requests` also installs the

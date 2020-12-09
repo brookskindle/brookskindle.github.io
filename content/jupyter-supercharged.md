@@ -1,7 +1,7 @@
 Title: Supercharge your jupyter startup with bash and tmux
 Date: 2018-06-08
 Category: programming
-Tags: python, jupyter
+Tags: python, shell
 
 If you're like me, you dislike doing repetitive tasks when a script could have
 just as easily done the work for you. For example, starting a jupyter server on

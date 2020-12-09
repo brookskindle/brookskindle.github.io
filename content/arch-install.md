@@ -2,7 +2,7 @@ Title: Installing Arch Linux
 Date: 2020-09-23
 Modified: 2020-11-28
 Category: Programming
-Tags: operating systems, arch, minimal, linux
+Tags: linux, command line
 
 I'm installing [Arch Linux](https://www.archlinux.org/) on my computer.
 

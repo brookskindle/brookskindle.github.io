@@ -1,7 +1,7 @@
 Title: Bike camping over Snoqualmie Pass
 Date: 2020-10-10
 Category: Personal
-Tags: exercise, camping
+Tags: outdoors
 
 Two months ago I set off along the [Palouse to
 Cascades](https://palousetocascadestrail.org/) trail with my bike and a stuffed
