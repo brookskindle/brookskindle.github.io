@@ -134,7 +134,7 @@ data is ready to be downloaded.</p>
 <p><img alt="" src="https://brookskindle.github.io/images/gmail-download-ready.png"></p>
 <p>I chose a gzipped tar file format (<code>.tgz</code>), so I can uncompress it using
 <code>gunzip</code> and <code>tar</code>.</p>
-<div class="highlight"><pre><span></span><span class="gp">$</span> gunzip takeout-20200923T060647Z-001.tgz
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> gunzip takeout-20200923T060647Z-001.tgz
 <span class="gp">$</span> tar -xvf takeout-20200924T022153Z-001.tar
 <span class="go">Takeout/Mail/User Settings/Forwarding Addresses.json</span>
 <span class="go">Takeout/Mail/User Settings/Blocked Addresses.json</span>
@@ -145,75 +145,73 @@ data is ready to be downloaded.</p>
 <span class="gp">$</span> ls
 <span class="go">Takeout</span>
 <span class="go">takeout-20200924T022153Z-001.tar</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>The only important file in this list is <code>All mail Including Spam and
 Trash.mbox</code>. This file is huge - 3.1 gigabytes! Mbox format? I'm not very
 familiar with it, but let's see what the format looks like.</p>
-<div class="highlight"><pre><span></span><span class="nv">From</span> <span class="mi">23402857298734987239487</span>@<span class="nv">xxx</span> <span class="nv">Sun</span> <span class="nv">Sep</span> <span class="mi">20</span> <span class="mi">00</span>:<span class="mi">38</span>:<span class="mi">32</span> <span class="o">+</span><span class="mi">0000</span> <span class="mi">2020</span>
+<div class="highlight"><pre><span></span><code><span class="k">From</span><span class="w"> </span><span class="mi">23402857298734987239487</span><span class="nv">@xxx</span><span class="w"> </span><span class="n">Sun</span><span class="w"> </span><span class="n">Sep</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="mi">00</span><span class="err">:</span><span class="mi">38</span><span class="err">:</span><span class="mi">32</span><span class="w"> </span><span class="o">+</span><span class="mi">0000</span><span class="w"> </span><span class="mi">2020</span><span class="w"></span>
 
-<span class="nv">X</span><span class="o">-</span><span class="nv">GM</span><span class="o">-</span><span class="nv">THRID</span>: <span class="mi">358234987239487293847</span>
+<span class="n">X</span><span class="o">-</span><span class="n">GM</span><span class="o">-</span><span class="nl">THRID</span><span class="p">:</span><span class="w"> </span><span class="mi">358234987239487293847</span><span class="w"></span>
 
-<span class="nv">X</span><span class="o">-</span><span class="nv">Gmail</span><span class="o">-</span><span class="nv">Labels</span>: <span class="nv">Inbox</span>,<span class="nv">Important</span>,<span class="nv">Category</span> <span class="nv">Personal</span>,<span class="nv">Unread</span>
+<span class="n">X</span><span class="o">-</span><span class="n">Gmail</span><span class="o">-</span><span class="nl">Labels</span><span class="p">:</span><span class="w"> </span><span class="n">Inbox</span><span class="p">,</span><span class="n">Important</span><span class="p">,</span><span class="n">Category</span><span class="w"> </span><span class="n">Personal</span><span class="p">,</span><span class="n">Unread</span><span class="w"></span>
 
-<span class="nv">Delivered</span><span class="o">-</span><span class="nv">To</span>: .............
+<span class="n">Delivered</span><span class="o">-</span><span class="k">To</span><span class="err">:</span><span class="w"> </span><span class="p">.............</span><span class="w"></span>
 
-<span class="nv">Received</span>:
+<span class="nl">Received</span><span class="p">:</span><span class="w"></span>
 
-        <span class="nv">Sat</span>, <span class="mi">19</span> <span class="nv">Sep</span> <span class="mi">2020</span> <span class="mi">17</span>:<span class="mi">38</span>:<span class="mi">32</span> <span class="o">-</span><span class="mi">0700</span> <span class="ss">(</span><span class="nv">PDT</span><span class="ss">)</span>
+<span class="w">        </span><span class="n">Sat</span><span class="p">,</span><span class="w"> </span><span class="mi">19</span><span class="w"> </span><span class="n">Sep</span><span class="w"> </span><span class="mi">2020</span><span class="w"> </span><span class="mi">17</span><span class="err">:</span><span class="mi">38</span><span class="err">:</span><span class="mi">32</span><span class="w"> </span><span class="o">-</span><span class="mi">0700</span><span class="w"> </span><span class="p">(</span><span class="n">PDT</span><span class="p">)</span><span class="w"></span>
 
-<span class="nv">X</span><span class="o">-</span><span class="nv">Received</span>:
+<span class="n">X</span><span class="o">-</span><span class="nl">Received</span><span class="p">:</span><span class="w"></span>
 
-        <span class="nv">Sat</span>, <span class="mi">19</span> <span class="nv">Sep</span> <span class="mi">2020</span> <span class="mi">17</span>:<span class="mi">38</span>:<span class="mi">32</span> <span class="o">-</span><span class="mi">0700</span> <span class="ss">(</span><span class="nv">PDT</span><span class="ss">)</span>
+<span class="w">        </span><span class="n">Sat</span><span class="p">,</span><span class="w"> </span><span class="mi">19</span><span class="w"> </span><span class="n">Sep</span><span class="w"> </span><span class="mi">2020</span><span class="w"> </span><span class="mi">17</span><span class="err">:</span><span class="mi">38</span><span class="err">:</span><span class="mi">32</span><span class="w"> </span><span class="o">-</span><span class="mi">0700</span><span class="w"> </span><span class="p">(</span><span class="n">PDT</span><span class="p">)</span><span class="w"></span>
 
-<span class="nv">ARC</span><span class="o">-</span><span class="nv">Seal</span>: <span class="nv">i</span><span class="o">=</span><span class="mi">1</span><span class="c1">; a=rsa-sha256; t=1600562312; cv=none;</span>
+<span class="n">ARC</span><span class="o">-</span><span class="nl">Seal</span><span class="p">:</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">a</span><span class="o">=</span><span class="n">rsa</span><span class="o">-</span><span class="n">sha256</span><span class="p">;</span><span class="w"> </span><span class="n">t</span><span class="o">=</span><span class="mi">1600562312</span><span class="p">;</span><span class="w"> </span><span class="n">cv</span><span class="o">=</span><span class="k">none</span><span class="p">;</span><span class="w"></span>
 
-<span class="nv">ARC</span><span class="o">-</span><span class="nv">Message</span><span class="o">-</span><span class="nv">Signature</span>: <span class="nv">i</span><span class="o">=</span><span class="mi">1</span><span class="c1">; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;</span>
+<span class="n">ARC</span><span class="o">-</span><span class="n">Message</span><span class="o">-</span><span class="nl">Signature</span><span class="p">:</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">a</span><span class="o">=</span><span class="n">rsa</span><span class="o">-</span><span class="n">sha256</span><span class="p">;</span><span class="w"> </span><span class="n">c</span><span class="o">=</span><span class="n">relaxed</span><span class="o">/</span><span class="n">relaxed</span><span class="p">;</span><span class="w"> </span><span class="n">d</span><span class="o">=</span><span class="n">google</span><span class="p">.</span><span class="n">com</span><span class="p">;</span><span class="w"> </span><span class="n">s</span><span class="o">=</span><span class="n">arc</span><span class="o">-</span><span class="mi">20160816</span><span class="p">;</span><span class="w"></span>
 
-<span class="nv">ARC</span><span class="o">-</span><span class="nv">Authentication</span><span class="o">-</span><span class="nv">Results</span>: <span class="nv">i</span><span class="o">=</span><span class="mi">1</span><span class="c1">; mx.google.com;</span>
+<span class="n">ARC</span><span class="o">-</span><span class="n">Authentication</span><span class="o">-</span><span class="nl">Results</span><span class="p">:</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">mx</span><span class="p">.</span><span class="n">google</span><span class="p">.</span><span class="n">com</span><span class="p">;</span><span class="w"></span>
 
-<span class="k">Return</span><span class="o">-</span><span class="nv">Path</span>: <span class="o">&lt;</span><span class="nv">name</span>@<span class="nv">domain</span>.<span class="nv">com</span><span class="o">&gt;</span>
+<span class="k">Return</span><span class="o">-</span><span class="k">Path</span><span class="err">:</span><span class="w"> </span><span class="o">&lt;</span><span class="n">name</span><span class="nv">@domain</span><span class="p">.</span><span class="n">com</span><span class="o">&gt;</span><span class="w"></span>
 
-<span class="nv">Received</span>: <span class="nv">from</span> <span class="nv">mail</span><span class="o">-</span><span class="nv">sor</span><span class="o">-</span><span class="nv">f41</span>.<span class="nv">google</span>.<span class="nv">com</span> <span class="ss">(</span><span class="nv">mail</span><span class="o">-</span><span class="nv">sor</span><span class="o">-</span><span class="nv">f41</span>.<span class="nv">google</span>.<span class="nv">com</span>. [<span class="mi">209</span>.<span class="mi">85</span>.<span class="mi">220</span>.<span class="mi">41</span>]<span class="ss">)</span>
+<span class="nl">Received</span><span class="p">:</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">mail</span><span class="o">-</span><span class="n">sor</span><span class="o">-</span><span class="n">f41</span><span class="p">.</span><span class="n">google</span><span class="p">.</span><span class="n">com</span><span class="w"> </span><span class="p">(</span><span class="n">mail</span><span class="o">-</span><span class="n">sor</span><span class="o">-</span><span class="n">f41</span><span class="p">.</span><span class="n">google</span><span class="p">.</span><span class="n">com</span><span class="p">.</span><span class="w"> </span><span class="o">[</span><span class="n">209.85.220.41</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
 
-<span class="nv">Received</span><span class="o">-</span><span class="nv">SPF</span>: <span class="nv">pass</span> <span class="ss">()</span>
+<span class="n">Received</span><span class="o">-</span><span class="nl">SPF</span><span class="p">:</span><span class="w"> </span><span class="n">pass</span><span class="w"> </span><span class="p">()</span><span class="w"></span>
 
-<span class="nv">Authentication</span><span class="o">-</span><span class="nv">Results</span>: <span class="nv">mx</span>.<span class="nv">google</span>.<span class="nv">com</span><span class="c1">;</span>
+<span class="n">Authentication</span><span class="o">-</span><span class="nl">Results</span><span class="p">:</span><span class="w"> </span><span class="n">mx</span><span class="p">.</span><span class="n">google</span><span class="p">.</span><span class="n">com</span><span class="p">;</span><span class="w"></span>
 
-<span class="nv">DKIM</span><span class="o">-</span><span class="nv">Signature</span>: <span class="nv">v</span><span class="o">=</span><span class="mi">1</span><span class="c1">; a=rsa-sha256; c=relaxed/relaxed;</span>
+<span class="n">DKIM</span><span class="o">-</span><span class="nl">Signature</span><span class="p">:</span><span class="w"> </span><span class="n">v</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">a</span><span class="o">=</span><span class="n">rsa</span><span class="o">-</span><span class="n">sha256</span><span class="p">;</span><span class="w"> </span><span class="n">c</span><span class="o">=</span><span class="n">relaxed</span><span class="o">/</span><span class="n">relaxed</span><span class="p">;</span><span class="w"></span>
 
-<span class="nv">X</span><span class="o">-</span><span class="nv">Google</span><span class="o">-</span><span class="nv">DKIM</span><span class="o">-</span><span class="nv">Signature</span>: <span class="nv">v</span><span class="o">=</span><span class="mi">1</span><span class="c1">; a=rsa-sha256; c=relaxed/relaxed;</span>
+<span class="n">X</span><span class="o">-</span><span class="n">Google</span><span class="o">-</span><span class="n">DKIM</span><span class="o">-</span><span class="nl">Signature</span><span class="p">:</span><span class="w"> </span><span class="n">v</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">a</span><span class="o">=</span><span class="n">rsa</span><span class="o">-</span><span class="n">sha256</span><span class="p">;</span><span class="w"> </span><span class="n">c</span><span class="o">=</span><span class="n">relaxed</span><span class="o">/</span><span class="n">relaxed</span><span class="p">;</span><span class="w"></span>
 
-<span class="nv">X</span><span class="o">-</span><span class="nv">Gm</span><span class="o">-</span><span class="nv">Message</span><span class="o">-</span><span class="nv">State</span>:
+<span class="n">X</span><span class="o">-</span><span class="n">Gm</span><span class="o">-</span><span class="n">Message</span><span class="o">-</span><span class="k">State</span><span class="err">:</span><span class="w"></span>
 
-<span class="nv">X</span><span class="o">-</span><span class="nv">Google</span><span class="o">-</span><span class="nv">Smtp</span><span class="o">-</span><span class="nv">Source</span>:
+<span class="n">X</span><span class="o">-</span><span class="n">Google</span><span class="o">-</span><span class="n">Smtp</span><span class="o">-</span><span class="nl">Source</span><span class="p">:</span><span class="w"></span>
 
-<span class="nv">X</span><span class="o">-</span><span class="nv">Received</span>:
+<span class="n">X</span><span class="o">-</span><span class="nl">Received</span><span class="p">:</span><span class="w"></span>
 
- <span class="nv">Sat</span>, <span class="mi">19</span> <span class="nv">Sep</span> <span class="mi">2020</span> <span class="mi">17</span>:<span class="mi">38</span>:<span class="mi">31</span> <span class="o">-</span><span class="mi">0700</span> <span class="ss">(</span><span class="nv">PDT</span><span class="ss">)</span>
+<span class="w"> </span><span class="n">Sat</span><span class="p">,</span><span class="w"> </span><span class="mi">19</span><span class="w"> </span><span class="n">Sep</span><span class="w"> </span><span class="mi">2020</span><span class="w"> </span><span class="mi">17</span><span class="err">:</span><span class="mi">38</span><span class="err">:</span><span class="mi">31</span><span class="w"> </span><span class="o">-</span><span class="mi">0700</span><span class="w"> </span><span class="p">(</span><span class="n">PDT</span><span class="p">)</span><span class="w"></span>
 
-<span class="nv">MIME</span><span class="o">-</span><span class="nv">Version</span>: <span class="mi">1</span>.<span class="mi">0</span>
+<span class="n">MIME</span><span class="o">-</span><span class="nl">Version</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="w"></span>
 
-<span class="nv">From</span>: <span class="nv">firstname</span> <span class="nv">lastname</span> <span class="o">&lt;</span><span class="nv">name</span>@<span class="nv">address</span>.<span class="nv">com</span><span class="o">&gt;</span>
+<span class="k">From</span><span class="err">:</span><span class="w"> </span><span class="n">firstname</span><span class="w"> </span><span class="n">lastname</span><span class="w"> </span><span class="o">&lt;</span><span class="n">name</span><span class="nv">@address</span><span class="p">.</span><span class="n">com</span><span class="o">&gt;</span><span class="w"></span>
 
-<span class="nv">Date</span>: <span class="nv">Sat</span>, <span class="mi">19</span> <span class="nv">Sep</span> <span class="mi">2020</span> <span class="mi">17</span>:<span class="mi">38</span>:<span class="mi">17</span> <span class="o">-</span><span class="mi">0700</span>
+<span class="nc">Date</span><span class="err">:</span><span class="w"> </span><span class="n">Sat</span><span class="p">,</span><span class="w"> </span><span class="mi">19</span><span class="w"> </span><span class="n">Sep</span><span class="w"> </span><span class="mi">2020</span><span class="w"> </span><span class="mi">17</span><span class="err">:</span><span class="mi">38</span><span class="err">:</span><span class="mi">17</span><span class="w"> </span><span class="o">-</span><span class="mi">0700</span><span class="w"></span>
 
-<span class="nv">Message</span><span class="o">-</span><span class="nv">ID</span>: <span class="o">&lt;&gt;</span>
+<span class="n">Message</span><span class="o">-</span><span class="nl">ID</span><span class="p">:</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"></span>
 
-<span class="nv">Subject</span>: ......
+<span class="nl">Subject</span><span class="p">:</span><span class="w"> </span><span class="p">......</span><span class="w"></span>
 
-<span class="nv">To</span>: .....
+<span class="k">To</span><span class="err">:</span><span class="w"> </span><span class="p">.....</span><span class="w"></span>
 
-<span class="nv">Content</span><span class="o">-</span><span class="nv">Type</span>: <span class="nv">multipart</span><span class="o">/</span><span class="nv">alternative</span><span class="c1">;</span>
+<span class="n">Content</span><span class="o">-</span><span class="nl">Type</span><span class="p">:</span><span class="w"> </span><span class="n">multipart</span><span class="o">/</span><span class="n">alternative</span><span class="p">;</span><span class="w"></span>
 
-<span class="nv">Content</span><span class="o">-</span><span class="nv">Type</span>: <span class="nv">text</span><span class="o">/</span><span class="nv">plain</span><span class="c1">; charset=&quot;UTF-8&quot;</span>
+<span class="n">Content</span><span class="o">-</span><span class="nl">Type</span><span class="p">:</span><span class="w"> </span><span class="nc">text</span><span class="o">/</span><span class="n">plain</span><span class="p">;</span><span class="w"> </span><span class="n">charset</span><span class="o">=</span><span class="ss">&quot;UTF-8&quot;</span><span class="w"></span>
 
 
 
-<span class="o">&lt;</span><span class="nv">content</span><span class="o">&gt;</span>
-</pre></div>
-
+<span class="o">&lt;</span><span class="n">content</span><span class="o">&gt;</span><span class="w"></span>
+</code></pre></div>
 
 <p>For the most part it looks like plain text with <code>Name:</code> type headers. Luckily,
 python has an mbox library in the stdlib module <code>mailbox</code>, so I don't need to
@@ -221,7 +219,7 @@ make my own parser for it. Of these fields, I'm really only interested in a
 select few.</p>
 <p>This is the script I wrote to parse my mbox file and create a csv of the
 interesting fields</p>
-<div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/env python</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">mailbox</span>
 <span class="kn">import</span> <span class="nn">csv</span>
@@ -237,14 +235,13 @@ interesting fields</p>
 
 <span class="k">for</span> <span class="n">msg</span> <span class="ow">in</span> <span class="n">inbox</span><span class="p">:</span>
     <span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="n">msg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">header</span><span class="p">)</span> <span class="k">for</span> <span class="n">header</span> <span class="ow">in</span> <span class="n">headers</span><span class="p">]</span>
-    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>  <span class="c1"># Date</span>
+    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># Date</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-            <span class="k">print</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="nb">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
     <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Short and sweet, it accepts a filename as the first command line argument, and
 prints csv lines to stdout. There are a couple of checks and type conversions I
@@ -255,9 +252,8 @@ included because as I was analyzing the file, I noticed a couple of things</p>
 </ul>
 <p>Kind of strange, but nothing we can't work around. For now, let's get this data
 into a usable form.</p>
-<div class="highlight"><pre><span></span><span class="gp">$</span> checkmail.py All<span class="se">\ </span>mail<span class="se">\ </span>Including<span class="se">\ </span>Spam<span class="se">\ </span>and<span class="se">\ </span>Trash.mbox &gt; mail.csv
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> checkmail.py All<span class="se">\ </span>mail<span class="se">\ </span>Including<span class="se">\ </span>Spam<span class="se">\ </span>and<span class="se">\ </span>Trash.mbox &gt; mail.csv
+</code></pre></div>
 
 <p>Normally at this point I would use pandas to load the csv file into a DataFrame
 and analyze it, but I've enjoyed using
@@ -265,25 +261,23 @@ and analyze it, but I've enjoyed using
 tool built for the command line. It allows interactive searching, filtering,
 and aggregations on the data in question. With it, I was able to easily
 determine the most frequent sender.</p>
-<div class="highlight"><pre><span></span><span class="gp">$</span> vd mail.csv
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> vd mail.csv
+</code></pre></div>
 
 <p>To keep things practical, I restricted the search to the past two years instead
 of for all time. For privacy reasons, I will not share most of the results, but
 here are some of the interesting ones.</p>
-<div class="highlight"><pre><span></span><span class="k">domain</span>               <span class="k">count</span>   <span class="n">percent</span>    <span class="n">histogram</span>
-<span class="n">linkedin</span><span class="p">.</span><span class="n">com</span>         <span class="mi">442</span>     <span class="mi">14</span><span class="p">.</span><span class="mi">21</span>      <span class="o">**************************************************</span>
-<span class="n">google</span><span class="p">.</span><span class="n">com</span>           <span class="mi">225</span>     <span class="mi">7</span><span class="p">.</span><span class="mi">23</span>       <span class="o">*************************</span>
-<span class="n">mint</span><span class="p">.</span><span class="n">com</span>             <span class="mi">131</span>     <span class="mi">4</span><span class="p">.</span><span class="mi">21</span>       <span class="o">**************</span>
-<span class="n">pagerduty</span><span class="p">.</span><span class="n">com</span>        <span class="mi">95</span>      <span class="mi">3</span><span class="p">.</span><span class="mi">05</span>       <span class="o">**********</span>
-<span class="n">gmail</span><span class="p">.</span><span class="n">com</span>            <span class="mi">91</span>      <span class="mi">2</span><span class="p">.</span><span class="mi">93</span>       <span class="o">**********</span>
-<span class="n">github</span><span class="p">.</span><span class="n">com</span>           <span class="mi">88</span>      <span class="mi">2</span><span class="p">.</span><span class="mi">83</span>       <span class="o">*********</span>
-<span class="n">indiehackers</span><span class="p">.</span><span class="n">com</span>     <span class="mi">39</span>      <span class="mi">1</span><span class="p">.</span><span class="mi">25</span>       <span class="o">****</span>
-<span class="n">amazon</span><span class="p">.</span><span class="n">com</span>           <span class="mi">36</span>      <span class="mi">1</span><span class="p">.</span><span class="mi">16</span>       <span class="o">****</span>
-<span class="n">steampowered</span><span class="p">.</span><span class="n">com</span>     <span class="mi">32</span>      <span class="mi">1</span><span class="p">.</span><span class="mi">03</span>       <span class="o">***</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="err">domain               count   percent    histogram</span>
+<span class="err">linkedin.com         442     14.21      **************************************************</span>
+<span class="err">google.com           225     7.23       *************************</span>
+<span class="err">mint.com             131     4.21       **************</span>
+<span class="err">pagerduty.com        95      3.05       **********</span>
+<span class="err">gmail.com            91      2.93       **********</span>
+<span class="err">github.com           88      2.83       *********</span>
+<span class="err">indiehackers.com     39      1.25       ****</span>
+<span class="err">amazon.com           36      1.16       ****</span>
+<span class="err">steampowered.com     32      1.03       ***</span>
+</code></pre></div>
 
 <p>Hold on. LinkedIn accounts for fourteen percent? I'm barely active on that
 site, yet it comprises the lion's share of email I receive.</p>

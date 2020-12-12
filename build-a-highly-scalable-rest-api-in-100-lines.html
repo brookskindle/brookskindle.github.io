@@ -152,7 +152,7 @@ a series of git commits.</p>
 guide</a>. Some
 unnecessary lines have been removed for the sake of brevity.</p>
 <p><strong>handler.js</strong></p>
-<div class="highlight"><pre><span></span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">hello</span> <span class="o">=</span> <span class="nx">async</span> <span class="nx">event</span> <span class="p">=&gt;</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">hello</span> <span class="o">=</span> <span class="nx">async</span> <span class="nx">event</span> <span class="p">=&gt;</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">{</span>
     <span class="nx">statusCode</span><span class="o">:</span> <span class="mi">200</span><span class="p">,</span>
     <span class="nx">body</span><span class="o">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span>
@@ -165,8 +165,7 @@ unnecessary lines have been removed for the sake of brevity.</p>
     <span class="p">),</span>
   <span class="p">};</span>
 <span class="p">};</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>A single exported async function; the entrypoint for our lambda. Maybe it's
 obvious to say this, but every time the lambda is invoked, this function is
@@ -177,7 +176,7 @@ in this case we only need the first. AWS has more documentation on the <a href="
 handler</a> for
 the curious.</p>
 <p><strong>serverless.yml</strong></p>
-<div class="highlight"><pre><span></span><span class="c1"># For full config options, check the docs:</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># For full config options, check the docs:</span>
 <span class="c1">#    docs.serverless.com</span>
 
 <span class="nt">service</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SERVICE_NAME_HERE</span>
@@ -196,8 +195,7 @@ the curious.</p>
 <span class="nt">functions</span><span class="p">:</span>
   <span class="nt">hello</span><span class="p">:</span>
     <span class="nt">handler</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">handler.hello</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Most important right now is the <code>functions</code> section, which defines a <code>hello</code>
 lambda whose entrypoint is the <code>hello</code> function of <code>handler.js</code>. At this point,
@@ -210,7 +208,7 @@ peek behind the curtains, run <code>serverless package</code> and check out the
 CloudFormation files that are generated in the <code>.serverless</code> folder.</p>
 </blockquote>
 <h3><code>8ee5621</code> Make endpoint public</h3>
-<div class="highlight"><pre><span></span><span class="gd">--- a/blocks/lambda-webhook-callback/serverless.yml</span>
+<div class="highlight"><pre><span></span><code><span class="gd">--- a/blocks/lambda-webhook-callback/serverless.yml</span>
 <span class="gi">+++ b/blocks/lambda-webhook-callback/serverless.yml</span>
 <span class="gu">@@ -63,10 +63,10 @@ functions:</span>
 functions:
@@ -220,26 +218,24 @@ functions:
 <span class="gi">+      - http:</span>
 <span class="gi">+          path: hello</span>
 <span class="gi">+          method: get</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>These four lines allow us to call our lambda externally through an https
 endpoint.</p>
-<div class="highlight"><pre><span></span><span class="gp">$</span> curl <span class="s1">&#39;https://sdlfkj3408jjlk.execute-api.us-east-1.amazonaws.com/dev/hello&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> curl <span class="s1">&#39;https://sdlfkj3408jjlk.execute-api.us-east-1.amazonaws.com/dev/hello&#39;</span>
 <span class="go">{</span>
 <span class="go">  &quot;message&quot;: &quot;Go Serverless v1.0! Your function executed successfully!&quot;,</span>
 <span class="go">  &quot;input&quot;: {</span>
 <span class="go">    ...</span>
 <span class="go">  }</span>
 <span class="go">}</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Serverless achieves this by automatically configuring an <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html">API
 Gateway</a>
 entry for the application.</p>
 <h3><code>d169028</code> Greet based on url param</h3>
-<div class="highlight"><pre><span></span><span class="gd">--- a/blocks/lambda-webhook-callback/handler.js</span>
+<div class="highlight"><pre><span></span><code><span class="gd">--- a/blocks/lambda-webhook-callback/handler.js</span>
 <span class="gi">+++ b/blocks/lambda-webhook-callback/handler.js</span>
 <span class="gu">@@ -1,12 +1,16 @@</span>
  &#39;use strict&#39;;
@@ -260,30 +256,27 @@ entry for the application.</p>
        },
        null,
        2
-</pre></div>
-
+</code></pre></div>
 
 <p>Now that our lambda can be called by the API Gateway, we get all sorts of
 interesting properties through the <code>event</code> parameter. In this case, we want to
 know if the user passed in a <code>name</code> url parameter.</p>
-<div class="highlight"><pre><span></span><span class="gp">$</span> curl <span class="s1">&#39;https://sdflkj398987.execute-api.us-east-1.amazonaws.com/dev/hello&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> curl <span class="s1">&#39;https://sdflkj398987.execute-api.us-east-1.amazonaws.com/dev/hello&#39;</span>
 <span class="go">{</span>
 <span class="go">  &quot;message&quot;: &quot;Hello anonymous!&quot;</span>
 <span class="go">}</span>
-</pre></div>
+</code></pre></div>
 
-
-<div class="highlight"><pre><span></span><span class="gp">$</span> curl <span class="s1">&#39;https://sdflkj398987.execute-api.us-east-1.amazonaws.com/dev/hello?name=brooks&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> curl <span class="s1">&#39;https://sdflkj398987.execute-api.us-east-1.amazonaws.com/dev/hello?name=brooks&#39;</span>
 <span class="go">{</span>
 <span class="go">  &quot;message&quot;: &quot;Hello brooks!&quot;</span>
 <span class="go">}</span>
-</pre></div>
-
+</code></pre></div>
 
 <p><a href="https://docs.aws.amazon.com/lambda/latest/dg/services-apigateway.html">API Gateway docs with example <code>event</code>
 payload</a></p>
 <h3><code>f486d35</code> Require api keys</h3>
-<div class="highlight"><pre><span></span><span class="gd">--- a/blocks/lambda-webhook-callback/serverless.yml</span>
+<div class="highlight"><pre><span></span><code><span class="gd">--- a/blocks/lambda-webhook-callback/serverless.yml</span>
 <span class="gi">+++ b/blocks/lambda-webhook-callback/serverless.yml</span>
 <span class="gu">@@ -23,6 +23,16 @@ frameworkVersion: &#39;2&#39;</span>
  provider:
@@ -298,8 +291,7 @@ payload</a></p>
            path: hello
            method: get
 <span class="gi">+          private: true</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>API keys are configured for the whole project, so if you end up having more
 than one function/lambda they will all share the same set of API keys.
@@ -308,29 +300,26 @@ have an <code>X-Api-Key</code> header with a valid API key. Serverless has great
 documentation on <a href="https://www.serverless.com/framework/docs/providers/aws/events/apigateway/#setting-api-keys-for-your-rest-api">setting up
 keys</a>
 as well, there's many more ways to customize them than I've shown here.</p>
-<div class="highlight"><pre><span></span><span class="gp">$</span> curl <span class="s1">&#39;https://sdflkj398987.execute-api.us-east-1.amazonaws.com/dev/hello&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> curl <span class="s1">&#39;https://sdflkj398987.execute-api.us-east-1.amazonaws.com/dev/hello&#39;</span>
 <span class="go">{&quot;message&quot;:&quot;Forbidden&quot;}</span>
-</pre></div>
+</code></pre></div>
 
-
-<div class="highlight"><pre><span></span><span class="gp">$</span> curl <span class="s1">&#39;https://sdflkj398987.execute-api.us-east-1.amazonaws.com/dev/hello&#39;</span> <span class="se">\</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> curl <span class="s1">&#39;https://sdflkj398987.execute-api.us-east-1.amazonaws.com/dev/hello&#39;</span> <span class="se">\</span>
     -H <span class="s1">&#39;x-api-key: sdlfkjo4582730sdflskdfj034lskdfj&#39;</span>
 <span class="go">{</span>
 <span class="go">  &quot;message&quot;: &quot;Hello anonymous!&quot;</span>
 <span class="go">}</span>
-</pre></div>
-
+</code></pre></div>
 
 <h3><code>b2d9941</code> Set CORS for endpoint</h3>
-<div class="highlight"><pre><span></span><span class="gd">--- a/blocks/lambda-webhook-callback/serverless.yml</span>
+<div class="highlight"><pre><span></span><code><span class="gd">--- a/blocks/lambda-webhook-callback/serverless.yml</span>
 <span class="gi">+++ b/blocks/lambda-webhook-callback/serverless.yml</span>
 <span class="gu">@@ -78,6 +78,7 @@ functions:</span>
            path: hello
            method: get
            private: true
 <span class="gi">+          cors: true</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>This is a small code change, but the impact is huge. With CORS enabled, our API
 can now be queried from any front end application.</p>
@@ -344,7 +333,7 @@ have a <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">comprehe
 article</a> to
 understanding CORS.</p>
 <h3><code>22d2412</code> Set usage plans for keys</h3>
-<div class="highlight"><pre><span></span><span class="gd">--- a/blocks/lambda-webhook-callback/serverless.yml</span>
+<div class="highlight"><pre><span></span><code><span class="gd">--- a/blocks/lambda-webhook-callback/serverless.yml</span>
 <span class="gi">+++ b/blocks/lambda-webhook-callback/serverless.yml</span>
 <span class="gu">@@ -26,13 +26,26 @@ provider:</span>
    apiKeys:
@@ -369,19 +358,17 @@ understanding CORS.</p>
 <span class="gi">+        throttle:</span>
 <span class="gi">+          burstLimit: 200</span>
 <span class="gi">+          rateLimit: 100</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>I'll re-iterate the serverless documentation on <a href="https://www.serverless.com/framework/docs/providers/aws/events/apigateway/#setting-api-keys-for-your-rest-api">setting up API
 keys</a>.
 With this change, we can now limit by API keys, the number of requests that
 come in on a set time period (in this case <code>DAY</code>). Exceeding this limit will
 result in a 429 Too Many Requests error.</p>
-<div class="highlight"><pre><span></span><span class="gp">$</span> curl <span class="s1">&#39;https://3lskdjfsdlf8.execute-api.us-east-1.amazonaws.com/dev/hello&#39;</span> <span class="se">\</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> curl <span class="s1">&#39;https://3lskdjfsdlf8.execute-api.us-east-1.amazonaws.com/dev/hello&#39;</span> <span class="se">\</span>
     -H <span class="s1">&#39;x-api-key: jsdlkfjslkj343434234lksjdflkj&#39;</span>
 <span class="go">{&quot;message&quot;:&quot;Limit Exceeded&quot;}</span>
-</pre></div>
-
+</code></pre></div>
 
 <h3><code>b8a7405</code> Integrate with DynamoDB</h3>
 <p>This is a big one. Also not included in this diff is <code>package.json</code> and
@@ -389,7 +376,7 @@ result in a 429 Too Many Requests error.</p>
 The two files can be created, however, with <code>npm init --y &amp;&amp; npm install
 aws-sdk</code>.</p>
 <p>To make things easier, let's walk through the changes per file.</p>
-<div class="highlight"><pre><span></span><span class="gh">diff --git a/blocks/lambda-webhook-callback/handler.js b/blocks/lambda-webhook-callback/handler.js</span>
+<div class="highlight"><pre><span></span><code><span class="gh">diff --git a/blocks/lambda-webhook-callback/handler.js b/blocks/lambda-webhook-callback/handler.js</span>
 <span class="gh">index b6e6b0d..956f2eb 100644</span>
 <span class="gd">--- a/blocks/lambda-webhook-callback/handler.js</span>
 <span class="gi">+++ b/blocks/lambda-webhook-callback/handler.js</span>
@@ -414,8 +401,7 @@ aws-sdk</code>.</p>
    return {
      statusCode: 200,
      body: JSON.stringify(
-</pre></div>
-
+</code></pre></div>
 
 <p>We're using the aws-sdk to initialize a DynamoDB connection. DynamoDB is
 Amazon's own NoSQL offering and we'll be using it as a way to persist data
@@ -424,7 +410,7 @@ user we're greeting.</p>
 <p>Also note: for flexibility, we expect the table name to be available via the
 <code>TABLE_NAME</code> environment variable rather than hardcoding a value for it. The
 reason why will become apparent when we look at the next file.</p>
-<div class="highlight"><pre><span></span><span class="gh">diff --git a/blocks/lambda-webhook-callback/serverless.yml b/blocks/lambda-webhook-callback/serverless.yml</span>
+<div class="highlight"><pre><span></span><code><span class="gh">diff --git a/blocks/lambda-webhook-callback/serverless.yml b/blocks/lambda-webhook-callback/serverless.yml</span>
 <span class="gh">index d889190..7e6fc28 100644</span>
 <span class="gd">--- a/blocks/lambda-webhook-callback/serverless.yml</span>
 <span class="gi">+++ b/blocks/lambda-webhook-callback/serverless.yml</span>
@@ -457,8 +443,7 @@ reason why will become apparent when we look at the next file.</p>
 <span class="gi">+        KeySchema:</span>
 <span class="gi">+          - AttributeName: name</span>
 <span class="gi">+            KeyType: HASH</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Let's look at the <strong>resources</strong> first. This section defines a DynamoDB table,
 which we're referencing as <code>helloTable</code>. The syntax for this section is
@@ -495,7 +480,7 @@ documentation on the contents of the <code>!Sub</code> section:
 references</a>,
 <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-sub.html#w2ab1c33c28c59c11">!Sub</a>.</p>
 <h3><code>3f338a6</code> Count the number of visitors</h3>
-<div class="highlight"><pre><span></span><span class="gh">diff --git a/blocks/lambda-webhook-callback/handler.js b/blocks/lambda-webhook-callback/handler.js</span>
+<div class="highlight"><pre><span></span><code><span class="gh">diff --git a/blocks/lambda-webhook-callback/handler.js b/blocks/lambda-webhook-callback/handler.js</span>
 <span class="gh">index e1b1496..6568753 100644</span>
 <span class="gd">--- a/blocks/lambda-webhook-callback/handler.js</span>
 <span class="gi">+++ b/blocks/lambda-webhook-callback/handler.js</span>
@@ -541,8 +526,7 @@ references</a>,
 <span class="gd">-        - dynamodb:PutItem</span>
 <span class="gi">+        - dynamodb:UpdateItem</span>
        Resource: !Sub &#39;arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${helloTable}&#39;
-</pre></div>
-
+</code></pre></div>
 
 <p>With this commit, we change the response value of our endpoint to also include
 the visitor count per name. Instead of putting an item, we are updating an item
@@ -550,7 +534,7 @@ the visitor count per name. Instead of putting an item, we are updating an item
 <code>greeting_count</code> field (<a href="https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html">API docs on node.js DynamoDB
 client</a>).
 Calling our API now looks like this:</p>
-<div class="highlight"><pre><span></span><span class="gp">$</span> curl <span class="s1">&#39;https://34iisdflkj.execute-api.us-east-1.amazonaws.com/dev/hello&#39;</span> <span class="se">\</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> curl <span class="s1">&#39;https://34iisdflkj.execute-api.us-east-1.amazonaws.com/dev/hello&#39;</span> <span class="se">\</span>
     -H <span class="s1">&#39;x-api-key: lksjdfljl3j45lk2345jlkjsdflksjdfljklsdkjf&#39;</span>
 <span class="go">{</span>
 <span class="go">  &quot;message&quot;: &quot;Hello anonymous #1!&quot;</span>
@@ -565,11 +549,10 @@ Calling our API now looks like this:</p>
 <span class="go">{</span>
 <span class="go">  &quot;message&quot;: &quot;Hello brooks #1!&quot;</span>
 <span class="go">}</span>
-</pre></div>
-
+</code></pre></div>
 
 <h3><code>6ddad1f</code> Dynamo: use SET, not ADD</h3>
-<div class="highlight"><pre><span></span><span class="gh">diff --git a/blocks/lambda-webhook-callback/handler.js b/blocks/lambda-webhook-callback/handler.js</span>
+<div class="highlight"><pre><span></span><code><span class="gh">diff --git a/blocks/lambda-webhook-callback/handler.js b/blocks/lambda-webhook-callback/handler.js</span>
 <span class="gh">index 6568753..2e53aa4 100644</span>
 <span class="gd">--- a/blocks/lambda-webhook-callback/handler.js</span>
 <span class="gi">+++ b/blocks/lambda-webhook-callback/handler.js</span>
@@ -587,8 +570,7 @@ Calling our API now looks like this:</p>
        &#39;:num&#39;: 1,
      },
      ReturnValues: &#39;UPDATED_NEW&#39;,
-</pre></div>
-
+</code></pre></div>
 
 <p>This is a best practices change because functionally the two <code>UpdateExpression</code>
 lines do the same thing. However, AWS recommends <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.UpdateExpressions.html#Expressions.UpdateExpressions.ADD">using SET in most
@@ -598,7 +580,7 @@ more I think about it, SET makes it abundantly clear what the logic is if
 <code>greeting_count</code> does not yet exist as an attribute. ADD hides this logic, and
 therefore has the potential to cause hard-to-debug errors.</p>
 <h3><code>4562185</code> Add DeletionPolicy note</h3>
-<div class="highlight"><pre><span></span><span class="gd">--- a/blocks/lambda-webhook-callback/serverless.yml</span>
+<div class="highlight"><pre><span></span><code><span class="gd">--- a/blocks/lambda-webhook-callback/serverless.yml</span>
 <span class="gi">+++ b/blocks/lambda-webhook-callback/serverless.yml</span>
 <span class="gu">@@ -82,6 +82,12 @@ resources:</span>
    Resources:
@@ -608,8 +590,7 @@ therefore has the potential to cause hard-to-debug errors.</p>
        Properties:
          BillingMode: PAY_PER_REQUEST
          AttributeDefinitions:
-</pre></div>
-
+</code></pre></div>
 
 <p>This change is optional, but in a production setting you most likely want to
 retain your database in the case of CloudFormation stack removal. The exception

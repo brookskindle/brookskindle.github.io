@@ -117,22 +117,20 @@ task, though other options such as <a href="https://www.mysql.com">MySQL</a> and
 <a href="https://www.sqlite.org/index.html">SQLite</a> would work as well.</p>
 <p>Let's take one more peek at our data to figure out what columns we need for the
 table.</p>
-<div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">head</span> <span class="o">-</span><span class="mi">5</span> <span class="n">Checkouts_by_Title</span><span class="p">.</span><span class="n">csv</span> <span class="o">|</span> <span class="n">column</span> <span class="o">-</span><span class="n">s</span><span class="p">,</span> <span class="o">-</span><span class="n">t</span>
+<div class="highlight"><pre><span></span><code><span class="err">$</span> <span class="n">head</span> <span class="o">-</span><span class="mi">5</span> <span class="n">Checkouts_by_Title</span><span class="p">.</span><span class="n">csv</span> <span class="o">|</span> <span class="n">column</span> <span class="o">-</span><span class="n">s</span><span class="p">,</span> <span class="o">-</span><span class="n">t</span>
 <span class="n">UsageClass</span>  <span class="n">CheckoutType</span>  <span class="n">MaterialType</span>  <span class="n">CheckoutYear</span>  <span class="n">CheckoutMonth</span>  <span class="n">Checkouts</span>  <span class="n">Title</span>                                                                                                                                   <span class="n">Creator</span>       <span class="n">Subjects</span>                                   <span class="n">Publisher</span>                           <span class="n">PublicationYear</span>
 <span class="n">Physical</span>    <span class="n">Horizon</span>       <span class="n">BOOK</span>          <span class="mi">2016</span>          <span class="mi">3</span>              <span class="mi">1</span>          <span class="s">&quot;The Aleutian islands: their people and natural history (with keys for the identification of the birds and plants) by Henry B. Collins   jr.           Austin H. Clark [and] Egbert H. Walker.&quot;</span>  <span class="s">&quot;Collins                             Henry B. (Henry Bascom)   1899-1987&quot;</span>                       <span class="s">&quot;Aleuts                             Natural history Alaska Aleutian Islands   Aleutian Islands Alaska&quot;</span>  <span class="s">&quot;Smithsonian institution  &quot;</span>  <span class="mf">1945.</span>
 <span class="n">Physical</span>    <span class="n">Horizon</span>       <span class="n">SOUNDDISC</span>     <span class="mi">2016</span>          <span class="mi">3</span>              <span class="mi">9</span>          <span class="n">Reality</span> <span class="p">[</span><span class="n">sound</span> <span class="n">recording</span><span class="p">]</span> <span class="o">/</span> <span class="n">David</span> <span class="n">Bowie</span><span class="p">.</span>                                                                                                <span class="s">&quot;Bowie         David&quot;</span>                                    <span class="n">Rock</span> <span class="n">music</span> <span class="mi">2001</span> <span class="mi">2010</span>                <span class="s">&quot;ISO/Columbia             &quot;</span>                                 <span class="n">p2003</span><span class="p">.</span>
 <span class="n">Physical</span>    <span class="n">Horizon</span>       <span class="n">BOOK</span>          <span class="mi">2016</span>          <span class="mi">3</span>              <span class="mi">1</span>          <span class="n">Thresholds</span> <span class="o">/</span> <span class="n">Nina</span> <span class="n">Kiriki</span> <span class="n">Hoffman</span><span class="p">.</span>                                                                                                       <span class="s">&quot;Hoffman       Nina Kiriki&quot;</span>                              <span class="s">&quot;Moving Household Juvenile fiction   Friendship Fiction        Extraterrestrial beings Fiction   Science fiction Juvenile fiction   Fantasy Fiction                           Oregon Juvenile fiction&quot;</span>  <span class="s">&quot;Viking                   &quot;</span>  <span class="mf">2010.</span>
 <span class="n">Digital</span>     <span class="n">Freegal</span>       <span class="n">SONG</span>          <span class="mi">2016</span>          <span class="mi">3</span>              <span class="mi">1</span>          <span class="n">On</span> <span class="n">Green</span> <span class="n">Dolphin</span> <span class="n">Street</span>                                                                                                                 <span class="n">Nancy</span> <span class="n">Wilson</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Let's create a database</p>
-<div class="highlight"><pre><span></span><span class="gp">$</span> createdb checkouts
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> createdb checkouts
+</code></pre></div>
 
 <p>and then a table.</p>
-<div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">checkouts</span>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">checkouts</span>
 <span class="p">(</span>
     <span class="n">usage_class</span> <span class="nb">TEXT</span><span class="p">,</span>
     <span class="n">checkout_type</span> <span class="nb">TEXT</span><span class="p">,</span>
@@ -147,8 +145,7 @@ table.</p>
     <span class="n">publication_year</span> <span class="nb">TEXT</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="k">CREATE</span> <span class="k">INDEX</span> <span class="n">year_idx</span> <span class="k">ON</span> <span class="n">checkouts</span> <span class="p">(</span><span class="n">checkout_year</span><span class="p">)</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>I intentionally created an index for the <code>checkout_year</code> column because one of
 the questions we want to know the answer to is "how many items were checked out
@@ -157,14 +154,13 @@ will make your query drastically more performant.</p>
 <p>Now we can use the <code>\copy</code> command to insert our csv file into the newly
 created table. This will take some time, depending on your computer. On mine,
 it took slightly over five minutes to complete.</p>
-<div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">time</span> psql checkouts -c <span class="s2">&quot;\copy checkouts FROM &#39;./Checkouts_by_Title.csv&#39; DELIMITER &#39;,&#39; CSV HEADER&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> <span class="nb">time</span> psql checkouts -c <span class="s2">&quot;\copy checkouts FROM &#39;./Checkouts_by_Title.csv&#39; DELIMITER &#39;,&#39; CSV HEADER&quot;</span>
 <span class="go">COPY 34677950</span>
 
 <span class="go">real    5m13.032s</span>
 <span class="go">user    0m14.329s</span>
 <span class="go">sys     1m23.068s</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Alternatively, if you aren't comfortable writing SQL or prefer to stay in
 python, the same thing can be achieved using
@@ -172,19 +168,18 @@ python, the same thing can be achieved using
 <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_sql.html">to_sql</a>
 method, though we'd need to iterate over the csv file in chunks in order to do
 so.</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sqlalchemy</span> <span class="kn">as</span> <span class="nn">sa</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">sqlalchemy</span> <span class="k">as</span> <span class="nn">sa</span>
 <span class="n">engine</span> <span class="o">=</span> <span class="n">sa</span><span class="o">.</span><span class="n">create_engine</span><span class="p">(</span><span class="s2">&quot;postgresql://brooks:@/checkouts&quot;</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">partial_df</span> <span class="ow">in</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./Checkouts_by_Title.csv&quot;</span><span class="p">,</span> <span class="n">chunksize</span><span class="o">=</span><span class="mi">100</span><span class="n">_000</span><span class="p">):</span>
-    <span class="n">partial_df</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s2">&quot;checkouts&quot;</span><span class="p">,</span> <span class="n">engine</span><span class="p">,</span> <span class="n">if_exists</span><span class="o">=</span><span class="s2">&quot;append&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-</pre></div>
-
+<span class="k">for</span> <span class="n">partial_df</span> <span class="ow">in</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./Checkouts_by_Title.csv&quot;</span><span class="p">,</span> <span class="n">chunksize</span><span class="o">=</span><span class="mi">100_000</span><span class="p">):</span>
+    <span class="n">partial_df</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="s2">&quot;checkouts&quot;</span><span class="p">,</span> <span class="n">engine</span><span class="p">,</span> <span class="n">if_exists</span><span class="o">=</span><span class="s2">&quot;append&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
 
 <p>That's amazing! The incredible amount of flexibility that pandas
 and the python ecosystem provides is why I love working with them.</p>
 <p>Regardless, now that the data is all inserted, let's move on to the analysis.</p>
 <h2>How many items were checked out last year?</h2>
 <p>Can be answered with the following query</p>
-<div class="highlight"><pre><span></span><span class="k">WITH</span> <span class="n">checkouts_last_year</span> <span class="k">AS</span> <span class="p">(</span>
+<div class="highlight"><pre><span></span><code><span class="k">WITH</span> <span class="n">checkouts_last_year</span> <span class="k">AS</span> <span class="p">(</span>
     <span class="k">SELECT</span> <span class="n">checkouts</span>
     <span class="k">FROM</span> <span class="n">checkouts</span>
     <span class="k">WHERE</span> <span class="n">checkout_year</span> <span class="o">=</span> <span class="mi">2018</span>
@@ -192,65 +187,61 @@ and the python ecosystem provides is why I love working with them.</p>
 
 <span class="k">SELECT</span> <span class="k">sum</span><span class="p">(</span><span class="n">checkouts</span><span class="p">)</span> <span class="k">AS</span> <span class="n">total_checkouts</span>
 <span class="k">FROM</span> <span class="n">checkouts_last_year</span>
-</pre></div>
-
+</code></pre></div>
 
 <p><strong>Answer</strong></p>
-<div class="highlight"><pre><span></span><span class="n">total_checkouts</span>
+<div class="highlight"><pre><span></span><code><span class="n">total_checkouts</span>
 <span class="c1">-----------------</span>
          <span class="mi">9149176</span>
 <span class="p">(</span><span class="mi">1</span> <span class="k">row</span><span class="p">)</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>With the <code>checkout_year</code> index, this query took less than 2 seconds. Without
 the index we created on the table, it took 36.</p>
 <h2>How popular is digital material compared to physical material?</h2>
 <p>and is that increasing or decreasing?</p>
-<div class="highlight"><pre><span></span><span class="k">SELECT</span>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span>
     <span class="n">checkout_year</span><span class="p">,</span> <span class="n">usage_class</span><span class="p">,</span> <span class="k">SUM</span><span class="p">(</span><span class="n">checkouts</span><span class="p">)</span>
 <span class="k">FROM</span> <span class="n">checkouts</span>
 <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">usage_class</span><span class="p">,</span> <span class="n">checkout_year</span>
 <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">usage_class</span><span class="p">,</span> <span class="n">checkout_year</span>
-</pre></div>
-
+</code></pre></div>
 
 <p><strong>Answer</strong></p>
-<div class="highlight"><pre><span></span> <span class="n">checkout_year</span> <span class="o">|</span> <span class="n">usage_class</span> <span class="o">|</span>   <span class="k">sum</span>
-<span class="c1">---------------+-------------+---------</span>
-          <span class="mi">2005</span> <span class="o">|</span> <span class="n">Digital</span>     <span class="o">|</span>    <span class="mi">3959</span>
-          <span class="mi">2006</span> <span class="o">|</span> <span class="n">Digital</span>     <span class="o">|</span>   <span class="mi">16839</span>
-          <span class="mi">2007</span> <span class="o">|</span> <span class="n">Digital</span>     <span class="o">|</span>   <span class="mi">34620</span>
-          <span class="mi">2008</span> <span class="o">|</span> <span class="n">Digital</span>     <span class="o">|</span>   <span class="mi">63945</span>
-          <span class="mi">2009</span> <span class="o">|</span> <span class="n">Digital</span>     <span class="o">|</span>   <span class="mi">99329</span>
-          <span class="mi">2010</span> <span class="o">|</span> <span class="n">Digital</span>     <span class="o">|</span>  <span class="mi">183920</span>
-          <span class="mi">2011</span> <span class="o">|</span> <span class="n">Digital</span>     <span class="o">|</span>  <span class="mi">536937</span>
-          <span class="mi">2012</span> <span class="o">|</span> <span class="n">Digital</span>     <span class="o">|</span>  <span class="mi">863922</span>
-          <span class="mi">2013</span> <span class="o">|</span> <span class="n">Digital</span>     <span class="o">|</span> <span class="mi">1192836</span>
-          <span class="mi">2014</span> <span class="o">|</span> <span class="n">Digital</span>     <span class="o">|</span> <span class="mi">1719202</span>
-          <span class="mi">2015</span> <span class="o">|</span> <span class="n">Digital</span>     <span class="o">|</span> <span class="mi">2212553</span>
-          <span class="mi">2016</span> <span class="o">|</span> <span class="n">Digital</span>     <span class="o">|</span> <span class="mi">2452733</span>
-          <span class="mi">2017</span> <span class="o">|</span> <span class="n">Digital</span>     <span class="o">|</span> <span class="mi">2752214</span>
-          <span class="mi">2018</span> <span class="o">|</span> <span class="n">Digital</span>     <span class="o">|</span> <span class="mi">3046521</span>
-          <span class="mi">2019</span> <span class="o">|</span> <span class="n">Digital</span>     <span class="o">|</span> <span class="mi">2538416</span>
-          <span class="mi">2005</span> <span class="o">|</span> <span class="n">Physical</span>    <span class="o">|</span> <span class="mi">3794726</span>
-          <span class="mi">2006</span> <span class="o">|</span> <span class="n">Physical</span>    <span class="o">|</span> <span class="mi">6582479</span>
-          <span class="mi">2007</span> <span class="o">|</span> <span class="n">Physical</span>    <span class="o">|</span> <span class="mi">7092007</span>
-          <span class="mi">2008</span> <span class="o">|</span> <span class="n">Physical</span>    <span class="o">|</span> <span class="mi">8374541</span>
-          <span class="mi">2009</span> <span class="o">|</span> <span class="n">Physical</span>    <span class="o">|</span> <span class="mi">9035838</span>
-          <span class="mi">2010</span> <span class="o">|</span> <span class="n">Physical</span>    <span class="o">|</span> <span class="mi">8425046</span>
-          <span class="mi">2011</span> <span class="o">|</span> <span class="n">Physical</span>    <span class="o">|</span> <span class="mi">7784795</span>
-          <span class="mi">2012</span> <span class="o">|</span> <span class="n">Physical</span>    <span class="o">|</span> <span class="mi">7299124</span>
-          <span class="mi">2013</span> <span class="o">|</span> <span class="n">Physical</span>    <span class="o">|</span> <span class="mi">7864260</span>
-          <span class="mi">2014</span> <span class="o">|</span> <span class="n">Physical</span>    <span class="o">|</span> <span class="mi">7416879</span>
-          <span class="mi">2015</span> <span class="o">|</span> <span class="n">Physical</span>    <span class="o">|</span> <span class="mi">6871626</span>
-          <span class="mi">2016</span> <span class="o">|</span> <span class="n">Physical</span>    <span class="o">|</span> <span class="mi">6568318</span>
-          <span class="mi">2017</span> <span class="o">|</span> <span class="n">Physical</span>    <span class="o">|</span> <span class="mi">6479434</span>
-          <span class="mi">2018</span> <span class="o">|</span> <span class="n">Physical</span>    <span class="o">|</span> <span class="mi">6102655</span>
-          <span class="mi">2019</span> <span class="o">|</span> <span class="n">Physical</span>    <span class="o">|</span> <span class="mi">4385334</span>
-<span class="p">(</span><span class="mi">30</span> <span class="k">rows</span><span class="p">)</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="err"> checkout_year | usage_class |   sum</span>
+<span class="err">---------------+-------------+---------</span>
+<span class="err">          2005 | Digital     |    3959</span>
+<span class="err">          2006 | Digital     |   16839</span>
+<span class="err">          2007 | Digital     |   34620</span>
+<span class="err">          2008 | Digital     |   63945</span>
+<span class="err">          2009 | Digital     |   99329</span>
+<span class="err">          2010 | Digital     |  183920</span>
+<span class="err">          2011 | Digital     |  536937</span>
+<span class="err">          2012 | Digital     |  863922</span>
+<span class="err">          2013 | Digital     | 1192836</span>
+<span class="err">          2014 | Digital     | 1719202</span>
+<span class="err">          2015 | Digital     | 2212553</span>
+<span class="err">          2016 | Digital     | 2452733</span>
+<span class="err">          2017 | Digital     | 2752214</span>
+<span class="err">          2018 | Digital     | 3046521</span>
+<span class="err">          2019 | Digital     | 2538416</span>
+<span class="err">          2005 | Physical    | 3794726</span>
+<span class="err">          2006 | Physical    | 6582479</span>
+<span class="err">          2007 | Physical    | 7092007</span>
+<span class="err">          2008 | Physical    | 8374541</span>
+<span class="err">          2009 | Physical    | 9035838</span>
+<span class="err">          2010 | Physical    | 8425046</span>
+<span class="err">          2011 | Physical    | 7784795</span>
+<span class="err">          2012 | Physical    | 7299124</span>
+<span class="err">          2013 | Physical    | 7864260</span>
+<span class="err">          2014 | Physical    | 7416879</span>
+<span class="err">          2015 | Physical    | 6871626</span>
+<span class="err">          2016 | Physical    | 6568318</span>
+<span class="err">          2017 | Physical    | 6479434</span>
+<span class="err">          2018 | Physical    | 6102655</span>
+<span class="err">          2019 | Physical    | 4385334</span>
+<span class="err">(30 rows)</span>
+</code></pre></div>
 
 <p>Currently, physical material is around twice as popular, but you can see that
 over time digital material is rapidly gaining ground. If we were to plot these
@@ -264,38 +255,35 @@ we're only seeing partial data for 2019.</p>
 <h2>What subjects are most often checked out?</h2>
 <p>Ah, this is a challenge. Can you see why? Our data currently resides in one
 large table.</p>
-<div class="highlight"><pre><span></span>                  <span class="k">Table</span> <span class="ss">&quot;public.checkouts&quot;</span>
-      <span class="k">Column</span>      <span class="o">|</span>  <span class="k">Type</span>   <span class="o">|</span> <span class="k">Collation</span> <span class="o">|</span> <span class="k">Nullable</span> <span class="o">|</span> <span class="k">Default</span>
-<span class="c1">------------------+---------+-----------+----------+---------</span>
- <span class="n">usage_class</span>      <span class="o">|</span> <span class="nb">text</span>    <span class="o">|</span>           <span class="o">|</span>          <span class="o">|</span>
- <span class="n">checkout_type</span>    <span class="o">|</span> <span class="nb">text</span>    <span class="o">|</span>           <span class="o">|</span>          <span class="o">|</span>
- <span class="n">material_type</span>    <span class="o">|</span> <span class="nb">text</span>    <span class="o">|</span>           <span class="o">|</span>          <span class="o">|</span>
- <span class="n">checkout_year</span>    <span class="o">|</span> <span class="nb">integer</span> <span class="o">|</span>           <span class="o">|</span>          <span class="o">|</span>
- <span class="n">checkout_month</span>   <span class="o">|</span> <span class="nb">integer</span> <span class="o">|</span>           <span class="o">|</span>          <span class="o">|</span>
- <span class="n">checkouts</span>        <span class="o">|</span> <span class="nb">integer</span> <span class="o">|</span>           <span class="o">|</span>          <span class="o">|</span>
- <span class="n">title</span>            <span class="o">|</span> <span class="nb">text</span>    <span class="o">|</span>           <span class="o">|</span>          <span class="o">|</span>
- <span class="n">creator</span>          <span class="o">|</span> <span class="nb">text</span>    <span class="o">|</span>           <span class="o">|</span>          <span class="o">|</span>
- <span class="n">subjects</span>         <span class="o">|</span> <span class="nb">text</span>    <span class="o">|</span>           <span class="o">|</span>          <span class="o">|</span>
- <span class="n">publisher</span>        <span class="o">|</span> <span class="nb">text</span>    <span class="o">|</span>           <span class="o">|</span>          <span class="o">|</span>
- <span class="n">publication_year</span> <span class="o">|</span> <span class="nb">text</span>    <span class="o">|</span>           <span class="o">|</span>          <span class="o">|</span>
-<span class="n">Indexes</span><span class="p">:</span>
-    <span class="ss">&quot;year_idx&quot;</span> <span class="n">btree</span> <span class="p">(</span><span class="n">checkout_year</span><span class="p">)</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="err">                  Table &quot;public.checkouts&quot;</span>
+<span class="err">      Column      |  Type   | Collation | Nullable | Default</span>
+<span class="err">------------------+---------+-----------+----------+---------</span>
+<span class="err"> usage_class      | text    |           |          |</span>
+<span class="err"> checkout_type    | text    |           |          |</span>
+<span class="err"> material_type    | text    |           |          |</span>
+<span class="err"> checkout_year    | integer |           |          |</span>
+<span class="err"> checkout_month   | integer |           |          |</span>
+<span class="err"> checkouts        | integer |           |          |</span>
+<span class="err"> title            | text    |           |          |</span>
+<span class="err"> creator          | text    |           |          |</span>
+<span class="err"> subjects         | text    |           |          |</span>
+<span class="err"> publisher        | text    |           |          |</span>
+<span class="err"> publication_year | text    |           |          |</span>
+<span class="c">Indexes:</span>
+<span class="c">    &quot;year_idx&quot; btree (checkout_year)</span>
+</code></pre></div>
 
 <p>The previous questions were easily answered because it involved summing up
 whole columns from rows, based on another column. But take a look at the
 <code>subjects</code> column.</p>
-<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">subjects</span> <span class="k">FROM</span> <span class="n">checkouts</span> <span class="k">LIMIT</span> <span class="mi">1</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span> <span class="n">subjects</span> <span class="k">FROM</span> <span class="n">checkouts</span> <span class="k">LIMIT</span> <span class="mi">1</span>
+</code></pre></div>
 
-
-<div class="highlight"><pre><span></span>                     <span class="nv">subjects</span>
-<span class="o">---------------------------------------------------</span>
- <span class="nv">Music</span> <span class="k">for</span> <span class="nv">meditation</span>, <span class="nv">New</span> <span class="nv">Age</span> <span class="nv">music</span>, <span class="nv">Zither</span> <span class="nv">music</span>
-<span class="ss">(</span><span class="mi">1</span> <span class="nv">row</span><span class="ss">)</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="err">                     subjects</span>
+<span class="err">---------------------------------------------------</span>
+<span class="err"> Music for meditation, New Age music, Zither music</span>
+<span class="err">(1 row)</span>
+</code></pre></div>
 
 <p>Each row contains a comma-separated list of subjects. In a normalized database,
 there would be a second table with a list of subjects which we could easily
@@ -303,31 +291,27 @@ query for the answer, but not so in this case. Luckily, postgres has a bunch of
 nifty functions built-in that allow us to accomplish the same thing.</p>
 <p>Starting off, we have the <code>string_to_array</code> function, which allows us to access
 each subject individually.</p>
-<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">string_to_array</span><span class="p">(</span><span class="n">subjects</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">checkouts</span> <span class="k">LIMIT</span> <span class="mi">1</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span> <span class="n">string_to_array</span><span class="p">(</span><span class="n">subjects</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">checkouts</span> <span class="k">LIMIT</span> <span class="mi">1</span>
+</code></pre></div>
 
-
-<div class="highlight"><pre><span></span>                                <span class="n">string_to_array</span>
-<span class="c1">--------------------------------------------------------------------------------</span>
- <span class="err">{</span><span class="n">Aleuts</span><span class="p">,</span><span class="ss">&quot; Natural history Alaska Aleutian Islands&quot;</span><span class="p">,</span><span class="ss">&quot; Aleutian Islands Alaska&quot;</span><span class="err">}</span>
-<span class="p">(</span><span class="mi">1</span> <span class="k">row</span><span class="p">)</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="err">                                string_to_array</span>
+<span class="err">--------------------------------------------------------------------------------</span>
+<span class="err"> {Aleuts,&quot; Natural history Alaska Aleutian Islands&quot;,&quot; Aleutian Islands Alaska&quot;}</span>
+<span class="err">(1 row)</span>
+</code></pre></div>
 
 <p>This is useful, but even more so when combined with the <code>unnest</code> function,
 which breaks up an array into multiple rows.</p>
-<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">unnest</span><span class="p">(</span><span class="n">string_to_array</span><span class="p">(</span><span class="n">subjects</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">))</span> <span class="k">FROM</span> <span class="n">checkouts</span> <span class="k">LIMIT</span> <span class="mi">3</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span> <span class="k">unnest</span><span class="p">(</span><span class="n">string_to_array</span><span class="p">(</span><span class="n">subjects</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">))</span> <span class="k">FROM</span> <span class="n">checkouts</span> <span class="k">LIMIT</span> <span class="mi">3</span>
+</code></pre></div>
 
-
-<div class="highlight"><pre><span></span>                  <span class="k">unnest</span>
-<span class="c1">------------------------------------------</span>
- <span class="n">Aleuts</span>
-  <span class="k">Natural</span> <span class="n">history</span> <span class="n">Alaska</span> <span class="n">Aleutian</span> <span class="n">Islands</span>
-  <span class="n">Aleutian</span> <span class="n">Islands</span> <span class="n">Alaska</span>
-<span class="p">(</span><span class="mi">3</span> <span class="k">rows</span><span class="p">)</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="err">                  unnest</span>
+<span class="err">------------------------------------------</span>
+<span class="err"> Aleuts</span>
+<span class="err">  Natural history Alaska Aleutian Islands</span>
+<span class="err">  Aleutian Islands Alaska</span>
+<span class="err">(3 rows)</span>
+</code></pre></div>
 
 <blockquote>
 <p>Note I had to change from <code>LIMIT 1</code> to <code>LIMIT 3</code> to accommodate that there
@@ -335,29 +319,27 @@ are now more rows</p>
 </blockquote>
 <p>Even better, we can simply add other columns, and they take on the values of
 the original row</p>
-<div class="highlight"><pre><span></span><span class="k">SELECT</span>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span>
     <span class="n">checkout_year</span><span class="p">,</span>
     <span class="n">checkout_month</span><span class="p">,</span>
     <span class="n">checkouts</span><span class="p">,</span>
     <span class="k">unnest</span><span class="p">(</span><span class="n">string_to_array</span><span class="p">(</span><span class="n">subjects</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">))</span>
 <span class="k">FROM</span> <span class="n">checkouts</span>
 <span class="k">LIMIT</span> <span class="mi">3</span>
-</pre></div>
+</code></pre></div>
 
-
-<div class="highlight"><pre><span></span> <span class="n">checkout_year</span> <span class="o">|</span> <span class="n">checkout_month</span> <span class="o">|</span> <span class="n">checkouts</span> <span class="o">|</span>                  <span class="k">unnest</span>
-<span class="c1">---------------+----------------+-----------+------------------------------------------</span>
-          <span class="mi">2016</span> <span class="o">|</span>              <span class="mi">3</span> <span class="o">|</span>         <span class="mi">1</span> <span class="o">|</span> <span class="n">Aleuts</span>
-          <span class="mi">2016</span> <span class="o">|</span>              <span class="mi">3</span> <span class="o">|</span>         <span class="mi">1</span> <span class="o">|</span>  <span class="k">Natural</span> <span class="n">history</span> <span class="n">Alaska</span> <span class="n">Aleutian</span> <span class="n">Islands</span>
-          <span class="mi">2016</span> <span class="o">|</span>              <span class="mi">3</span> <span class="o">|</span>         <span class="mi">1</span> <span class="o">|</span>  <span class="n">Aleutian</span> <span class="n">Islands</span> <span class="n">Alaska</span>
-<span class="p">(</span><span class="mi">3</span> <span class="k">rows</span><span class="p">)</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="err"> checkout_year | checkout_month | checkouts |                  unnest</span>
+<span class="err">---------------+----------------+-----------+------------------------------------------</span>
+<span class="err">          2016 |              3 |         1 | Aleuts</span>
+<span class="err">          2016 |              3 |         1 |  Natural history Alaska Aleutian Islands</span>
+<span class="err">          2016 |              3 |         1 |  Aleutian Islands Alaska</span>
+<span class="err">(3 rows)</span>
+</code></pre></div>
 
 <p>Now we're cooking with fire! Finally, we can trim any leading or trailing
 whitespaces, group the subject count by year (rather than by book, as is the
 case without a group by), and clean up the column names for ease of use.</p>
-<div class="highlight"><pre><span></span><span class="k">WITH</span> <span class="n">subject_popularity</span> <span class="k">AS</span> <span class="p">(</span>
+<div class="highlight"><pre><span></span><code><span class="k">WITH</span> <span class="n">subject_popularity</span> <span class="k">AS</span> <span class="p">(</span>
     <span class="k">SELECT</span>
         <span class="n">checkout_year</span> <span class="k">AS</span> <span class="k">year</span><span class="p">,</span>
         <span class="n">checkout_month</span> <span class="k">AS</span> <span class="k">month</span><span class="p">,</span>
@@ -374,35 +356,31 @@ case without a group by), and clean up the column names for ease of use.</p>
 <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">subject</span><span class="p">,</span> <span class="k">year</span>
 <span class="k">ORDER</span> <span class="k">BY</span> <span class="k">year</span> <span class="k">DESC</span><span class="p">,</span> <span class="n">checkouts</span> <span class="k">DESC</span>
 <span class="k">LIMIT</span> <span class="mi">10</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>The only problem? This is a computationally expensive question. On my computer,
 the query took about 15 minutes to complete. The database has to take each row
 and expand it out by the number of subjects contained within in order to group
 them appropriately. How many rows would that be? We can estimate it.</p>
-<div class="highlight"><pre><span></span><span class="k">WITH</span> <span class="n">top_checkouts</span> <span class="k">AS</span> <span class="p">(</span>
+<div class="highlight"><pre><span></span><code><span class="k">WITH</span> <span class="n">top_checkouts</span> <span class="k">AS</span> <span class="p">(</span>
     <span class="k">SELECT</span> <span class="o">*</span> <span class="k">from</span> <span class="n">checkouts</span> <span class="k">limit</span> <span class="mi">10000</span>
 <span class="p">)</span>
 
 <span class="k">SELECT</span>
     <span class="k">AVG</span><span class="p">(</span><span class="n">array_length</span><span class="p">(</span><span class="n">string_to_array</span><span class="p">(</span><span class="n">subjects</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="p">),</span> <span class="mi">1</span><span class="p">))</span>
 <span class="k">FROM</span> <span class="n">top_checkouts</span>
-</pre></div>
+</code></pre></div>
 
-
-<div class="highlight"><pre><span></span>        <span class="k">avg</span>
-<span class="c1">--------------------</span>
- <span class="mi">3</span><span class="p">.</span><span class="mi">8237366619689954</span>
-<span class="p">(</span><span class="mi">1</span> <span class="k">row</span><span class="p">)</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="err">        avg</span>
+<span class="err">--------------------</span>
+<span class="err"> 3.8237366619689954</span>
+<span class="err">(1 row)</span>
+</code></pre></div>
 
 <p>This, multiplied by the 35m rows is about 133m. 133 million rows are needed to
 calculate the number of checkouts per subject per year, as specified by</p>
-<div class="highlight"><pre><span></span><span class="k">GROUP</span> <span class="k">BY</span> <span class="n">subject</span><span class="p">,</span> <span class="k">year</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="k">GROUP</span> <span class="k">BY</span> <span class="n">subject</span><span class="p">,</span> <span class="k">year</span>
+</code></pre></div>
 
 <p>in the previous query. No wonder it takes so long!</p>
 <p><strong>Side note</strong>, if you want to visualize the bottlenecks of a query, there are
@@ -414,32 +392,29 @@ access, and that is by putting it in a materialized view. In summary,
 materialized views allow you to cache the results of a query and allows you to
 periodically refresh the data. Creating the view will initially take as long as
 running the original query, but future queries will be much faster against it.</p>
-<div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="n">MATERIALIZED</span> <span class="k">VIEW</span> <span class="n">yearly_subject_popularity</span> <span class="k">AS</span>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span> <span class="n">MATERIALIZED</span> <span class="k">VIEW</span> <span class="n">yearly_subject_popularity</span> <span class="k">AS</span>
 <span class="o">&lt;</span><span class="n">original</span> <span class="n">query</span><span class="o">&gt;</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Finally we can answer the original question. What subjects are most popular?</p>
-<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">yearly_subject_popularity</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="k">year</span> <span class="k">DESC</span><span class="p">,</span> <span class="n">checkouts</span> <span class="k">DESC</span>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">yearly_subject_popularity</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="k">year</span> <span class="k">DESC</span><span class="p">,</span> <span class="n">checkouts</span> <span class="k">DESC</span>
 <span class="k">LIMIT</span> <span class="mi">10</span><span class="p">;</span>
-</pre></div>
+</code></pre></div>
 
-
-<div class="highlight"><pre><span></span> <span class="nv">year</span> <span class="o">|</span> <span class="nv">checkouts</span> <span class="o">|</span>                  <span class="nv">subject</span>
-<span class="o">------+-----------+-------------------------------------------</span>
- <span class="mi">2019</span> <span class="o">|</span>   <span class="mi">1348448</span> <span class="o">|</span> <span class="nv">Fiction</span>
- <span class="mi">2019</span> <span class="o">|</span>    <span class="mi">854448</span> <span class="o">|</span> <span class="nv">Video</span> <span class="nv">recordings</span> <span class="k">for</span> <span class="nv">the</span> <span class="nv">hearing</span> <span class="nv">impaired</span>
- <span class="mi">2019</span> <span class="o">|</span>    <span class="mi">807154</span> <span class="o">|</span> <span class="nv">Nonfiction</span>
- <span class="mi">2019</span> <span class="o">|</span>    <span class="mi">684857</span> <span class="o">|</span> <span class="nv">Feature</span> <span class="nv">films</span>
- <span class="mi">2019</span> <span class="o">|</span>    <span class="mi">603138</span> <span class="o">|</span> <span class="nv">Fiction</span> <span class="nv">films</span>
- <span class="mi">2019</span> <span class="o">|</span>    <span class="mi">524205</span> <span class="o">|</span> <span class="nv">Literature</span>
- <span class="mi">2019</span> <span class="o">|</span>    <span class="mi">334981</span> <span class="o">|</span> <span class="nv">Thriller</span>
- <span class="mi">2019</span> <span class="o">|</span>    <span class="mi">323856</span> <span class="o">|</span> <span class="nv">Mystery</span>
- <span class="mi">2019</span> <span class="o">|</span>    <span class="mi">319389</span> <span class="o">|</span> <span class="nv">Romance</span>
- <span class="mi">2019</span> <span class="o">|</span>    <span class="mi">318219</span> <span class="o">|</span> <span class="nv">Fantasy</span>
-<span class="ss">(</span><span class="mi">10</span> <span class="nv">rows</span><span class="ss">)</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="err"> year | checkouts |                  subject</span>
+<span class="err">------+-----------+-------------------------------------------</span>
+<span class="err"> 2019 |   1348448 | Fiction</span>
+<span class="err"> 2019 |    854448 | Video recordings for the hearing impaired</span>
+<span class="err"> 2019 |    807154 | Nonfiction</span>
+<span class="err"> 2019 |    684857 | Feature films</span>
+<span class="err"> 2019 |    603138 | Fiction films</span>
+<span class="err"> 2019 |    524205 | Literature</span>
+<span class="err"> 2019 |    334981 | Thriller</span>
+<span class="err"> 2019 |    323856 | Mystery</span>
+<span class="err"> 2019 |    319389 | Romance</span>
+<span class="err"> 2019 |    318219 | Fantasy</span>
+<span class="err">(10 rows)</span>
+</code></pre></div>
 
 <h2>Conclusion</h2>
 <p>Databases are a great place to store lots of data, because that's what they're

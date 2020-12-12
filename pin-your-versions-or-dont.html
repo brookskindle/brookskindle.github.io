@@ -105,19 +105,17 @@
 want to use the <code>requests</code> library. Installing <code>requests</code> also installs the
 libraries that it depends on. Should you be explicit and pin the versions of
 all installed libraries (equivalent to the output of <code>pip freeze</code>)</p>
-<div class="highlight"><pre><span></span><span class="n">certifi</span><span class="o">==</span><span class="mi">2018</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">16</span>
-<span class="n">chardet</span><span class="o">==</span><span class="mi">3</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span>
-<span class="n">idna</span><span class="o">==</span><span class="mi">2</span><span class="p">.</span><span class="mi">7</span>
-<span class="n">requests</span><span class="o">==</span><span class="mi">2</span><span class="p">.</span><span class="mi">19</span><span class="p">.</span><span class="mi">1</span>
-<span class="n">urllib3</span><span class="o">==</span><span class="mi">1</span><span class="p">.</span><span class="mi">23</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="err">certifi==2018.4.16</span>
+<span class="err">chardet==3.0.4</span>
+<span class="err">idna==2.7</span>
+<span class="err">requests==2.19.1</span>
+<span class="err">urllib3==1.23</span>
+</code></pre></div>
 
 <p>or should you just list the top-most dependencies by name, omitting versions
 altogether?</p>
-<div class="highlight"><pre><span></span><span class="n">requests</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="err">requests</span>
+</code></pre></div>
 
 <p>The answer depends on if your project is an application or a library, because
 needs differ from one type to the next.</p>

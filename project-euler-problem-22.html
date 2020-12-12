@@ -110,7 +110,7 @@ calculate the total score for all names in the file. The score for a given name
 can be calculated by taking sum of each character's alphabetical value (<code>A</code> is
 1, <code>B</code> is 2, and so on) and multiplying it by its' position in the list,
 assuming the list is alphabetically sorted from <code>A</code> to <code>Z</code>.</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_sorted_names</span><span class="p">():</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_sorted_names</span><span class="p">():</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;names.txt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fd</span><span class="p">:</span>
         <span class="n">names</span> <span class="o">=</span> <span class="n">fd</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
 
@@ -138,13 +138,12 @@ assuming the list is alphabetically sorted from <code>A</code> to <code>Z</code>
     <span class="n">names</span> <span class="o">=</span> <span class="n">get_sorted_names</span><span class="p">()</span>
     <span class="n">score</span> <span class="o">=</span> <span class="n">calculate_list_score</span><span class="p">(</span><span class="n">names</span><span class="p">)</span>
 
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;{score:,}&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">score</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">main</span><span class="p">()</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>It requires python 3.6 or greater to run, but that requirement can be removed
 if you change the f-string in the <code>main</code> function to an older <code>.format</code> style

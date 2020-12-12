@@ -107,7 +107,7 @@ amount of features that I both know, and have yet to learn.</p>
 <p>One such example are folds. In vim, folds are a concept that allows you to
 collapse parts of code based on rules, usually by indentation level.</p>
 <p>Visually, when you fold code it goes from this</p>
-<div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;fmt&quot;</span>
@@ -117,17 +117,15 @@ collapse parts of code based on rules, usually by indentation level.</p>
 <span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">math</span><span class="p">.</span><span class="nx">Pow</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 <span class="p">}</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>to this</p>
-<div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="o">+--</span>  <span class="mi">4</span> <span class="nx">lines</span><span class="p">:</span> <span class="kn">import</span> <span class="p">(</span><span class="o">---------------------------------</span>
 
 <span class="o">+--</span>  <span class="mi">3</span> <span class="nx">lines</span><span class="p">:</span> <span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span><span class="o">----------------------------</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>I think this is unnecessary to do for most files, but the larger your codebase
 is, the more useful it is to be able to get a bird's eye view of what is going

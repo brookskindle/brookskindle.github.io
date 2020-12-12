@@ -106,10 +106,9 @@
 <p>Those of you that have worked with <code>pandas</code> before are probably intimately
 familiar with the following syntax, which reads csv file into a <code>DataFrame</code>
 variable</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;dataset.csv&#39;</span><span class="p">)</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>In smaller datasets, this is sufficient enough to load your data into memory
 and allows you to focus on the more exciting parts of data analysis, such as:
@@ -129,18 +128,16 @@ title</a>, dating
 back to April of 2005. It is a large dataset consisting, at the time of this
 writing, approximately 35 million rows. When downloaded, the csv file weighs in
 at over 7 gigabytes.</p>
-<div class="highlight"><pre><span></span>$ ls -lh Checkouts_by_Title.csv
+<div class="highlight"><pre><span></span><code>$ ls -lh Checkouts_by_Title.csv
 -rw-rw-r-- <span class="m">1</span> brooks brooks <span class="m">7</span>.1G Oct <span class="m">12</span> <span class="m">23</span>:59 Checkouts_by_Title.csv
-</pre></div>
-
+</code></pre></div>
 
 <p>My desktop machine only has 8 gigabytes of RAM total</p>
-<div class="highlight"><pre><span></span>$ free -m
+<div class="highlight"><pre><span></span><code>$ free -m
               total        used        free      shared  buff/cache   available
 Mem:           <span class="m">7975</span>        <span class="m">2457</span>        <span class="m">3147</span>         <span class="m">117</span>        <span class="m">2370</span>        <span class="m">5122</span>
 Swap:          <span class="m">2047</span>           <span class="m">0</span>        <span class="m">2047</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>not enough to load it all into memory.</p>
 <p>How shall we approach the problem?</p>

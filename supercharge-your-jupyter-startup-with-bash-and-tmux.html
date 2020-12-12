@@ -121,7 +121,7 @@ my local machine requires me to do the following:</p>
 semi-daily basis. It's not hard, but the menial task gets old really quckly.</p>
 <p>All of this could be placed in a bash script and then called every time you
 want to start or open up a jupyter session.</p>
-<div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 
 <span class="c1"># A simple script that starts up a jupyter server if not running, or opens the</span>
 <span class="c1"># browser if one is already running</span>
@@ -145,13 +145,11 @@ tmux has-session -t jupyter <span class="m">1</span>&gt;/dev/null <span class="m
     <span class="nb">echo</span> jupyter is already running, starting web browser
     chromium http://localhost:8888 --new-window
 <span class="k">fi</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>If the script is in your PATH and is executable</p>
-<div class="highlight"><pre><span></span><span class="o">-</span><span class="n">rwxr</span><span class="o">-</span><span class="n">xr</span><span class="o">-</span><span class="n">x</span> <span class="mi">1</span> <span class="n">brooks</span> <span class="n">brooks</span> <span class="mi">816</span> <span class="n">May</span> <span class="mi">27</span> <span class="mi">12</span><span class="p">:</span><span class="mi">40</span> <span class="n">jupyter</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="err">-rwxr-xr-x 1 brooks brooks 816 May 27 12:40 jupyter</span>
+</code></pre></div>
 
 <p>then it could be called from an application launcher of your choice, without
 ever opening a terminal.</p>

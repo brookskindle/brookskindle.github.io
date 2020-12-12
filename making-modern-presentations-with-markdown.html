@@ -120,7 +120,7 @@ for my own purposes.</p>
 processor) is a web-based presentation framework that is markdown-driven. It's
 quick to get started, you just need one HTML boilerplate file and you can begin
 writing markdown within it.</p>
-<div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Title<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
@@ -154,24 +154,21 @@ writing markdown within it.</p>
     <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
   <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
-</pre></div>
-
+</code></pre></div>
 
 <h2><a href="https://github.com/hakimel/reveal.js">reveal.js</a></h2>
 <p>reveal.js is another web-based presentation framework. Normally you have to
 write the presentation in HTML, but it supports markdown as well. I've also had
 success just creating a markdown document</p>
-<div class="highlight"><pre><span></span><span class="gh">#</span> My markdown presentation
+<div class="highlight"><pre><span></span><code><span class="gh">#</span> My markdown presentation
 <span class="k">&gt; </span><span class="ge">Created using reveal.js</span>
 
 <span class="gh">#</span> Slide 2
-</pre></div>
-
+</code></pre></div>
 
 <p>and then using <code>pandoc</code> to create the HTML presentation</p>
-<div class="highlight"><pre><span></span><span class="n">pandoc</span> <span class="o">-</span><span class="n">s</span> <span class="k">input</span><span class="p">.</span><span class="n">md</span> <span class="o">-</span><span class="n">o</span> <span class="k">output</span><span class="p">.</span><span class="n">html</span> <span class="o">-</span><span class="n">t</span> <span class="n">revealjs</span> <span class="o">-</span><span class="n">V</span> <span class="n">revealjs</span><span class="o">-</span><span class="n">url</span><span class="o">=</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">lab</span><span class="p">.</span><span class="n">hakim</span><span class="p">.</span><span class="n">se</span><span class="o">/</span><span class="n">reveal</span><span class="o">-</span><span class="n">js</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="err">pandoc -s input.md -o output.html -t revealjs -V revealjs-url=https://lab.hakim.se/reveal-js</span>
+</code></pre></div>
 
 <h2>The verdict</h2>
 <p>It mostly boils down to preference and which one you like better.</p>

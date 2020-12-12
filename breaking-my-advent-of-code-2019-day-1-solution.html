@@ -106,7 +106,7 @@ These are my solutions to the problems presented on day 1.</p>
 <h2>Part one</h2>
 <p>Asks us to figure out how much fuel is required to lift a given spacecraft
 module if we know its' mass.</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 
 <span class="k">def</span> <span class="nf">calculate_fuel_cost</span><span class="p">(</span><span class="n">mass</span><span class="p">):</span>
@@ -130,7 +130,7 @@ module if we know its' mass.</p>
     <span class="n">masses</span> <span class="o">=</span> <span class="n">get_module_masses</span><span class="p">()</span>
     <span class="n">fuel_costs</span> <span class="o">=</span> <span class="p">[</span><span class="n">calculate_fuel_cost</span><span class="p">(</span><span class="n">mass</span><span class="p">)</span> <span class="k">for</span> <span class="n">mass</span> <span class="ow">in</span> <span class="n">masses</span><span class="p">]</span>
 
-    <span class="k">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">fuel_costs</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">fuel_costs</span><span class="p">))</span>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
@@ -138,15 +138,14 @@ module if we know its' mass.</p>
         <span class="n">test_calculate_fuel_cost</span><span class="p">()</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">main</span><span class="p">()</span>
-</pre></div>
-
+</code></pre></div>
 
 <h2>Part two</h2>
 <p>Asks us to make our fuel equation more accurate, to account for the additional
 mass incurred by the fuel itself. In this case, only the fuel calculation
 function needs to be updated (and corresponding tests). Everything else can
 stay the same.</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_fuel_cost</span><span class="p">(</span><span class="n">mass</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">calculate_fuel_cost</span><span class="p">(</span><span class="n">mass</span><span class="p">):</span>
     <span class="n">cost</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">mass</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span>
     <span class="k">if</span> <span class="n">cost</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">return</span> <span class="mi">0</span>  <span class="c1"># No fuel required for small masses</span>
@@ -161,8 +160,7 @@ stay the same.</p>
     <span class="k">assert</span> <span class="n">calculate_fuel_cost</span><span class="p">(</span><span class="mi">14</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
     <span class="k">assert</span> <span class="n">calculate_fuel_cost</span><span class="p">(</span><span class="mi">1969</span><span class="p">)</span> <span class="o">==</span> <span class="mi">966</span>
     <span class="k">assert</span> <span class="n">calculate_fuel_cost</span><span class="p">(</span><span class="mi">100756</span><span class="p">)</span> <span class="o">==</span> <span class="mi">50346</span>
-</pre></div>
-
+</code></pre></div>
 
 <h2>Breaking the code</h2>
 <p>Let's do a thought experiment. Could my implementation ever fail to give the
@@ -171,16 +169,14 @@ maximum mass of <code>149238</code>. Ignoring malformed input data, what if we h
 operate on ridiculously gigantic inputs?</p>
 <p>The second solution involves using recursion to find a more accurate mass
 calculation.</p>
-<div class="highlight"><pre><span></span><span class="k">return</span> <span class="n">cost</span> <span class="o">+</span> <span class="n">calculate_fuel_cost</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="k">return</span> <span class="n">cost</span> <span class="o">+</span> <span class="n">calculate_fuel_cost</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span>
+</code></pre></div>
 
 <p>Python limits the number of recursive calls that can be made</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">sys</span>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">sys</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">sys</span><span class="o">.</span><span class="n">getrecursionlimit</span><span class="p">()</span>
 <span class="mi">1000</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>and unlike some languages, does not <a href="https://www.geeksforgeeks.org/tail-call-elimination/">optimize tail
 recursion</a>.</p>
@@ -243,7 +239,7 @@ masses.</p>
 </table>
 <p>Conclusion: yes, after an abnormally large value was passed to the function, I
 succeeded in breaking it.</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">calculate_fuel_cost</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mf">1e308</span><span class="p">)</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="mf">1e168</span><span class="p">))</span>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">calculate_fuel_cost</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mf">1e308</span><span class="p">)</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="mf">1e168</span><span class="p">))</span>
 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
   <span class="n">File</span> <span class="s2">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
   <span class="n">File</span> <span class="s2">&quot;day1-pt2.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">13</span><span class="p">,</span> <span class="ow">in</span> <span class="n">calculate_fuel_cost</span>
@@ -254,10 +250,9 @@ succeeded in breaking it.</p>
     <span class="k">return</span> <span class="n">cost</span> <span class="o">+</span> <span class="n">calculate_fuel_cost</span><span class="p">(</span><span class="n">cost</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
   <span class="p">[</span><span class="n">Previous</span> <span class="n">line</span> <span class="n">repeated</span> <span class="mi">993</span> <span class="n">more</span> <span class="n">times</span><span class="p">]</span>
   <span class="n">File</span> <span class="s2">&quot;day1-pt2.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">8</span><span class="p">,</span> <span class="ow">in</span> <span class="n">calculate_fuel_cost</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Recursive calls made: {i}&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Recursive calls made: </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="ne">RecursionError</span><span class="p">:</span> <span class="n">maximum</span> <span class="n">recursion</span> <span class="n">depth</span> <span class="n">exceeded</span> <span class="k">while</span> <span class="n">calling</span> <span class="n">a</span> <span class="n">Python</span> <span class="nb">object</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>That's one massive mass.</p>
 <hr>
@@ -265,31 +260,28 @@ succeeded in breaking it.</p>
 the infinity value, <code>inf</code>, and attempts to pass in a slightly larger value than
 that resulted in an <code>OverflowError</code> because <code>math.floor</code> was unequipped to
 handle such large numbers (or consciously refused to).</p>
-<div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">calculate_fuel_cost</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mf">1e308</span><span class="p">)</span> <span class="o">*</span> <span class="mi">6</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">calculate_fuel_cost</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mf">1e308</span><span class="p">)</span> <span class="o">*</span> <span class="mi">6</span><span class="p">)</span>
 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
   <span class="n">File</span> <span class="s2">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
   <span class="n">File</span> <span class="s2">&quot;day1-pt2.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">5</span><span class="p">,</span> <span class="ow">in</span> <span class="n">calculate_fuel_cost</span>
     <span class="n">cost</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">mass</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span>
 <span class="ne">OverflowError</span><span class="p">:</span> <span class="n">integer</span> <span class="n">division</span> <span class="n">result</span> <span class="n">too</span> <span class="n">large</span> <span class="k">for</span> <span class="n">a</span> <span class="nb">float</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>In the name of science, I replaced the function call with integer division</p>
-<div class="highlight"><pre><span></span><span class="n">cost</span> <span class="o">=</span> <span class="p">(</span><span class="n">mass</span> <span class="o">//</span> <span class="mi">3</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="n">cost</span> <span class="o">=</span> <span class="p">(</span><span class="n">mass</span> <span class="o">//</span> <span class="mi">3</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span>
+</code></pre></div>
 
 <p>to continue the experiment. The show must go on!</p>
 <h2>A (very) large file</h2>
 <p>The other potential problem with my solution is that I read and store every
 input value into an array prior to processing, instead of streaming the input
 and keeping a running tally of the total fuel cost.</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_module_masses</span><span class="p">():</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_module_masses</span><span class="p">():</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;aoc-day1-input.txt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">mass_file</span><span class="p">:</span>
         <span class="n">masses</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">mass_file</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">masses</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Effectively, my solution is an offline algorithm, not an <a href="https://www.geeksforgeeks.org/online-algorithm/">online
 algorithm</a>, so the more input
@@ -316,22 +308,19 @@ program will run out of memory, given enough input.</p>
 </ol>
 <p>I hardly ever get to work with named pipes, so let's use the last option.
 First, I'll create the file.</p>
-<div class="highlight"><pre><span></span><span class="gp">$</span> mkfifo aoc-day1-input.txt
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> mkfifo aoc-day1-input.txt
 <span class="gp">$</span> ls aoc-day1-input.txt
 <span class="go">prw-r--r-- 1 brooks brooks 0 Dec  4 22:56 aoc-day1-input.txt</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>Then in a new terminal, use <code>/dev/urandom</code> to supply it with an
 endless supply of numbers.</p>
-<div class="highlight"><pre><span></span><span class="gp">$</span> cat /dev/urandom <span class="p">|</span> tr -dc <span class="s1">&#39;1-9&#39;</span> <span class="p">|</span> fold -w <span class="m">2</span> &gt; aoc-day1-input.txt
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> cat /dev/urandom <span class="p">|</span> tr -dc <span class="s1">&#39;1-9&#39;</span> <span class="p">|</span> fold -w <span class="m">2</span> &gt; aoc-day1-input.txt
+</code></pre></div>
 
 <p>Finally, I'll run the program and watch the memory usage slowly increase</p>
-<div class="highlight"><pre><span></span><span class="gp">$</span> python day1.py
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> python day1.py
+</code></pre></div>
 
 <table>
 <thead>

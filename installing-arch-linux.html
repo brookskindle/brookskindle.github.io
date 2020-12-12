@@ -162,9 +162,8 @@ ISO</a> and make a bootable USB drive with
 the image. I did this with the <code>dd</code> command. Then: restart your machine, boot
 from your new install media, and after a short while you will be greeted with a
 single prompt.</p>
-<div class="highlight"><pre><span></span><span class="gp">#</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="gp">#</span>
+</code></pre></div>
 
 <p>And that's pretty much it. Unlike other operating systems, there is no
 graphical installer to guide you. There is no console based one, either.
@@ -179,24 +178,23 @@ to the wants and needs of the owner.</p>
 <p>Hard-wired connections shouldn't have to worry about this step, but if you're
 connecting via wifi like me, you can use the interactive <code>iwctl</code> command to
 connect</p>
-<div class="highlight"><pre><span></span># <span class="nv">iwctl</span>
-[<span class="nv">iwctl</span>] <span class="nv">station</span> <span class="nv">wlan0</span> <span class="nv">scan</span>
-[<span class="nv">iwctl</span>] <span class="nv">station</span> <span class="nv">wlan0</span> <span class="nv">get</span><span class="o">-</span><span class="nv">networks</span>
-                  <span class="nv">Available</span> <span class="nv">networks</span>
-<span class="o">------------------------------------------------------</span>
-    <span class="nv">Network</span> <span class="nv">name</span>                    <span class="nv">Security</span>  <span class="nv">Signal</span>
-<span class="o">-----------------------------------------------------</span>
-    <span class="nv">One</span> <span class="nv">Cute</span> <span class="nv">Cottage</span>                <span class="nv">psk</span>       <span class="o">****</span>
-    <span class="nv">XFINITY</span>                         <span class="mi">8021</span><span class="nv">x</span>     <span class="o">***</span>
-    <span class="nv">Prejudice</span>                       <span class="nv">psk</span>       <span class="o">***</span>
-    <span class="nv">Pride</span>                           <span class="nv">psk</span>       <span class="o">**</span>
-    <span class="nv">Andromeda_2</span>.<span class="mi">4</span><span class="nv">GHz</span>                <span class="nv">psk</span>       <span class="o">**</span>
-    <span class="nv">Bassoon</span>                         <span class="nv">psk</span>       <span class="o">*</span>
-    <span class="nv">Bhaati</span> <span class="o">-</span> <span class="mi">2</span>.<span class="mi">4</span><span class="nv">GHz</span>                 <span class="nv">psk</span>       <span class="o">***</span>
-[<span class="nv">iwctl</span>] <span class="nv">station</span> <span class="nv">wlan0</span> <span class="k">connect</span> <span class="s2">&quot;</span><span class="s">One Cute Cottage</span><span class="s2">&quot;</span>
-<span class="nv">Enter</span> <span class="nv">passphrase</span>:
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="n">iwctl</span><span class="w"></span>
+<span class="o">[</span><span class="n">iwctl</span><span class="o">]</span><span class="w"> </span><span class="n">station</span><span class="w"> </span><span class="n">wlan0</span><span class="w"> </span><span class="n">scan</span><span class="w"></span>
+<span class="o">[</span><span class="n">iwctl</span><span class="o">]</span><span class="w"> </span><span class="n">station</span><span class="w"> </span><span class="n">wlan0</span><span class="w"> </span><span class="k">get</span><span class="o">-</span><span class="n">networks</span><span class="w"></span>
+<span class="w">                  </span><span class="n">Available</span><span class="w"> </span><span class="n">networks</span><span class="w"></span>
+<span class="c1">------------------------------------------------------</span>
+<span class="w">    </span><span class="n">Network</span><span class="w"> </span><span class="n">name</span><span class="w">                    </span><span class="n">Security</span><span class="w">  </span><span class="n">Signal</span><span class="w"></span>
+<span class="c1">-----------------------------------------------------</span>
+<span class="w">    </span><span class="n">One</span><span class="w"> </span><span class="n">Cute</span><span class="w"> </span><span class="n">Cottage</span><span class="w">                </span><span class="n">psk</span><span class="w">       </span><span class="o">****</span><span class="w"></span>
+<span class="w">    </span><span class="n">XFINITY</span><span class="w">                         </span><span class="mi">8021</span><span class="n">x</span><span class="w">     </span><span class="o">***</span><span class="w"></span>
+<span class="w">    </span><span class="n">Prejudice</span><span class="w">                       </span><span class="n">psk</span><span class="w">       </span><span class="o">***</span><span class="w"></span>
+<span class="w">    </span><span class="n">Pride</span><span class="w">                           </span><span class="n">psk</span><span class="w">       </span><span class="o">**</span><span class="w"></span>
+<span class="w">    </span><span class="n">Andromeda_2</span><span class="mf">.4</span><span class="n">GHz</span><span class="w">                </span><span class="n">psk</span><span class="w">       </span><span class="o">**</span><span class="w"></span>
+<span class="w">    </span><span class="n">Bassoon</span><span class="w">                         </span><span class="n">psk</span><span class="w">       </span><span class="o">*</span><span class="w"></span>
+<span class="w">    </span><span class="n">Bhaati</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">2.4</span><span class="n">GHz</span><span class="w">                 </span><span class="n">psk</span><span class="w">       </span><span class="o">***</span><span class="w"></span>
+<span class="o">[</span><span class="n">iwctl</span><span class="o">]</span><span class="w"> </span><span class="n">station</span><span class="w"> </span><span class="n">wlan0</span><span class="w"> </span><span class="k">connect</span><span class="w"> </span><span class="ss">&quot;One Cute Cottage&quot;</span><span class="w"></span>
+<span class="n">Enter</span><span class="w"> </span><span class="nl">passphrase</span><span class="p">:</span><span class="w"></span>
+</code></pre></div>
 
 <p>and then verify the connection with <code>ping archlinux.org</code>.</p>
 <h3>Installation guide</h3>
@@ -212,9 +210,8 @@ continue the installation from there.</p>
 too, does your computer. To fix this, your computer can use the Network Time
 Protocol to synchronize itself with a list of known accurate time servers to
 prevent itself from drifting.</p>
-<div class="highlight"><pre><span></span><span class="gp">#</span> timedatectl set-ntp <span class="nb">true</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="gp">#</span> timedatectl set-ntp <span class="nb">true</span>
+</code></pre></div>
 
 <p>Verify with <code>timedatectl status</code></p>
 <h3>Drive setup</h3>
@@ -227,34 +224,30 @@ took: A single encrypted filesystem with a separate <code>/boot</code> partition
 <li>The rest of the space will contain the Linux filesystem. I have enough RAM on
   my machine that I don't want or need swap.</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="o">#</span> <span class="n">cfdisk</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">nvme0n1</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="err"># cfdisk /dev/nvme0n1</span>
+</code></pre></div>
 
 <p>If you're unsure of your drive name, you can use <code>lsblk</code> to find out.
 You can additionally use it to verify the your partition changes were
 successfully written to disk.</p>
-<div class="highlight"><pre><span></span><span class="o">#</span> <span class="n">lsblk</span>
-<span class="n">NAME</span>          <span class="n">MAJ</span><span class="p">:</span><span class="k">MIN</span> <span class="n">RM</span>   <span class="k">SIZE</span> <span class="n">RO</span> <span class="k">TYPE</span>  <span class="n">MOUNTPOINT</span>
-<span class="n">nvme0n1</span>       <span class="mi">259</span><span class="p">:</span><span class="mi">0</span>    <span class="mi">0</span> <span class="mi">476</span><span class="p">.</span><span class="mi">9</span><span class="k">G</span>  <span class="mi">0</span> <span class="n">disk</span>
-<span class="err">├─</span><span class="n">nvme0n1p1</span>   <span class="mi">259</span><span class="p">:</span><span class="mi">1</span>    <span class="mi">0</span>   <span class="mi">300</span><span class="n">M</span>  <span class="mi">0</span> <span class="n">part</span>
-<span class="err">└─</span><span class="n">nvme0n1p2</span>   <span class="mi">259</span><span class="p">:</span><span class="mi">2</span>    <span class="mi">0</span> <span class="mi">476</span><span class="p">.</span><span class="mi">6</span><span class="k">G</span>  <span class="mi">0</span> <span class="n">part</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="err"># lsblk</span>
+<span class="err">NAME          MAJ:MIN RM   SIZE RO TYPE  MOUNTPOINT</span>
+<span class="err">nvme0n1       259:0    0 476.9G  0 disk</span>
+<span class="err">├─nvme0n1p1   259:1    0   300M  0 part</span>
+<span class="err">└─nvme0n1p2   259:2    0 476.6G  0 part</span>
+</code></pre></div>
 
 <p>From here, ensure the boot partition is formatted as <code>fat32</code>.</p>
-<div class="highlight"><pre><span></span><span class="o">#</span> <span class="n">mkfs</span><span class="p">.</span><span class="n">vfat</span> <span class="o">-</span><span class="n">F</span> <span class="mi">32</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">nvme0n1p1</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="err"># mkfs.vfat -F 32 /dev/nvme0n1p1</span>
+</code></pre></div>
 
 <p>Encrypt the root partition and format the opened drive as <code>ext4</code>.</p>
-<div class="highlight"><pre><span></span><span class="o">#</span> <span class="n">cryptsetup</span> <span class="o">-</span><span class="n">y</span> <span class="o">-</span><span class="n">v</span> <span class="n">luksFormat</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">nvme0n1p2</span>
-<span class="n">Enter</span> <span class="n">password</span><span class="p">:</span>
-<span class="n">Verify</span> <span class="n">password</span><span class="p">:</span>
-<span class="o">#</span> <span class="n">cryptsetup</span> <span class="k">open</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">nvme0n1p2</span> <span class="n">cryptroot</span>
-<span class="o">#</span> <span class="n">mkfs</span><span class="p">.</span><span class="n">ext4</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">mapper</span><span class="o">/</span><span class="n">cryptroot</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="err"># cryptsetup -y -v luksFormat /dev/nvme0n1p2</span>
+<span class="err">Enter password:</span>
+<span class="err">Verify password:</span>
+<span class="err"># cryptsetup open /dev/nvme0n1p2 cryptroot</span>
+<span class="err"># mkfs.ext4 /dev/mapper/cryptroot</span>
+</code></pre></div>
 
 <h3>Chroot</h3>
 <p>The goal of this section is to configure your system just enough so that
@@ -264,75 +257,65 @@ into thinking the filesystem root directory is that of our formatted drives,
 rather than the usb-drive we booted from, and then configuring the operating
 system from there.</p>
 <p>However, before chrooting, we must first mount the filesystem</p>
-<div class="highlight"><pre><span></span><span class="o">#</span> <span class="n">mount</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">mapper</span><span class="o">/</span><span class="n">cryptroot</span> <span class="o">/</span><span class="n">mnt</span>
-<span class="o">#</span> <span class="n">mkdir</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">boot</span>
-<span class="o">#</span> <span class="n">mount</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">nvme0n1p1</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">boot</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="err"># mount /dev/mapper/cryptroot /mnt</span>
+<span class="err"># mkdir /mnt/boot</span>
+<span class="err"># mount /dev/nvme0n1p1 /mnt/boot</span>
+</code></pre></div>
 
 <p>generate the filesystems table</p>
-<div class="highlight"><pre><span></span><span class="o">#</span> <span class="n">genfstab</span> <span class="o">-</span><span class="n">U</span> <span class="o">/</span><span class="n">mnt</span> <span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">fstab</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="err"># genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</span>
+</code></pre></div>
 
 <p>and install a few packages into our system. At a minimum, this should be</p>
-<div class="highlight"><pre><span></span><span class="o">#</span> <span class="n">pacstrap</span> <span class="o">/</span><span class="n">mnt</span> <span class="n">base</span> <span class="n">linux</span> <span class="n">linux</span><span class="o">-</span><span class="n">firmware</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="err"># pacstrap /mnt base linux linux-firmware</span>
+</code></pre></div>
 
 <p>This will give us the very basic set of commands post-chroot. Finally, we can
 enter the system</p>
-<div class="highlight"><pre><span></span><span class="o">#</span> <span class="n">arch</span><span class="o">-</span><span class="n">chroot</span> <span class="o">/</span><span class="n">mnt</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="err"># arch-chroot /mnt</span>
+</code></pre></div>
 
 <p>At this point, you will see the prompt change from a <code>#</code> to a <code>$</code>, indicating
 we've left the install media and are now running a shell from within the
 filesystem we just set up.</p>
 <p>Set the root password</p>
-<div class="highlight"><pre><span></span><span class="gp">$</span> passwd
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> passwd
+</code></pre></div>
 
 <p>and install any additional packages you need that weren't included in the
 previous <code>pacstrap</code> step. For me, I need an editor while configuring the
 system, and a wifi daemon so that, post-reboot, I can connect and continue the
 setup.</p>
-<div class="highlight"><pre><span></span><span class="gp">$</span> sudo pacman -Sy
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> sudo pacman -Sy
 <span class="gp">$</span> sudo pacman -S vim iwd
-</pre></div>
-
+</code></pre></div>
 
 <p>What next?</p>
 <p>Set the timezone and locale</p>
-<div class="highlight"><pre><span></span><span class="gp">$</span> ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
 <span class="gp">$</span> hwclock --systohc
 <span class="gp">$</span> vim /etc/locale.gen  <span class="c1"># uncomment the en_US.UTF-8 line</span>
 <span class="gp">$</span> locale-gen
 <span class="gp">$</span> <span class="nb">echo</span> <span class="nv">LANG</span><span class="o">=</span>en_US.UTF-8 &gt; /etc/locale.conf
-</pre></div>
-
+</code></pre></div>
 
 <p>Set the hostname</p>
-<div class="highlight"><pre><span></span>$ <span class="nb">echo</span> midnight &gt; /etc/hostname
+<div class="highlight"><pre><span></span><code>$ <span class="nb">echo</span> midnight &gt; /etc/hostname
 $ vim /etc/localhost
 <span class="m">127</span>.0.0.1 localhost
 ::1 localhost
 <span class="m">127</span>.0.0.1 midnight.localdomain midnight
-</pre></div>
+</code></pre></div>
 
-
-<div class="highlight"><pre><span></span><span class="gp">$</span> pacman -S base-devel man-db man-pages
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> pacman -S base-devel man-db man-pages
+</code></pre></div>
 
 <p>Edit <code>/etc/mkinitcpio.conf</code>, add <code>sd-encrypt</code> to the HOOKS section, and swap
 <code>udev</code> with <code>systemd</code>. More information on hooks is on the
 <a href="https://wiki.archlinux.org/index.php/Mkinitcpio#Common_hooks">mkinitcpio</a>
 ArchWiki page</p>
-<div class="highlight"><pre><span></span>HOOKS=(base systemd autodetect modconf block filesystems keyboard sd-encrypt fsck)
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>HOOKS=(base systemd autodetect modconf block filesystems keyboard sd-encrypt fsck)
+</code></pre></div>
 
 <p>Regenerate it with <code>mkinitcpio -p linux</code></p>
 <p>Configure the bootloader to</p>
@@ -340,26 +323,23 @@ ArchWiki page</p>
 <li>turn on <a href="https://wiki.archlinux.org/index.php/microcode">microcode</a> updates</li>
 <li>mount our encrypted root directory on boot</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="gp">$</span> sudo pacman -S intel-ucode
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> sudo pacman -S intel-ucode
+</code></pre></div>
 
-
-<div class="highlight"><pre><span></span>$ bootctl install
+<div class="highlight"><pre><span></span><code>$ bootctl install
 $ vim /boot/loader/entries/arch.conf
 title   Archlinux
 linux   /vmlinuz-linux
 initrd  /intel-ucode.img
 initrd  /initramfs-linux.img
 options rw rd.luks.name<span class="o">=</span>fdd06c74-7d25-4542-841f-7ca3ec8b4f50<span class="o">=</span>cryptroot <span class="nv">root</span><span class="o">=</span>/dev/mapper/cryptroot
-</pre></div>
-
+</code></pre></div>
 
 <p>Where UUID is the UUID of the encrypted linux filesystem (<code>/dev/nvme0n1p2</code>),
 found with <code>blkid</code> or <code>lsblk -f</code>.</p>
-<div class="highlight"><pre><span></span><span class="gp">$</span> bootctl update
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> bootctl update
 <span class="gp">$</span> bootctl list  <span class="c1"># verify archlinux entry is there</span>
-</pre></div>
-
+</code></pre></div>
 
 <h2>Post-installation setup</h2>
 <p>At this point, <code>reboot</code> the system and log in as <code>root</code> with the password you
@@ -371,17 +351,16 @@ must dhcp. <code>iwd</code> has its own functionality for this, so we must simpl
 configuration file and enable it. In the past I've used <code>dhcpcd</code>, but the
 program requires root to start, whereas the <code>iwd</code> daemon can be enabled to
 automatically start on boot.</p>
-<div class="highlight"><pre><span></span><span class="err">$</span><span class="w"> </span><span class="n">vim</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">iwd</span><span class="o">/</span><span class="n">main</span><span class="p">.</span><span class="n">conf</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="err">$</span><span class="w"> </span><span class="n">vim</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">iwd</span><span class="o">/</span><span class="n">main</span><span class="p">.</span><span class="n">conf</span><span class="w"></span>
 <span class="o">[</span><span class="n">General</span><span class="o">]</span><span class="w"></span>
 <span class="n">EnableNetworkConfiguration</span><span class="o">=</span><span class="k">true</span><span class="w"></span>
 <span class="err">$</span><span class="w"> </span><span class="n">systemctl</span><span class="w"> </span><span class="n">enable</span><span class="w"> </span><span class="n">iwd</span><span class="w"></span>
-</pre></div>
-
+</code></pre></div>
 
 <h3>Create your user</h3>
 <p>The goal is to create your own user account and prevent <code>root</code> from logging in
 via password.</p>
-<div class="highlight"><pre><span></span><span class="gp">$</span> pacman -S sudo
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> pacman -S sudo
 <span class="gp">$</span> useradd --create-home brooks
 <span class="gp">$</span> passwd brooks
 <span class="gp">$</span> usermod -a -G wheel brooks
@@ -389,53 +368,46 @@ via password.</p>
 <span class="gp">$</span> su -l brooks
 <span class="gp">$</span>$ sudo su  <span class="c1"># Ensure sudo works</span>
 <span class="gp">$</span> passwd --lock root  <span class="c1"># Once sudo is verified, prevent root from logging in</span>
-</pre></div>
-
+</code></pre></div>
 
 <p>On the next reboot, you can sign in as your user instead of <code>root</code></p>
 <h3>zsh + development environment</h3>
 <p>For general development environment setup, these are the programs I use often.</p>
-<div class="highlight"><pre><span></span><span class="gp">$</span> sudo pacman -S zsh zsh-autosuggestions zsh-syntax-highlighting
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> sudo pacman -S zsh zsh-autosuggestions zsh-syntax-highlighting
 <span class="gp">$</span> chsh -s /bin/zsh brooks
-</pre></div>
+</code></pre></div>
 
-
-<div class="highlight"><pre><span></span><span class="gp">$</span> sudo pacman -Sy
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> sudo pacman -Sy
 <span class="gp">$</span> sudo pacman -S git tmux stow
 <span class="gp">$</span> sudo pacman -S neovim the_silver_searcher fd bat fzf <span class="se">\</span>
                  acpi neofetch nodejs python npm openssh
-</pre></div>
+</code></pre></div>
 
-
-<div class="highlight"><pre><span></span><span class="gp">$</span> mkdir ~/build <span class="o">&amp;&amp;</span> <span class="nb">cd</span> ~/build
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> mkdir ~/build <span class="o">&amp;&amp;</span> <span class="nb">cd</span> ~/build
 <span class="gp">$</span> git clone https:/aur.archlinux.org/yay.git
 <span class="gp">$</span> <span class="nb">cd</span> yay
 <span class="gp">$</span> makepkg -si
 <span class="gp">$</span> yay -S xcwd-git
-</pre></div>
-
+</code></pre></div>
 
 <p>I have an Apple magic keyboard and want to swap the <code>fn</code> and <code>ctrl</code> key.</p>
-<div class="highlight"><pre><span></span><span class="gp">$</span> yay -S hid-apple-patched-git-dkms
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> yay -S hid-apple-patched-git-dkms
 <span class="gp">$</span> sudo mkinitcpio -P all
-</pre></div>
-
+</code></pre></div>
 
 <h3>Graphical server</h3>
 <p>So far, we've been configuring our system without the use of a graphical
 server. I prefer the <a href="https://i3wm.org/">i3 tiling window manager</a>, and this
 time around I'm using it without a display manager.</p>
-<div class="highlight"><pre><span></span><span class="gp">$</span> sudo pacman -S i3-gaps i3blocks <span class="se">\</span>
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> sudo pacman -S i3-gaps i3blocks <span class="se">\</span>
                  xorg-xinit xorg-xmodmap xorg-server <span class="se">\</span>
                  arandr termite rofi chromium
-</pre></div>
-
+</code></pre></div>
 
 <p>A graphical environment can be started at any time using <code>startx</code>.</p>
 <h3>Audio</h3>
-<div class="highlight"><pre><span></span><span class="gp">$</span> sudo pacman -S pulseaudio pavucontrol pulseaudio-alsa
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> sudo pacman -S pulseaudio pavucontrol pulseaudio-alsa
+</code></pre></div>
 
 <p>In my i3config, I use <code>pactl</code> to map volume control to a few keys. Can be
 started with <code>start-pulseaudio-x11</code>.</p>
@@ -446,22 +418,19 @@ audio at the same time).</p>
 <p>Luckily I didn't have to set anything up in order to support video streaming
 from my webcam</p>
 <h3>Backlight</h3>
-<div class="highlight"><pre><span></span><span class="gp">$</span> sudo pacman -S xbacklight xf86-video-intel
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> sudo pacman -S xbacklight xf86-video-intel
 <span class="gp">$</span> reboot
-</pre></div>
-
+</code></pre></div>
 
 <p>Backlight controls from <code>xbacklight</code> doesn't work unless video drivers are
 installed. I have an Intel-based machine, hence <code>xf86-video-intel</code>.</p>
 <h3>Screensaver</h3>
-<div class="highlight"><pre><span></span><span class="gp">$</span> sudo pacman -S xautolock i3lock-color
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> sudo pacman -S xautolock i3lock-color
+</code></pre></div>
 
 <h3>Font installation</h3>
-<div class="highlight"><pre><span></span><span class="gp">$</span> sudo pacman -S ttf-hack ttf-font-awesome noto-fonts-emoji
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> sudo pacman -S ttf-hack ttf-font-awesome noto-fonts-emoji
+</code></pre></div>
 
 <p><a href="https://sourcefoundry.org/hack/">Hack</a> as my general font, and <a href="https://fontawesome.com/">Font
 Awesome</a> for icon support on my status bar. The <a href="https://www.google.com/get/noto/help/emoji/">Noto
@@ -477,17 +446,15 @@ each other: 👍 and 🏻.</p>
 <h3>Gtk / Theming</h3>
 <p>The default gtk theme, Raleigh, isn't the best in my opinion, and the <code>Arc</code>
 theme is a good default dark theme.</p>
-<div class="highlight"><pre><span></span><span class="gp">$</span> sudo pacman -S lxappearance arc-gtk-theme
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> sudo pacman -S lxappearance arc-gtk-theme
 <span class="gp">$</span> yay -S xcursor-breeze
-</pre></div>
-
+</code></pre></div>
 
 <p>Use <code>lxappearance</code> to change the theme and mouse pointer</p>
 <h3>File manager</h3>
 <p>On the command line</p>
-<div class="highlight"><pre><span></span><span class="gp">$</span> sudo pacman -S ranger w3m
-</pre></div>
-
+<div class="highlight"><pre><span></span><code><span class="gp">$</span> sudo pacman -S ranger w3m
+</code></pre></div>
 
 <p><code>w3m</code> can be used to preview images from the command line</p>
 <hr>
