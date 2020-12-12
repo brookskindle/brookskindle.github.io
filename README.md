@@ -1,5 +1,5 @@
 # This repository
-is the source for my blog, built with python 3.7 and
+is the source for my blog, built with python and
 [Pelican](https://blog.getpelican.com/).
 
 ## Installation
@@ -12,7 +12,7 @@ is simple, just `pip install -r requirements.txt`
 > `git clone git@github.com:brookskindle/brookskindle.github.io.git --recursive`
 
 ## Running a local site
-is done by running `./develop_server.sh start` and pointing your browser to
+is done by running `make devserver` and pointing your browser to
 `http://localhost:8000`
 
 ## Publishing to Github

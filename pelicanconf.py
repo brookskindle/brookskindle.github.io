@@ -41,8 +41,10 @@ EXTRA_PATH_METADATA = {
 CUSTOM_CSS = "styles/styles.css"
 
 MARKUP = ["md", "ipynb"]
+
+from pelican_jupyter import markup as nb_markup
 PLUGIN_PATHS = ["./plugins"]
-PLUGINS = ["ipynb.markup", "revealmd"]
+PLUGINS = [nb_markup, "revealmd"]
 IPYNB_SKIP_CSS = True  # Let ipynb posts use site CSS settings
 IGNORE_FILES = ['.ipynb_checkpoints']
 
